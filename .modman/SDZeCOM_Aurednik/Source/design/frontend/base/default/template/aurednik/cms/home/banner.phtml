@@ -1,0 +1,11 @@
+<?php $banner = $this->getBannerCollection( Mage::app ()->getStore ()->getId () ); ?>
+<?php if ( is_array ( $banner ) && count ( $banner ) > 0 ) : ?>
+	<ul class="banner-block">
+		<?php foreach ( $banner as $bannerId => $current ) : ?>
+			<li>
+				<img style="width:100%" src="<?php echo $current -> getImgUrl (); ?>" alt="<?php echo $current -> getImgAltText ();?>" />
+			</li>
+		<?php endforeach; ?>
+	</ul>
+<?php endif; ?>	
+

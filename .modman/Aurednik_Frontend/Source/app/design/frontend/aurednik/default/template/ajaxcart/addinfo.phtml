@@ -1,0 +1,77 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_AjaxCart
+ * @copyright   Copyright (c) 2014 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+<?php
+    $addedQuoteItems = Mage::helper('ajaxcart')->getAddedQuoteItems();
+    $_items = $this->getItems();
+    $itemsCount = count($addedQuoteItems);
+
+    if ($this->getRequest()->getParam('categoryId')) {
+        Mage::getSingleton('checkout/session')->setLastCategoryId($this->getRequest()->getParam('categoryId'));
+    } else {
+        Mage::getSingleton('checkout/session')->setLastCategoryId(null);
+    }
+
+?>
+
+<div class="pac-item-total-related">
+    <div class="pac-2-message">
+        <span class="pac-sprite"></span>
+        <?php echo $this->__('Sie haben %s Artikel in den Warenkorb gelegt', Mage::registry('qty_added')) ?>
+        <?php echo $this->getChildHtml('cartreservation') ?>
+    </div>
+    <div class="pac-table">
+        <div class="pac-tr">
+        <div class="<?php if ($itemsCount > 1) echo 'pac-group-prd' ?> pac-td" id="pac-added-quote-items">
+            <div class="pac-product-info">
+                <?php foreach($_items as $_item) { ?>
+                    <?php if (!isset($addedQuoteItems[$_item->getId()])) continue; ?>
+                    <?php echo $this->getItemHtml($_item) ?>
+                <?php } ?>
+            </div>
+        </div>
+            <div class="pac-td pac-cart-total">
+                <div class="pac-items"style="color:black"><?php echo $this->__('There are <a href="%s">%s items</a> in your cart.', $this->getUrl('checkout/cart'), Mage::getSingleton('checkout/cart')->getSummaryQty()) ?></div>
+                <div class="pac-subtotal">
+                    <?php echo $this->__('Cart Subtotal:') ?>
+                    <span class="pac-amount pac-highlight">
+                        <?php $totals = Mage::getSingleton('checkout/cart')->getQuote()->getTotals() ?>
+                        <?php echo $this->helper('checkout')->formatPrice($totals["subtotal"]->getValue()) ?>
+                    </span>
+                </div>
+                <?php if ($checkoutUrl = $this->getCheckoutUrl()) { ?>
+                    <a class="pac-checkout-button" href="<?php echo $checkoutUrl ?>"><?php echo $this->__('Zur Kasse') ?></a>
+                <?php } ?>
+                <?php if ($continueLink = $this->getContinueLinkUrl()) { ?>
+                    <!-- 11-11-2016 SP geändert von pac-continue-shop zu pac-checkout-button und zwei brakes-->
+                    <br>
+                    <br>
+                    <div class="pac-checkout-button">
+                        <a href="<?php echo $continueLink; ?>"><?php echo Mage::helper('checkout')->__('Continue Shopping') ?></a>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+
+    <?php if ($this->helper('ajaxcart')->showAddInfoCrosssell()) { ?>
+        <?php echo $this->getChildHtml('crosssell') ?>
+    <?php } ?>
+    <script type="text/javascript">
+        ajaxCart.initCartReservation();
+    </script>
+</div>

@@ -1,0 +1,14 @@
+<layout version="0.1.0">
+
+	<checkout_cart_index translate="label">
+		<reference name="content">
+			<block type="aurednik/Checkout_Cart" name="freight_table" output="toHtml" template="checkout/cart/freight_table.phtml" />
+		</reference>
+	</checkout_cart_index>
+	
+	<default>
+		<reference name ="head">
+		  <action method="addCss"><stylesheet>css/banner_highlight/styles.css</stylesheet></action>
+		</reference>  
+	</default>
+</layout>

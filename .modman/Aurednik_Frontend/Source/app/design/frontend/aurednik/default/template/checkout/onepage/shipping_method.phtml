@@ -1,0 +1,104 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<form id="co-shipping-method-form" action="">
+    <div id="checkout-shipping-method-load">
+        <?php echo $this->getChildHtml('available') ?>
+    </div>
+	<?php if ( $this -> canDisplayOutSidePlayFreightTable () || $this -> canDisplayFurnitureFreightTable () ) : ?>
+	<p style ="font-weight:bold;font-size:20px;text-decoration:underline"><?php echo $this->__('Zusätzliche indivduelle Frachtkosten');?></p>
+	<p ><?php echo $this->__('Es entstehen zusätzliche Frachtkosten für Möbel/Außenspiel');?></p>
+	<?php endif; ?>
+	<?php if ( $this -> canDisplayFurnitureFreightTable () ) : ?>
+	<?php $_SESSION["setFurniture"] = true; ?>
+	<br>
+		<div class="shipping_table">
+		<p style="color:#ed1c24;font-weight:bold;font-size:15px;text-decoration:underline"><?php echo $this -> __( 'Möbel' ) ?></p>
+		<?php echo $this->__('Der Warenkorb enthält auch Möbel. Bei diesen Artikeln entstehen individuelle Frachtkosten. Siehe Tabelle.'); ?>
+		<br>
+		<br>
+		<?php echo $this->__('Nach Ihrer Bestellung setzt sich unser Kundendienst mit Ihnen in Verbindung, um den Gesambetrag Ihrer Bestellung und die Bestellabwicklung mit Ihnen zu kären.'); ?>
+		<br>
+			<tr>
+				<td style="<?php echo $this->getStyle() ?>" class="a-left" colspan="<?php echo $this->getColspan(); ?>">
+					
+				</td>
+				<br>
+				<p style="color:#000;font-weight:bold;font-size:15px;text-decoration:underline"><?php echo $this -> __( 'Frachtkostentabelle' ) ?></p>
+				<td style="<?php echo $this->getStyle() ?>" class="a-right">
+					<?php echo $this -> getFurnitureFreightTableHtml (); ?>
+				</td>
+			</tr>
+		</div>
+	<?php else: ?>
+		<?php $_SESSION["setFurniture"] = false; ?>
+	<?php endif;?>
+	<br>
+	<?php if ( $this -> canDisplayOutSidePlayFreightTable () ) : ?>
+	<?php $_SESSION["setOutsidePlay"] = true; ?>
+	<p style="color:#2a4b85;font-weight:bold;font-size:15px;text-decoration:underline"><?php echo $this -> __( 'Außenspiel' ) ?></p>
+		<div class="shipping_table">
+		<?php echo $this->__('Der Warenkorb enthält auch Außenspielartikel. Bei diesen Artikeln entstehen individuelle Frachtkosten. Siehe Tabelle.'); ?>
+		<br>
+		<br>
+		<?php echo $this->__('Nach Ihrer Bestellung setzt sich unser Kundendienst mit Ihnen in Verbindung, um den Gesambetrag Ihrer Bestellung und die Bestellabwicklung mit Ihnen zu kären.'); ?>
+		<br>
+			<tr>
+				<td style="<?php echo $this->getStyle() ?>" class="a-left" colspan="<?php echo $this->getColspan(); ?>">
+					
+				</td>
+				<br>
+				<p style="color:#000;font-weight:bold;font-size:15px;text-decoration:underline"><?php echo $this -> __( 'Frachtkostentabelle' ) ?></p>
+				<td style="<?php echo $this->getStyle() ?>" class="a-right">
+					<?php echo $this -> getOutSidePlayFreightTableHtml (); ?>
+				</td>
+			</tr>
+		</div>
+	<?php else: ?>
+		<?php $_SESSION["setOutsidePlay"] = false; ?>
+
+	<?php endif; ?>
+
+    
+    
+    
+    <script type="text/javascript">
+    //<![CDATA[
+        var shippingMethod = new ShippingMethod('co-shipping-method-form', "<?php echo $this->getUrl('checkout/onepage/saveShippingMethod') ?>");
+    //]]>
+    </script>
+    <div id="onepage-checkout-shipping-method-additional-load">
+        <?php echo $this->getChildHtml('additional') ?>
+    </div>
+    <div class="buttons-set" id="shipping-method-buttons-container">
+        <p class="back-link"><a href="#" onclick="checkout.back(); return false;"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        <button type="button" title="<?php echo $this->__('Warenkorb ändern') ?>" class="button" onclick="setLocation('/shop/checkout/cart/')" value="<?php echo $this->__('Warenkorb ändern') ?>"><span><span><?php echo $this->__('Warenkorb ändern') ?></span></span></button>
+        <button type="button" class="button" onclick="shippingMethod.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+		<span id="shipping-method-please-wait" class="please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+    </div>
+</form>

@@ -1,0 +1,287 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ 
+ --> Anpassungen Artiklekarte: Autor:Simon Peleschka
+	 
+	 ab Zeile 64 --> Bemerkungen zur Anpassung Artikelkarte:
+     * Zeile 64 - 72 geben Frachtkosten aus
+     */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php $artnr = $this->__('Artikelnummer:') ?>
+
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view">
+    <div class="product-essential">
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <?php echo $this->getBlockHtml('formkey') ?>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+
+        <div class="product-shop">
+			<h1 style="font-size:20px; font-family: Montserrat,Helvetica,Arial,sans-serif !important;"> 
+					
+					
+					<!-- Artikel ist neu -->
+					<?php $neu = $_product->getAn_55();
+					if ($neu == 530 ){
+					echo '<div style="border:0px solid #e2e2e2; float:right; padding-top:3px; padding-left:5px">';
+					echo '<p style="background: #369 none repeat scroll 0 0;color:white;font-weight:normal;padding:4px;">';
+					echo 'NEU';
+					echo '</p>';
+					echo '</div>';
+					}
+					?>
+					
+					<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?> </h1>
+          <div id="product_image_respons" style="float:left;margin-bottom:25px;">
+			  <div class="product-img-box">
+            <?php echo $this->getChildHtml('media') ?>
+        </div>
+			</div>
+	
+           
+		<div id="smarttest">
+			 <p><?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+            <?php echo $_product->getAn_1 ()?></p>
+			<div class="price-info">
+			<?php echo $this->getPriceHtml($_product); ?>
+			
+			
+			
+			
+
+			<!-- MwSt DE -->
+			<?php if ($_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.de' && $_product->getAn_382() == 7 ):?>
+			<p style="color:#666666;font-size:9px;float:left;"><?php echo $this->__('inkl. 7% Mwst, zzgl. Versand')?></p>
+			<?php endif ?>
+					
+			<?php if ($_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.de' && $_product->getAn_382() == 19 ):?>
+			<p style="color:#666666;font-size:9px;float:left;"><?php echo $this->__('inkl. 19% Mwst, zzgl. Versand')?></p>
+			<?php endif ?>
+					
+			<!-- MwSt AT -->
+			<br>
+			<p style="color:#369;font-size:9px;float:left;"><?php echo $this->__('*inkl. 20% MwSt, zzgl. Versand')?></p>
+			<br>
+			<?php if ($_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.com' && $_product->getAn_382() == 7 ):?>
+			<p style="color:#666666;font-size:9px;float:left;"><?php echo $this->__('inkl. 10% Mwst, zzgl. Versand')?></p>
+			<?php endif ?>
+					
+			<?php if ($_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.com' && $_product->getAn_382() == 19 ):?>
+			<p style="color:#666666;font-size:9px;float:left;"><?php echo $this->__('inkl. 20% Mwst, zzgl. Versand')?></p>
+			<?php endif ?>
+			
+			<!--<p style="color:#369;font-size:10px;float:left;"><?php /* echo $this->__('*inkl. 19 % MwSt, zzgl. Versand')*/?></p>-->
+			
+			
+			<?php echo $this->getChildHtml('alert_urls') ?>
+            <?php echo $this->getTierPriceHtml() ?>
+			</div >
+        
+			<?php echo $this->getChildHtml('extrahint') ?>
+			<!-- Mindestbestellwert -->
+            <?php if ($_product->getFinalPrice() < 10.00) : ?>
+                <p style="color:red;font-size:12px;float:left;"><?php echo ('Bitte beachten Sie den Mindestbestellwert von 10,00 €')?></p>
+            <?php endif; ?>
+            <!-- Mindestbestellwert -->
+            <?php if (!$this->hasOptions()):?>
+                <div class="add-to-box" style="border:0px solid #000">
+                    <?php if($_product->isSaleable()): ?>
+	                        <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                            <span class="or"><?php echo $this->__('OR') ?></span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php echo $this->getChildHtml('addto') ?>
+                </div>
+                <!-- 07-11-2016 SP verschoben aus Zeile 79, Menge & Warenkorb -->
+                <?php echo $this->getChildHtml('addtocart') ?>
+                <!-- 07-11-2016 SP verschoben aus Zeile 79, Menge & Warenkorb -->
+
+                <?php echo $this->getChildHtml('extra_buttons') ?>
+            <?php elseif (!$_product->isSaleable()): ?>
+                <div class="add-to-box">
+                    <?php echo $this->getChildHtml('addto') ?>
+                </div>
+            <?php endif; ?>
+		    <div class="options" style="border:1px solid #ccccc"> 
+		
+			<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+					<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+			<?php endif;?>
+			</div>
+
+			<!-- 07-11-2016 SP verschoben aus Zeile 66, Verfügbarkeit, Lieferzeiten -->
+            <?php echo $this->getChildHtml('product_type_data')?>
+            <!-- 07-11-2016 SP verschoben aus Zeile 66, Verfügbarkeit, Lieferzeiten -->
+            <?php  if ($_product->getProductAvailabilityText() == 'nicht auf Lager' ) : ?>
+			<p style="float:left;text-align:left;font-weight:bold;color:green;font-size:11px"><?php echo utf8_encode($this->__('wird kostenfrei nachgeliefert')); ?></p>
+			<?php endif ?>
+			
+			
+			<!-- 2017-02-20 SP frightcosts and informations for host like german -->
+			
+			<!-- frightcosts -->
+			<?php $freightCostsDE = $_product->getAn_51(); ?>
+			<?php if ($freightCostsDE != 0 && $freightCostsDE != "" && $_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.de'):; ?>
+				<p class="frachtkosten" style="font-family: Montserrat,Helvetica,Arial,sans-serif;text-align:left; color:#6a6a6a;">
+				<?php echo utf8_encode($this->__('Frachtkosten/St&uumlck:')); ?> <?php echo $freightCostsDE;?><?php/* echo ',00' */?> <?php echo ' &euro;'?></p>
+			<?php endif ?>	
+			
+			<!-- frightinformations -->	
+			<?php  if ($_product->getAn_342() != null && $_product->getAn_342() != "" && $_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.de'):; ?>
+			<p class="frachtinfo" style="font-size:9px;float:left;text-align:left; color:#6a6a6a;font-family: Montserrat,Helvetica,Arial,sans-serif;">
+			<?php /* SP 25-07-2016 --> 'Zus�tzliche' & 'f�r' gel�scht */
+			echo utf8_encode($this->__('Frachtinformation:'));?> <?php echo $_product->getAn_342(); ?></p>
+			<?php endif ?>
+				
+			<!-- 2017-02-20 SP frightcosts and informatiosn for host like german -->	
+				
+			<!-- 20160726 TW
+			and host like austria -->
+			<?php $freightCostsAt = $_product->getAn_52(); ?>
+			<?php if ($freightCostsAt != 0 && $freightCostsAt != "" && $_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.com'):; ?>
+			<p class="frachtkosten" style="text-align:left">
+			<?php echo utf8_encode($this->__('Frachtkosten/St&uumlck:')); ?> <?php echo $freightCostsAt;?><?php/* echo ',00' */?> <?php echo ' &euro;';?> </p>
+			<?php endif ?>
+			
+			<!-- 20160726 TW
+			and host like austria -->
+			<?php if ($_product->getAn_343() != null && $_product->getAn_343() != "" && $_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.com'):; ?>
+			<p class="frachtinfo" style="text-align:left;color:#6a6a6a; border:0px solid #e2e2e2">
+			<?php /* SP 25-07-2016 --> 'Zusätzliche' & 'für' gelöscht */
+			echo utf8_encode($this->__('Frachtinformation:'));?> <?php echo  $_product->getAn_343(); ?> </p>
+			<?php endif ?>			
+				
+			<!-- and host like austria -->	
+			
+			<?php echo $this->getChildHtml ('icons');?>
+			<?php echo $this->getChildHtml('other');?>
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+            <?php endif;?>
+        </div>
+		</div>
+        <div class="product-img-box notresponse">
+            <?php echo $this->getChildHtml('media') ?>
+        </div>
+
+        <div class="clearer"></div>
+
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                // Remove custom datetime validators
+                for (var methodName in Validation.methods) {
+                    if (methodName.match(/^validate-datetime-.*/i)) {
+                        delete Validation.methods[methodName];
+                    }
+                }
+
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+    //]]>
+    </script>
+    </div>
+	<?php if ($_product->getAn_424 () != ""):?>
+	<p style="font-size:20px"><?php echo 'Produktvideo ansehen'?></p>
+	<div>
+	<?php echo $_product->getAn_424 ()?>
+	</div>
+	<?php endif?>
+	
+	
+    <div class="product-collateral toggle-content tabs">
+        <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
+            <dl id="collateral-tabs" class="collateral-tabs">
+                <?php foreach ($detailedInfoGroup as $alias => $html):?>
+                    <dt class="tab"><span><?php echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
+                    <dd class="tab-container">
+                        <!-- 18-10-2016 SP "style-klasse" hinzugefügt Schriftart und Farbe -->
+                        <div class="tab-content" style="font-family: Montserrat,Helvetica,Arial,sans-serif;color: #636363"><?php echo $html ?></div>
+                        <div class="attributes"><?php echo $this->getChildHtml('attributes')?></div>
+                        <?php /*
+                        <!--<div class="icons"><?php echo $this->getChildHtml('icons')?></div>
+                        */?>
+                    </dd>
+                <?php endforeach;?>
+            </dl>
+        <?php endif; ?>
+    </div>
+	
+    <?php echo $this->getChildHtml('upsell_products') ?>
+    <?php echo $this->getChildHtml('product_additional_data') ?>
+</div>

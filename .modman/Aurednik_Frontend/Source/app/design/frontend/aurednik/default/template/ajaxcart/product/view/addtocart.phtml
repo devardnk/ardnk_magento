@@ -1,0 +1,78 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_AjaxCart
+ * @copyright   Copyright (c) 2014 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+<?php
+    $_product = $this->getProduct();
+	
+
+    $qty = max($this->getProductDefaultQty() * 1, 1);
+    $rQty = (int) $this->getRequest()->getParam('qty');
+    if (!$qty < $rQty) {
+        $qty = $rQty;
+    }
+
+    $wishlist = $this->getRequest()->getParam('wishlist');
+    $buttonType = ($wishlist && is_int($wishlist)) ? 'addwishlist' : $this->getButtonType();
+
+    switch ($buttonType) {
+        case 'updatecart' :
+            $buttonTitle = $this->__('Update Cart');
+            $onclick = 'ajaxCart.updateItemByForm(this.form);';
+            break;
+        case 'updatewishlist' :
+            $buttonTitle = $this->__('Update Item');
+            $onclick = 'ajaxCart.updateWishlistItemByForm(this.form);';
+            break;
+        case 'addwishlist' :
+            $buttonTitle = $this->__('Add to Cart');
+            $onclick = 'ajaxCart.addWishlistItemByForm(this.form);';
+            break;
+        default :
+            $buttonTitle = $this->__('Add to Cart');
+            $onclick = 'ajaxCart.addProductByForm(this.form, '.$_product->getId().');';
+    }
+
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_product = Mage::getModel('aurednik/product')->load($_product->getId());?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+
+
+<?php if($_product->isSaleable()): ?>
+<div class="qty-add-to-cart" style="border:0px solid #000;height:auto">
+    <div class="qty" style="float:left;">
+        <label for="qty"><?php echo $this->__('Qty') ?>:</label>
+        <input type="text" pattern="\d*" name="qty" id="qty" maxlength="12" value="<?php echo $qty ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+
+    </div>
+    <div class="cart" style="float:right">
+        <button type="button" title="<?php echo $buttonTitle ?>" class="pac-button pac-product-button p-border-box ajaxcart-el pac-btn-cart pac-btn-cart-<?php echo $_product->getId() ?>" onclick="<?php echo $onclick ?>">
+                <span class="pac-label">
+                    <span class="pac-helper"></span><span class="pac-number"></span><img class="pac-icon" width="25" height="23" src="<?php echo $this->getSkinUrl('images/plumrocket/ajaxcart/pac-cart-icon.png');?>" alt=""><img class="pac-loader" width="22" height="22" src="<?php echo $this->getSkinUrl('images/plumrocket/ajaxcart/pac-loader.gif');?>" alt="">
+			</span><div id="inwarenkorb">Warenkorb</div><div id="inwarenkorbmobil">Warenkorb</div>
+        </button>
+    </div>
+    <!--<div class="add-to-cart-buttons">
+        <?php/* echo $this->getChildHtml('', true, true) */?>
+    </div>-->
+</div>
+<?php endif; ?>
+<?php if(!$_product->isGrouped()): ?>
+    <div class="qty-wrapper">
+
+    </div>
+<?php endif; ?>

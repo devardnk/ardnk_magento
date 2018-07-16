@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aurednik_Integration>
+            <version>0.1.0</version>
+        </Aurednik_Integration>
+    </modules>
+
+    <global>
+        <helpers>
+            <aurednik_integration>
+                <class>Aurednik_Integration_Helper</class>
+            </aurednik_integration>
+        </helpers>
+
+        <models>
+            <aurednik_integration>
+                <class>Aurednik_Integration_Model</class>
+            </aurednik_integration>
+        </models>
+    </global>
+
+
+    <crontab>
+        <jobs>
+            <!-- Product Import  -->
+            <aurednik_integration_catalog_product_import>
+                <schedule>
+                    <cron_expr>*/1 * * * *</cron_expr>
+                    <config_path>aurednik_integration/catalog_product_import/cron_expr</config_path>
+                </schedule>
+                <run>
+                    <model>aurednik_integration/cronjob_catalog_product_import::execute</model>
+                </run>
+            </aurednik_integration_catalog_product_import>
+
+
+            <!-- Product Images Import  -->
+            <aurednik_Integration_catalog_product_images_import>
+                <schedule>
+                    <cron_expr>*/1 * * * *</cron_expr>
+                    <config_path>aurednik_integration/catalog_product_images_import/cron_expr</config_path>
+                </schedule>
+                <run>
+                    <model>aurednik_integration/cronjob_catalog_product_images_import::execute</model>
+                </run>
+            </aurednik_Integration_catalog_product_images_import>
+
+            <!-- Product Attributes Import  -->
+            <!-- <aurednik_Integration_catalog_product_attributes_import>
+                 <schedule>
+                     <cron_expr>*/5 * * * *</cron_expr>
+                     <config_path>aurednik_integration/catalog_product_attributes_import/cron_expr</config_path>
+                 </schedule>
+                 <run>
+                     <model>aurednik_integration/cronjob_catalog_product_attributes_import::execute</model>
+                 </run>
+             </aurednik_Integration_catalog_product_attributes_import> -->
+
+            <!-- Product Prices Import  -->
+            <aurednik_Integration_catalog_product_prices_import>
+                <schedule>
+                    <cron_expr>*/1 * * * *</cron_expr>
+                    <config_path>aurednik_integration/catalog_product_prices_import/cron_expr</config_path>
+                </schedule>
+                <run>
+                    <model>aurednik_integration/cronjob_catalog_product_prices_import::execute</model>
+                </run>
+            </aurednik_Integration_catalog_product_prices_import>
+
+            <!-- Locked Products Import  -->
+            <aurednik_Integration_catalog_product_lockedproducts_import>
+                <schedule>
+                    <cron_expr>*/1 * * * *</cron_expr>
+                    <config_path>aurednik_integration/catalog_product_lockedProducts_import/cron_expr</config_path>
+                </schedule>
+                <run>
+                    <model>aurednik_integration/cronjob_catalog_product_lockedProducts_import::execute</model>
+                </run>
+            </aurednik_Integration_catalog_product_lockedproducts_import>
+
+
+            <!-- Inventory Update -->
+            <!-- <aurednik_integration_catalog_product_availability>
+                 <schedule>
+                     <config_path>aurednik_integration/catalog_product_availability/cron_expr</config_path>
+                 </schedule>
+                 <run>
+                     <model>aurednik_integration/cronjob_catalog_product_availability::execute</model>
+                 </run>
+             </aurednik_integration_catalog_product_availability> -->
+
+            <!-- Price Update -->
+            <!--  <aurednik_integration_catalog_product_priceupdate>
+                  <schedule>
+                      <config_path>aurednik_integration/catalog_product_priceupdate/cron_expr</config_path>
+                  </schedule>
+                  <run>
+                      <model>aurednik_integration/cronjob_catalog_product_priceUpdate::execute</model>
+                  </run>
+              </aurednik_integration_catalog_product_priceupdate> -->
+        </jobs>
+    </crontab>
+
+    <default>
+        <aurednik_integration>
+            <catalog_product_import>
+                <cron_expr>*/1 * * * *</cron_expr>
+                <ftp_filename_pattern>Artikel__.*.txt</ftp_filename_pattern>
+            </catalog_product_import>
+
+            <catalog_product_availability>
+                <cron_expr>*/30 * * * *</cron_expr>
+                <ftp_filename_pattern>Verfügbarkeit__.*.txt</ftp_filename_pattern>
+            </catalog_product_availability>
+
+            <catalog_product_priceupdate>
+                <cron_expr>*/30 * * * *</cron_expr>
+                <ftp_filename_pattern>Verkaufspreis__.*.txt</ftp_filename_pattern>
+            </catalog_product_priceupdate>
+        </aurednik_integration>
+    </default>
+</config>

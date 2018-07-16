@@ -1,0 +1,34 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_AjaxCart
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+<?php $_product = $this->getProduct(); ?>
+
+<div class="pac-image product-img-box">
+	<p class="product-image-gallery product-image">
+		<img id="image" style="width:146px;" class="gallery-image visible" style="float:right;" src="<?php echo $this->helper('catalog/image')->init($_product, 'image') ?>" alt="" >
+	</p>
+</div>
+
+<?php echo $this->getChildHtml('after') ?>
+
+<script type="text/javascript">
+    pjQuery_1_10_2(document).ready(function(){
+        try {
+            ProductMediaManager.init();
+        } catch (e) { }
+    });
+</script>

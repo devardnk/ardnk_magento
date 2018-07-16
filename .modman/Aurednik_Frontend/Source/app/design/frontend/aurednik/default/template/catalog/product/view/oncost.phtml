@@ -1,0 +1,94 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php /* @var $this Mage_Catalog_Block_Product_View_Abstract */?>
+<?php $product = $this->getProduct() ?>
+
+
+<?php /* Produkt �berschreiben, um sicherzugehen, dass dieses nicht durch andere Module �berschrieben wird */?>
+<?php $_product = Mage::getModel('aurednik/product')->load($product->getId());?>
+
+<?php $freightCostsDE = $_product->getAn_51(); ?>
+<?php /* $freightCostsAt = $_product->getFreightShippingCostsAt(); */?>
+<?php $freightCostsAt = $_product->getAn_52(); ?>
+
+
+<?php  if ($_product->getAn_342() != null && $_product->getAn_342() != "" && $_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.de'):; ?>
+
+	<p class="frachtinfo" style="float:left;text-align:left; color:#6a6a6a;font-family: Montserrat,Helvetica,Arial,sans-serif;">
+	<?php /* SP 25-07-2016 --> 'Zus�tzliche' & 'f�r' gel�scht */
+	echo utf8_encode($this->__('Frachtinformation:'));?><?php echo  $_product->getAn_342(); ?> </p>
+
+<?php endif ?>
+
+<?php if ($freightCostsDE != 0 && $freightCostsDE != "" && $_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.de'):; ?>
+	<p class="frachtkosten" style="font-family: Montserrat,Helvetica,Arial,sans-serif;text-align:left;color:#6a6a6a;">
+	<?php
+	echo utf8_encode($this->__('Frachtkosten/St&uumlck:')); ?> <?php echo $freightCostsDE;?><?php/* echo ',00' */?> <?php echo ' &euro;'?></p>
+
+<?php endif ?>
+<!-- 20160726 TW
+ and host like austria -->
+<?php if ($freightCostsAt != 0 && $freightCostsAt != "" && $_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.com'):; ?>
+
+	<p class="frachtkosten" style="text-align:right">
+	<?php echo utf8_encode($this->__('Frachtkosten/St&uumlck:')); ?> <?php echo $freightCostsAt;?><?php echo ',00 12' ?> <?php echo ' &euro;';?> </p>
+
+<?php endif ?>
+
+<!-- 20160726 TW
+ and host like austria -->
+<?php if ($_product->getAn_343() != null && $_product->getAn_343() != "" && $_SERVER[ 'HTTP_HOST' ] === 'aurednikshop.com'):; ?>
+
+	<p class="frachtinfo" style="text-align:left; color:#6a6a6a; border:0px solid #e2e2e2">
+	<?php /* SP 25-07-2016 --> 'Zusätzliche' & 'für' gelöscht */
+	echo utf8_encode($this->__('Frachtinformation:'));?><?php echo  $_product->getAn_343(); ?> </p>
+
+<?php endif ?>
+
+
+
+
+
+
+		<?php /* Es entstehen Frachtkosten */?>
+
+		<?php /* Liefervariante Aussenspiel */?>
+		<?php  if ($_product->getAn_49() == 501 ) : ?>
+		<p class="frachtinfo" style="text-align:right; color:#6a6a6a; font-size:12px">
+		<?php echo utf8_encode($this->__('Bei diesem Artikel entstehen Frachtkosten.')); ?>
+		<p class="frachtinfo" style="text-align:right; color:#6a6a6a; font-size:12px">
+		<?php echo "<a href=\"#\" onclick=\"window.open('http://webshop.aurednik.de/media/fracht/aussenspiel.html/', 'child', 'height=400,width=700,scrollbars')\">Siehe Frachtkostentabelle Aussenspiel:</a>"; ?>
+		<?php endif ?>
+
+		<?php /* Liefervariante M�bel */?>
+		<?php  if ($_product->getAn_49() == 537 ) : ?>
+		<p class="frachtinfo" style="text-align:right; color:#6a6a6a; font-size:12px">
+		<?php echo utf8_encode($this->__('Bei diesem Artikel entstehen Frachtkosten.')); ?>
+		<p class="frachtinfo" style="text-align:right; color:#6a6a6a; font-size:12px">
+		<?php echo "<a href=\"#\" onclick=\"window.open('http://webshop.aurednik.de/media/fracht/moebel.html/', 'child', 'height=400,width=700,scrollbars')\">Siehe Frachtkostentabelle Moebel:</a>"; ?>
+		<?php endif ?>

@@ -1,0 +1,239 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_AjaxCart
+ * @copyright   Copyright (c) 2014 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+<?php
+    $_request = Mage::app()->getRequest();
+    $thmPackage = Mage::getSingleton('core/design_package')->getPackageName();
+    $_helper = $this->helper('ajaxcart');
+    if ($category = Mage::registry('current_category')) {
+    	$categoryId = $category->getId();
+    } else {
+    	$categoryId = 0;
+    }
+
+?>
+<script type="text/javascript">
+    //<![CDATA[
+    Translator.add('Qty','<?php echo $this->jsQuoteEscape($this->__('Qty')) ?>');
+    Translator.add('Edit','<?php echo $this->jsQuoteEscape($this->__('Edit')) ?>');
+    Translator.add('Edit item parameters','<?php echo $this->jsQuoteEscape($this->__('Edit item parameters')) ?>');
+    Translator.add('Close','<?php echo $this->jsQuoteEscape($this->__('Close')) ?>');
+
+    var minicartTemplate = <?php echo ($_helper->minicartTemplate()) ? '1' : '0' ?>;
+    var successNotificationAction = ( minicartTemplate == '1' ) ? 'javascript: ajaxCart.showMinicart()' : '<?php echo $this->getUrl('checkout/cart') ?>';
+    var successNotificationTemplate =
+        '<div class="pac-cf">'
+            +'<div class="plumajaxcart-notification pac-short">'
+                +'<span class="pac-desktop-close" onclick="ajaxCart.hideMessages();">&#x2715;</span>'
+                +'<div>'
+                    +'<div class="pac-product">'
+                        +'<table>'
+                            +'<tr>'
+                                +'<td class="pac-amount pac-added-qty">'
+                                    +'<span>{qty}</span>'
+                                +'</td>'
+                                +'<td class="pac-img"><img src="{image}" width="40" height="40"></td>'
+                                +'<td class="pac-text">{text}</td>'
+                            +'</tr>'
+                        +'</table>'
+                    +'</div>'
+                    +'<div class="pac-button-hld">'
+                        +'<a href="' + successNotificationAction + '" class="pac-button"><?php echo $this->jsQuoteEscape($this->__('View cart &amp; Checkout')) ?></a>'
+                        +'<a href="javascript: void(0);"  onclick="ajaxCart.hideMessages();" class="pac-button pac-mobile-close" style="margin-top: 5px;"><?php echo $this->jsQuoteEscape($this->__('Close')) ?></a>'
+                    +'</div>'
+                +'</div>'
+            +'</div>'
+        +'</div>';
+
+    var warningNotificationTemplate =
+            '<div class="plumajaxcart-notification pac-{type}">'
+                +'<span class="pac-desktop-close" onclick="ajaxCart.hideMessages();">&#x2715;</span>'
+                +'<div>'
+                    +'<div class="pac-message">'
+                      +'{text}'
+                    +'</div>'
+                    +'<div class="pac-button-hld pac-mobile-close"><a href="javascript: void(0);"  onclick="ajaxCart.hideMessages();" class="pac-button"><?php echo $this->jsQuoteEscape($this->__('Close')) ?></a></div>'
+                +'</div>'
+            +'</div>';
+    <?php
+        $urls = array(
+            'cartUrl' => $this->getUrl('checkout/cart'),
+            'wishlistUrl' => $this->getUrl('wishlist'),
+            'addToCartUrl' => $this->getUrl('ajaxcart/cart/add'),
+            'deleteFromCartUrl' => $this->getUrl('ajaxcart/cart/delete'),
+            'configureUrl' => $this->getUrl('ajaxcart/cart/configure'),
+            'configureWishlistUrl' => $this->getUrl('ajaxcart/cart/wishlistconfigure'),
+            'updateQtytUrl' => $this->getUrl('ajaxcart/cart/updateQty'),
+            'updateItemUrl' => $this->getUrl('ajaxcart/cart/updateItemOptions'),
+            // 'updateWishlistItemUrl' => $this->getUrl('ajaxcart/cart/updateWishlistItemOptions'),
+            'addToCartFromWishlistUrl' => $this->getUrl('ajaxcart/cart/addFromWishlist'),
+            'applyDiscountCodeUrl'  => $this->getUrl('ajaxcart/cart/couponPost'),
+            'applyRewardPointsUrl'  => $this->getUrl('ajaxcart/cart/activatePoints'),
+            'deactivateRewardPointsUrl'  => $this->getUrl('ajaxcart/cart/deactivatePoints'),
+        );
+        $isSecure = Mage::app()->getStore()->isCurrentlySecure();
+    ?>
+    ajaxCart = new _plAjaxCart({
+        <?php foreach($urls as $key => $url) {
+            if (defined('MAGENTO_ROOT')) {
+                $url = str_replace(parse_url($url, PHP_URL_HOST), $_SERVER['HTTP_HOST'], $url);
+
+                $url = str_replace('index.php/webshop/',  '', $url);
+            }
+            if ($isSecure) {
+                $urls[$key] = $url = str_replace('http://', 'https://', $url);
+            }
+            echo $key .':'.'\''.$url.'\',';
+        }
+        ?>
+        showQtyOnAddButton: <?php echo ($_helper->showQtyOnAddButton()) ? '1' : '0' ?>,
+        afterAddShow : <?php echo ($_helper->afterAddShow()) ? $_helper->afterAddShow() : '0' ?>,
+        unexpectedError : '<?php echo $this->jsQuoteEscape($this->__('Unexpected Error. Please try again later or <a href="%s">contact us.</a>', $this->getUrl('contacts/'))) ?>',
+        isCartPage : <?php echo (strpos(strtolower($_request->getControllerName()), 'cart') !== false && strtolower($_request->getActionName()) !== 'configure') ? 1 : 0 ?>,
+        isConfigurePage : <?php echo (strtolower($_request->getActionName()) === 'configure')  ? 1 : 0 ?>,
+        isCheckoutPage : <?php echo (strpos(strtolower($_request->getModuleName()), 'checkout') !== false) ? 1 : 0 ?>,
+        dinamicDefaultBlocks : ['minicart_head'],
+        categoryId : <?php echo $categoryId; ?>,
+        isWishlistPage : <?php echo ($_request->getModuleName() == 'wishlist') ? 1 : 0 ?>,
+        isCategoryPage : <?php echo ($_request->getModuleName() == 'catalog' && $_request->getControllerName() == 'category') ? 1 : 0 ?>,
+        //dinamicCartPageBlocks : ['checkout.cart.totals', 'checkout.cart.items'],
+        dinamicCartPageBlocks : ['content'],
+        micartTemplate : minicartTemplate,
+
+        popupWidth : 670,
+
+        successNotificationTemplate : successNotificationTemplate,
+        warningNotificationTemplate : warningNotificationTemplate
+    });
+
+    <?php
+        $hItems = array();
+        if ($head = $this->getLayout()->getBlock('head')) {
+            foreach($head->getData('items') as $item) {
+                $hItems[md5($item['name'])] = $item['name'];
+            }
+        }
+    ?>
+    <?php /*ajaxCart.cssJs = <?php echo json_encode($hItems) ?>; */ ?>
+
+
+    ajaxCart.parseAddToCartButtons = function(){
+        (function() {
+            <?php
+                $addToTitle = ($thmPackage != 'ultimo') ? $this->jsQuoteEscape($this->__('Add to Cart'))
+                    : $this->jsQuoteEscape(Mage::helper('customer')->__('To Cart'));
+            ?>
+			
+            var buttonTemplate =
+                '<button type="button" title="<?php echo $addToTitle ?>" class="pac-button p-border-box ajaxcart-el pac-btn-cart pac-btn-cart-{id}" onclick="ajaxCart.addProductById({id});">'
+                    +'<span class="pac-label" style="width:44px; padding-left:10px; padding-right:10px;">'
+                        +'<span class="pac-helper"></span>'
+                        +'<span class="pac-number"></span>'
+                        +'<img class="pac-icon" width="18" height="17" src="<?php echo $this->getSkinUrl('images/plumrocket/ajaxcart/pac-cart-icon.png') ?>" alt="">'
+                        +'<img class="pac-loader" width="22" height="22" src="<?php echo $this->getSkinUrl('images/plumrocket/ajaxcart/pac-loader.gif');?>" alt=""/>'
+                    +'</span>'
+                    +'<div id="inwarenkorb" style="line-height:40px;">Warenkorb</div><div id="inwarenkorbmobil" style="line-height:40px;">Warenkorb</div>'
+                +'</button>';
+
+            var inputTemplate = '';
+            <?php if ($_helper->showQtyInputOnList()) { ?>
+                inputTemplate =
+                    '<div class="pac-qty-field" style="width:20%;padding-top:0px;float:right;">'
+                        //+'<span><?php /* echo $this->jsQuoteEscape($this->__('Qty')) */?>:</span>'//
+                        +'<input class="pac-qty-input" style="align:center" name="pac_btn_cart_qty_{id}" type="text" value="1" style="width:45px; height:44px;padding:10px;" />'
+                        +'<span></span>'
+                    +'</div>';
+                var pac_package = 'pac-package-<?php echo $thmPackage ?>';
+                pjQuery_1_10_2('.products-grid, .products-list').addClass(pac_package);
+                <?php if ($thmPackage == 'fortis') { ?>
+                    pjQuery_1_10_2('.products-grid>li, .products-list>li').css('padding-bottom', '80px')
+                <?php } ?>
+            <?php } ?>
+
+            <?php if ($thmPackage == 'rwd' || $thmPackage == 'enterprise') { ?>
+                pjQuery_1_10_2(window).resize();
+                try {
+                    jQuery(window).resize();
+                } catch (e) {}
+            <?php } ?>
+
+            pjQuery_1_10_2('.products-grid .btn-cart, .products-list .btn-cart').each(function(){
+                var e = pjQuery_1_10_2(this);
+                if (e.hasClass('pac-button')) return;
+
+                <?php /*if ($thmPackage != 'ultimo') { ?>
+                if (!e.is(':visible')) return;
+                <?php } */ ?>
+
+                var onk = e.attr('onclick');
+                var href = e.attr('href');
+                var pStr = '/product/';
+                var h = (onk && onk.indexOf(pStr) != 1) ? onk : ((href && href.indexOf(pStr) != 1) ? href : '');
+                var res = h.match(/\/product\/(\d+)\//);
+                if (!res || res.length <= 1) {
+                	res = h.match(/\/product\/view\/id\/(\d+)\//);
+                }
+                if (res && res.length > 1) {
+                    var id = res[1];
+                    if (id) {
+                        <?php if ($thmPackage != 'ultimo') { ?>
+                            e.after(buttonTemplate.replace(/{id}/gi, id));
+                            if (inputTemplate) {
+                                e.before(e.after(inputTemplate.replace(/{id}/gi, id)));
+                            }
+                            e.remove();
+                        <?php } else { ?>
+                            var nb = pjQuery_1_10_2(buttonTemplate.replace(/{id}/gi, id));
+                            e.attr('onclick', nb.attr('onclick'));
+                            e.attr('class', e.attr('class')+' '+nb.attr('class'));
+                            e.html(nb.html());
+                            if (inputTemplate) {
+                                e.before(inputTemplate.replace(/{id}/gi, id));
+                            }
+                        <?php } ?>
+                    }
+                }
+            });
+        }());
+    };
+
+
+    pjQuery_1_10_2(document).ready(function(){
+        ajaxCart.onReady['minicart'] = function(){
+
+            ajaxCart.parseAddToCartButtons();
+
+            pjQuery_1_10_2('#header .skip-link,.header-container .skip-link').click(function(){
+                if (pjQuery_1_10_2(this).hasClass('minicart_link')) return;
+                ajaxCart.hideMinicart();
+            });
+
+            pjQuery_1_10_2('.pac-minicart-wrapper .details').mouseover(function(){
+                pjQuery_1_10_2(this).prev().find('.item-options').show().parent().addClass('show');
+            }).mouseleave(function(){
+                pjQuery_1_10_2(this).prev().find('.item-options').hide().parent().removeClass('show');
+            });
+        };
+    });
+    //]]>
+</script>
+
+<?php if (in_array($thmPackage, array('ultimo'))) { ?>
+    <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('ajaxcart/config/'.$thmPackage.'.phtml')->toHtml(); ?>
+<?php } ?>
+
+<div class="pac-overlay" id="pac_notifications"></div>

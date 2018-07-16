@@ -1,0 +1,11 @@
+
+<?php
+/**
+ * @var $this Mage_Catalog_Block_Product_View_Abstract
+ */
+?>
+<?php if ($this->getProduct()->getDeliveryTime()): ?>
+    <p class="delivery-time">
+        <?php echo $this->__('Delivery Time') ?>: <?php echo $this->getProduct()->getDeliveryTime() ?>
+    </p>
+<?php endif ?>

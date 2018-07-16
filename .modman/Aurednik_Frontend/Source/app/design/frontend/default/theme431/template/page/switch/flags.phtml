@@ -1,0 +1,17 @@
+
+<?php $websiteStores =  Mage::app()->getStores();?>
+
+<?php if(count($websiteStores)>1): ?>
+        <?php foreach ($websiteStores as $_lang): ?>
+            
+            <a class="flag" href="<?php echo $_lang->getCurrentUrl() ?>" title="<?php echo $this->htmlEscape($_lang->getName()) ?>">
+				<?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? 'active' : '' ?>
+	            <img class="<?php echo $_selected ?> " 
+                	src="<?php echo $this->getSkinUrl('images/flags/'.$_lang->getCode().'.png') ?>" 
+                	alt="<?php echo $this->htmlEscape($_lang->getName()) ?>"
+                	<?php if ( $_selected != 'active' ) : ?>
+                		style="filter:alpha(opacity=20); opacity: 0.2; -moz-opacity:0.2;background-color: #000"/>
+                	<?php endif;?>
+            </a>
+        <?php endforeach;?>
+<?php endif; ?> 

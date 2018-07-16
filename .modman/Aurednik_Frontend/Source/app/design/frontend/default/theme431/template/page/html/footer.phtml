@@ -1,0 +1,44 @@
+<?php
+$cmsFooterBlocks = $this->getFooterBlocks ();
+
+?>
+<div class="footer-container">
+	<div class="container_24">
+		<div class="wrapper">
+			<div class="grid_24">
+				<div class="footer">
+					  <div class="footer-cols-wrapper">
+						<?php if ( is_array ( $cmsFooterBlocks ) && count ( $cmsFooterBlocks ) > 0 ) : ?>
+							<?php foreach ( $cmsFooterBlocks as $cmsFooterBlock ) : ?>
+								<div class="footer-col">			
+									<h4><?php echo $cmsFooterBlock->getTitle () ?></h4>
+									<div class="footer-col-content">
+										<?php echo $cmsFooterBlock->getContent () ?>
+									</div>
+								</div>
+							<?php endforeach;?>					
+						<?php endif; ?>				
+						<?php echo $this->getChildHtml('footer_list') ?>
+                        <!-- ?php echo $this->getChildHtml('left.newsletter') ?-->
+					  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container_24">
+    <div class="wrapper indent-1">
+        <div class="grid_24">
+            <div class="footer">
+                <address><?php echo $this->getCopyright() ?></address>
+                <?php $current_page = Mage::app()->getFrontController()->getRequest()->getRouteName(); 
+                    if ($current_page == 'cms'):
+                        echo 'AUREDNIK GmbH Spiel- & Lernmittel Kindergarten- und Schulbedarf Kindermöbel</a>';
+                    endif;
+                ?>
+                <div class="clear"></div>
+                <?php echo $this->getChildHtml('paypal.partner.right.logo'); ?>
+            </div>
+        </div>
+    </div>
+</div>

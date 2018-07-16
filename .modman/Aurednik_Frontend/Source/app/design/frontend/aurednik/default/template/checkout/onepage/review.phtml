@@ -1,0 +1,105 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="order-review" id="checkout-review-load">
+    <!-- Content loaded dynamically -->
+</div>
+<?php
+/**
+ * @var $this FireGento_MageSetup_Block_Checkout_Agreements
+ */
+
+/** @var $helper FireGento_MageSetup_Helper_Data */
+$helper = Mage::helper('magesetup');
+$agreements = $this->getAgreements();
+?>
+
+<form action="" id="checkout-agreements" onsubmit="return false;">
+	<!-- SDZeCOM_Aurednink Bestelltyp -->
+	<input type="hidden"
+		   id="<?php echo SDZeCOM_Aurednik_Helper_Product :: ORDER_TYPE_FIELD; ?>"
+		   name="<?php echo SDZeCOM_Aurednik_Helper_Product :: ORDER_TYPE_FIELD; ?>"
+	>
+
+	<!-- SDZeCOM_Aurednink Bestellkommentar -->
+	<textarea style="display:none" type="text"
+			  id="<?php echo SDZeCOM_Aurednik_Helper_Product :: ORDER_COMMENT_FIELD; ?>"
+			  name="<?php echo SDZeCOM_Aurednik_Helper_Product :: ORDER_COMMENT_FIELD; ?>"></textarea>
+	<ol class="checkout-agreements">
+		<?php foreach ($agreements as $agreement): ?>
+			<?php if ($agreement->getName() == 'Warnhinweisbedingung'): ?>
+				<?php if( $this -> hasOrderWarningNotices ()):?>
+					<li>
+						<p class="agree">
+							<?php if($agreement->getIsRequired()): ?>
+								<input type="checkbox"
+									   id="agreement-<?php echo $agreement->getId()?>"
+									   name="agreement[<?php echo $agreement->getId()?>]" value="1"
+									   title="<?php echo $this->htmlEscape($agreement->getCheckboxText()) ?>"
+									   class="checkbox" />
+							<?php endif; ?>
+							<label
+								<?php if($agreement->getIsRequired()): ?>
+									for="agreement-<?php echo $agreement->getId()?>"
+								<?php endif; ?>>
+								<?php echo $agreement->getIsHtml() ? $agreement->getCheckboxText() : $this->escapeHtml($agreement->getCheckboxText()) ?>
+							</label>
+						</p>
+					<li>
+				<?php else: ?>
+					<!-- Workaround, um nicht am Magento Core die Logik für die Verarbeitung der Bestellbedingungen modifizieren zu müssen-->
+					<!-- In der Datei: \app\code\core\Mage\Checkout\controllers\OnepageController.php wird in Zeile 556 die Funktion getRequiredAgreementIds() aufgerufen. -->
+					<!-- Diese liefert alle Bedingungen, die im Backend aktiviert und als required gesetzt wurden. -->
+					<!-- Danach werden die mit der Bestellung gesendeten Agreements mit den verfügbaren Agreements abgeglichen -->
+					<!-- Falls diese nicht übereinstimmen wird der Hinweis: "Please agree..." ausgegeben.-->
+					<input type="hidden"
+						   id="agreement-<?php echo $agreement->getId()?>"
+						   name="agreement[<?php echo $agreement->getId()?>]" value="1"
+						   title="<?php echo $this->htmlEscape($agreement->getCheckboxText()) ?>"
+						   class="checkbox"
+						   value="1"/>
+				<?php endif; ?>
+			<?php else: ?>
+				<li>
+					<p class="agree">
+						<?php if($agreement->getIsRequired()): ?>
+							<input type="checkbox"
+								   id="agreement-<?php echo $agreement->getId()?>"
+								   name="agreement[<?php echo $agreement->getId()?>]" value="1"
+								   title="<?php echo $this->htmlEscape($agreement->getCheckboxText()) ?>"
+								   class="checkbox" />
+						<?php endif; ?>
+						<label <?php if($agreement->getIsRequired()): ?>
+							for="agreement-<?php echo $agreement->getId()?>" <?php endif; ?>>
+							<?php echo $agreement->getIsHtml() ? $agreement->getCheckboxText() : $this->escapeHtml($agreement->getCheckboxText()) ?></label>
+						<a href="<?php echo $helper->getAgreementUrl($agreement) ?>"
+						   onclick="window.open('http://aurednikshop.de/media/company/agbs.pdf', 'child', 'height=950,width=700,scrollbars this.href', 'width=600,height=600,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes').focus(); return false;"><?php echo $this->__('Jetzt lesen') ?></a>
+					</p>
+				</li>
+			<?php endif;?>
+		<?php endforeach ?>
+	</ol>
+</form>

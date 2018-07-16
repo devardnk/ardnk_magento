@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <SDZeCOM_Aurednik>
+            <version>0.1.0</version>
+        </SDZeCOM_Aurednik>
+    </modules>
+
+    <global>
+        <helpers>
+            <aurednik>
+                <class>SDZeCOM_Aurednik_Helper</class>
+            </aurednik>
+			<catalog>
+				<rewrite>
+					<product_compare>SDZeCOM_Aurednik_Helper_Product_Compare</product_compare>
+				</rewrite>
+			</catalog>
+        </helpers>
+		
+		<blocks>
+			 <aurednik>
+				<class>SDZeCOM_Aurednik_Block</class>
+			</aurednik>
+			<page>
+				<rewrite>
+					<html_topmenu>SDZeCOM_Aurednik_Block_Html_Topmenu</html_topmenu>
+				</rewrite>
+			</page>
+		</blocks>
+
+        <models>
+            <aurednik>
+                <class>SDZeCOM_Aurednik_Model</class>
+            </aurednik>
+			<catalog>
+				<rewrite>
+					<category>SDZeCOM_Aurednik_Model_Category</category>
+				</rewrite>
+			</catalog>
+        </models>
+
+		<connection>
+          <use>core_setup</use>
+        </connection>
+		
+		<resources>
+			<aurednik_setup>
+				<setup>
+					<module>SDZeCOM_Aurednik</module>
+					<class>SDZeCOM_Aurednik_Model_Entity_Setup</class>
+				</setup>
+				<connection>
+		            <use>core_setup</use>
+		        </connection>
+			</aurednik_setup>
+		</resources>
+		
+		<fieldsets>
+			<sales_convert_quote>
+				<aurdenik_order_type>
+					<to_order>*</to_order>
+				</aurdenik_order_type>
+			</sales_convert_quote>
+		</fieldsets>
+		
+		
+	</global>
+	
+	<frontend>
+		<events>
+			<checkout_type_onepage_save_order>
+				<observers>
+					<aurednik_order>
+						<type>model</type>
+						<class>aurednik/Event_Order_Observer</class>
+						<method>saveAdditionalOrderData</method>
+					</aurednik_order>	
+				</observers>
+			</checkout_type_onepage_save_order>
+		</events>
+	</frontend>
+	
+	<default>
+		<carriers>
+			<aurednikshipping>
+				<active>1</active>
+				<sallowspecific>0</sallowspecific>
+				<model>aurednik/Carrier_Shipping</model>
+				<name>Aurednik Shipping Method</name>
+				<price>3,80</price>
+				<title>IAurednik Shipping Method</title>
+				<type>I</type>
+				<specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+				<handling_type>F</handling_type>
+			</aurednikshipping>
+		</carriers>	
+	</default>
+</config>

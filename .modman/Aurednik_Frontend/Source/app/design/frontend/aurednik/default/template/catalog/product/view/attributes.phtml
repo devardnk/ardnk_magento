@@ -1,0 +1,221 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product additional attributes template
+ *
+ * @see Mage_Catalog_Block_Product_View_Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper('catalog/output');
+    $_product = $this->getProduct();
+
+?>
+<?php /* Produkt überschreiben, um sicherzugehen, dass dieses nicht durch andere Module überschrieben wird */?>
+<?php $_product = Mage::getModel('aurednik/product')->load($_product->getId());?>
+<?php $attributesBlock = new SDZeCOM_Aurednik_Block_Product_View_Attributes();?>
+
+<div class="product-additional-data">
+<?php $_additional = $attributesBlock->getAdditionalData(array(), $_product);?>
+<?php if($_additional): ?>
+<div class="box-collateral-content">
+<div class="attribut-box" id="attribut-box">
+<table class="data-table" id="product-attribute-specs-table">
+<col width="25%" />
+<col />
+<tbody>
+<?php foreach ($_additional as $_data): ?>
+<?php $_attribute = $_product->getResource()->getAttribute($_data['code']);
+if (!is_null($_product->getData($_attribute->getAttributeCode()))  &&  ((string)$_attribute->getFrontend()->getValue($_product) != '')) : ?>
+<tr>
+<th class="label"><?php echo $this->htmlEscape($this->__($_data['label'])) ?></th>
+<td class="data"><?php echo  $_helper->productAttribute($_product, $_data['value'],  $_data['code']) ?></td>
+</tr>
+<?php endif; ?>
+<?php endforeach; ?>
+</div>
+</tbody>
+</table>
+<script type="text/javascript">decorateTable('product-attribute-specs-table')</script>
+</div>
+</div>
+	<?php endif;?>
+<!-- 2017-05-17 SP, Erweiterung Warnhinweise um Sicherheitshinweise mit Icons -->
+
+<?php $warningNotices    = $_product->getProductWarningNotices();?>
+<?php $basePath                 = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>
+<?php $gefahr101         = '<img src="'. $basePath . '/icons/gefahren/GHS01_Explodierende_Bombe.png" >';?>
+<?php $gefahr102         = '<img src="'. $basePath . '/icons/gefahren/GHS02_Flamme.png" >';?>
+<?php $gefahr103         = '<img src="'. $basePath . '/icons/gefahren/GHS03_Flamme_ueber_einem_Kreis.png" >';?>
+<?php $gefahr104         = '<img src="'. $basePath . '/icons/gefahren/GHS04_Gasflasche.png" >';?>
+<?php $gefahr105         = '<img src="'. $basePath . '/icons/gefahren/GHS05_Aetzwirkung.png" >';?>
+<?php $gefahr106         = '<img src="'. $basePath . '/icons/gefahren/GHS06_Totenkopf_mit_gekreuzten_Knochen.png" >';?>
+<?php $gefahr107         = '<img src="'. $basePath . '/icons/gefahren/GHS07_Ausrufezeichen.png" >';?>
+<?php $gefahr108         = '<img src="'. $basePath . '/icons/gefahren/GHS08_Gesundheitsgefahr.png" >';?>
+<?php $gefahr109         = '<img src="'. $basePath . '/icons/gefahren/GHS09_Umwelt.png" >';?>
+
+<style type="text/css">
+	p.title{
+		font-size:11px;
+		color:#000;
+		/*font-weight:bold;*/
+		margin-top:8px;
+	}
+	.danger_main_wrapper{
+		border:0px solid #e2e2e2;
+	}
+	.danger_texts{
+		border:0px solid pink;
+		font-size:10px;
+		color:#666666;
+		text-align:justify;
+		float:left;
+		padding:2px;
+	}
+	.danger_icons {
+		/*background:pink;*/
+		border:0px solid pink;
+		/*padding:4px;*/
+		float:left;
+		margin-right:4px;
+	}
+	.clear {
+		clear:both
+	}
+</style>
+
+<div class="danger_main_wrapper">
+	<div class="danger_texts">
+		<?php
+		if ($_product->getAttributeText('an_44') != ''
+			&& $_product->getAttributeText('an_44') != 0
+			|| $_product->getAttributeText('an_45') != ''
+			&& $_product->getAttributeText('an_45') != 0
+			|| $_product->getAttributeText('an_46') != ''
+			&& $_product->getAttributeText('an_46') != 0
+			|| $_product->getAttributeText('an_47') != ''
+			&& $_product->getAttributeText('an_47') != 0
+			|| $_product->getAttributeText('an_48') != ''
+			&& $_product->getAttributeText('an_48') != 0)
+		{
+			echo '<p class="title">';
+			echo ('Sicherheits-/ Warnhinweise:');
+			echo '</p>';
+		}
+		?>
+		<!-- Hilfsscripte: Zeile 1: tatsächlichen Attributtext ausgeben, Zeile 2: ID des gepflegten Wertes -->
+		<?php /* echo ($_product->getAttributeText('an_44'))*/?>
+		<?php/* echo $_product->getAn_44() */?>
+		<?php foreach($warningNotices as $strProductWarningText)
+		{
+		// 2017-05-17 SP
+		// Gibt NUR Gefahrenhinweis-Text aus, wenn kein Symbol mit Identikator bsp.: "Symbol mit explodierender Bombe" als Warnhinweis gepflegt ist
+
+		if ($strProductWarningText != 'Symbol mit explodierender Bombe'
+			&& $strProductWarningText != 'Symbol mit Flamme'
+			&& $strProductWarningText != 'Symbol mit Flamme ueber einem Kreis'
+			&& $strProductWarningText != 'Symbol mit Gasflasche'
+			&& $strProductWarningText != 'Symbol mit Saeure auf Hand und Gegenstand'
+			&& $strProductWarningText != 'Symbol mit Totenkopf und gekreutzten Knochen'
+			&& $strProductWarningText != 'Symbol mit Ausrufezeichen'
+			&& $strProductWarningText != 'Symbol Mensch mit Gesundheitsgefahr'
+			&& $strProductWarningText != 'Symbol mit totem Fisch und totem Baum')
+		{
+			echo $strProductWarningText;
+			echo '<br>';
+			echo '<hr>';
+		}
+	}
+	?>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="danger_icons">
+		<br>
+		<?php foreach($warningNotices as $strProductWarningText)
+		{
+			// ab hier werden die Icosn pro Identikatpor ausgegeben statt dem Identikatortext bsp.: Symbol mit explodierender Bombe"
+			if ($strProductWarningText == 'Symbol mit explodierender Bombe') {
+				echo '<div class="danger_icons">';
+				echo($gefahr101);
+				echo '</div>';
+
+			}
+			else if ($strProductWarningText == 'Symbol mit Flamme') {
+				echo '<div class="danger_icons">';
+				echo($gefahr102);
+				echo '</div>';
+
+			}
+			else if ($strProductWarningText == 'Symbol mit Flamme ueber einem Kreis') {
+				echo '<div class="danger_icons">';
+				echo($gefahr103);
+				echo '</div>';
+
+			}
+			else if ($strProductWarningText == 'Symbol mit Gasflasche') {
+				echo '<div class="danger_icons">';
+				echo($gefahr104);
+
+			}
+			else if ($strProductWarningText == 'Symbol mit Saeure auf Hand und Gegenstand') {
+				echo '<div class="danger_icons">';
+				echo($gefahr105);
+				echo '</div>';
+
+			}
+			else if ($strProductWarningText == 'Symbol mit Totenkopf und gekreutzten Knochen') {
+				echo '<div class="danger_icons">';
+				echo($gefahr106);
+				echo '</div>';
+
+			}
+			else if ($strProductWarningText == 'Symbol mit Ausrufezeichen') {
+				echo '<div class="danger_icons">';
+				echo($gefahr107);
+				echo '</div>';
+			}
+			else if ($strProductWarningText == 'Symbol Mensch mit Gesundheitsgefahr') {
+				echo '<div class="danger_icons">';
+				echo($gefahr108);
+				echo '</div>';
+			}
+			else if ($strProductWarningText == 'Symbol mit totem Fisch und totem Baum') {
+				echo '<div class="danger_icons">';
+				echo($gefahr109);
+				echo '</div>';
+			}
+		}
+	?>
+	</div>
+	<div class="clear"></div>
+</div>

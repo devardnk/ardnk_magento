@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aurednik_Integration>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <SDZeCOM_Integration />
+            </depends>
+        </Aurednik_Integration>
+    </modules>
+</config>

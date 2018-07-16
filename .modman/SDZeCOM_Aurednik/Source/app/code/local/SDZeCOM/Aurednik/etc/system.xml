@@ -1,0 +1,1844 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <aurednik translate="label" module="aurednik">
+            <label>Aurednik</label>
+            <sort_order>20</sort_order>
+        </aurednik>
+    </tabs>
+	<sections>
+		<sdzecom_aurednik translate="label">
+			<label>Config</label>
+			<tab>aurednik</tab>
+			<sort_order>10</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<product_additional_order_data translate="label">
+					<label>Additional order data section</label>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<productadditionalorderdataattribute translate="label">
+							<label>Additional order attribute selection</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</productadditionalorderdataattribute>
+					</fields>
+				</product_additional_order_data>
+
+				<product_types translate="label">
+					<label>product types</label>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<stockitems translate="label">
+							<label>stock item identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</stockitems>
+						
+						<furniture translate="label">
+							<label>furniture identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</furniture>
+						
+						<outsideplay translate="label">
+							<label>outside play identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</outsideplay>
+						
+						<directarticle translate="label">
+							<label>direct article identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</directarticle>
+						
+						<freightforwardinggoods translate="label">
+							<label>freight forwarding goods identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightforwardinggoods>
+					</fields>
+				</product_types>
+				
+				<product_warnings_notices translate="label">
+					<label>product warning notices</label>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<productwarningnoticeattribute translate="label">
+							<label>product warning notices attribute</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</productwarningnoticeattribute>
+						
+						<productwarningnotice1 translate="label">
+							<label>product warning notice 1</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1>
+						
+						<productwarningnotice2 translate="label">
+							<label>product warning notice 2</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice2>
+						
+						<productwarningnotice3 translate="label">
+							<label>product warning notice 3</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice3>
+						
+						<productwarningnotice4 translate="label">
+							<label>product warning notice 4</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice4>
+						
+						<productwarningnotice5 translate="label">
+							<label>product warning notice 5</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice5>
+						
+						<productwarningnotice6 translate="label">
+							<label>product warning notice 6</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice6>
+						
+						<productwarningnotice7 translate="label">
+							<label>product warning notice 7</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice7>
+						
+						<productwarningnotice8 translate="label">
+							<label>product warning notice 8</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice8>
+						
+						<productwarningnotice9 translate="label">
+							<label>product warning notice 9</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice9>
+						
+						<productwarningnotice10 translate="label">
+							<label>product warning notice 10</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice10>
+						
+						<productwarningnotice11 translate="label">
+							<label>product warning notice 11</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>120</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice11>
+						
+						<productwarningnotice12 translate="label">
+							<label>product warning notice 12</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice12>
+						
+						<productwarningnotice13 translate="label">
+							<label>product warning notice 13</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>140</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice13>
+						
+						<productwarningnotice14 translate="label">
+							<label>product warning notice 14</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>150</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice14>
+						
+						<productwarningnotice15 translate="label">
+							<label>product warning notice 15</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>160</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice15>
+						
+						<productwarningnotice16 translate="label">
+							<label>product warning notice 16</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>170</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice16>
+						
+						<productwarningnotice17 translate="label">
+							<label>product warning notice 17</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>180</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice17>
+						
+						<productwarningnotice18 translate="label">
+							<label>product warning notice 18</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>190</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice18>
+						
+						<productwarningnotice19 translate="label">
+							<label>product warning notice 19</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>200</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice19>
+						
+						<productwarningnotice20 translate="label">
+							<label>product warning notice 20</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>210</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice20>
+						
+						<productwarningnotice21 translate="label">
+							<label>product warning notice 21</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>220</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice21>
+						
+						<productwarningnotice22 translate="label">
+							<label>product warning notice 22</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>230</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice22>
+						
+						<productwarningnotice23 translate="label">
+							<label>product warning notice 23</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>240</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice23>
+						
+						<productwarningnotice24 translate="label">
+							<label>product warning notice 24</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>250</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice24>
+						
+						<productwarningnotice25 translate="label">
+							<label>product warning notice 25</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>260</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice25>
+						
+						<productwarningnotice26 translate="label">
+							<label>product warning notice 26</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>270</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice26>
+						
+						<productwarningnotice27 translate="label">
+							<label>product warning notice 27</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>280</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice27>
+						
+						<productwarningnotice28 translate="label">
+							<label>product warning notice 28</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>290</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice28>
+						
+						<productwarningnotice29 translate="label">
+							<label>product warning notice 29</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>300</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice29>
+						
+						<productwarningnotice30 translate="label">
+							<label>product warning notice 30</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>310</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice30>
+						
+						<productwarningnotice31 translate="label">
+							<label>product warning notice 31</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>320</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice31>
+						
+						<productwarningnotice32 translate="label">
+							<label>product warning notice 32</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>330</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice32>
+						
+						<productwarningnotice33 translate="label">
+							<label>product warning notice 33</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>340</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice33>
+						
+						<productwarningnotice34 translate="label">
+							<label>product warning notice 34</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>350</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice34>
+						
+						<productwarningnotice35 translate="label">
+							<label>product warning notice 35</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>360</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice35>
+						
+						<productwarningnotice36 translate="label">
+							<label>product warning notice 26</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>370</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice36>
+						
+						<productwarningnotice37 translate="label">
+							<label>product warning notice 37</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>380</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice37>
+						
+						<productwarningnotice38 translate="label">
+							<label>product warning notice 38</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>390</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice38>
+						
+						<productwarningnotice39 translate="label">
+							<label>product warning notice 39</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>400</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice39>
+						
+						<productwarningnotice40 translate="label">
+							<label>product warning notice 40</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>410</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice40>
+
+						<productwarningnotice41 translate="label">
+							<label>product warning notice 41</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>411</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice41>
+
+						<productwarningnotice42 translate="label">
+							<label>product warning notice 42</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>412</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice42>
+
+                        <productwarningnotice1001 translate="label">
+                        <label>product warning notice 1001</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>413</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        </productwarningnotice1001>
+
+                        <productwarningnotice1002 translate="label">
+                            <label>product warning notice 1002</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>415</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </productwarningnotice1002>
+
+						<productwarningnotice1003 translate="label">
+							<label>product warning notice 1003</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>416</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1003>
+
+						<productwarningnotice1004 translate="label">
+							<label>product warning notice 1004</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>417</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1004>
+
+						<productwarningnotice1005 translate="label">
+							<label>product warning notice 1005</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>418</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1005>
+
+						<productwarningnotice1006 translate="label">
+							<label>product warning notice 1006</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>419</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1006>
+
+						<productwarningnotice1007 translate="label">
+							<label>product warning notice 1007</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>420</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1007>
+
+						<productwarningnotice1008 translate="label">
+							<label>product warning notice 1008</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>421</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1008>
+
+						<productwarningnotice1009 translate="label">
+							<label>product warning notice 1009</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>422</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1009>
+
+						<productwarningnotice1010 translate="label">
+							<label>product warning notice 1010</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>423</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1010>
+
+						<productwarningnotice1011 translate="label">
+							<label>product warning notice 1011</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>424</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1011>
+
+						<productwarningnotice1012 translate="label">
+							<label>product warning notice 1012</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>425</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1012>
+
+						<productwarningnotice1013 translate="label">
+							<label>product warning notice 1013</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>426</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1013>
+
+						<productwarningnotice1014 translate="label">
+							<label>product warning notice 1014</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>427</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1014>
+
+						<productwarningnotice1015 translate="label">
+							<label>product warning notice 1015</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>428</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1015>
+
+						<productwarningnotice1016 translate="label">
+							<label>product warning notice 1016</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>429</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1016>
+
+						<productwarningnotice1017 translate="label">
+							<label>product warning notice 1017</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>430</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1017>
+
+						<productwarningnotice1018 translate="label">
+							<label>product warning notice 1018</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>431</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1018>
+
+						<productwarningnotice1019 translate="label">
+							<label>product warning notice 1019</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>432</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1019>
+
+						<productwarningnotice1020 translate="label">
+							<label>product warning notice 1020</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>433</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1020>
+
+						<productwarningnotice1021 translate="label">
+							<label>product warning notice 1021</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>434</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1021>
+
+						<productwarningnotice1022 translate="label">
+							<label>product warning notice 1022</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>435</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1022>
+
+						<productwarningnotice1023 translate="label">
+							<label>product warning notice 1023</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>436</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1023>
+
+						<productwarningnotice1024 translate="label">
+							<label>product warning notice 1024</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>437</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1024>
+
+						<productwarningnotice1025 translate="label">
+							<label>product warning notice 1025</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>438</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1025>
+
+						<productwarningnotice1026 translate="label">
+							<label>product warning notice 1026</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>439</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1026>
+
+						<productwarningnotice1027 translate="label">
+							<label>product warning notice 1027</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>440</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1027>
+
+						<productwarningnotice1028 translate="label">
+							<label>product warning notice 1028</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>441</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1028>
+
+						<productwarningnotice1029 translate="label">
+							<label>product warning notice 1029</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>442</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1029>
+
+						<productwarningnotice1030 translate="label">
+							<label>product warning notice 1030</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>443</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1030>
+
+						<productwarningnotice1031 translate="label">
+							<label>product warning notice 1031</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>444</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1031>
+
+						<productwarningnotice1032 translate="label">
+							<label>product warning notice 1032</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>445</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1032>
+
+						<productwarningnotice1033 translate="label">
+							<label>product warning notice 1033</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>446</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1033>
+
+						<productwarningnotice1034 translate="label">
+							<label>product warning notice 1034</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>447</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1034>
+
+						<productwarningnotice1035 translate="label">
+							<label>product warning notice 1035</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>448</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1035>
+
+						<productwarningnotice1036 translate="label">
+							<label>product warning notice 1036</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>449</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1036>
+
+						<productwarningnotice1037 translate="label">
+							<label>product warning notice 1037</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>450</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1037>
+
+						<productwarningnotice1038 translate="label">
+							<label>product warning notice 1038</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>451</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1038>
+
+						<productwarningnotice1039 translate="label">
+							<label>product warning notice 1039</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>452</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1039>
+
+						<productwarningnotice1040 translate="label">
+							<label>product warning notice 1040</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>453</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1040>
+
+						<productwarningnotice1041 translate="label">
+							<label>product warning notice 1041</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>454</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1041>
+
+						<productwarningnotice1042 translate="label">
+							<label>product warning notice 1042</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>455</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1042>
+
+						<productwarningnotice1043 translate="label">
+							<label>product warning notice 1043</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>456</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1043>
+
+						<productwarningnotice1044 translate="label">
+							<label>product warning notice 1044</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>457</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1044>
+
+						<productwarningnotice1045 translate="label">
+							<label>product warning notice 1045</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>458</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1045>
+
+						<productwarningnotice1046 translate="label">
+							<label>product warning notice 1046</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>459</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1046>
+
+						<productwarningnotice1047 translate="label">
+							<label>product warning notice 1047</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>460</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1047>
+
+						<productwarningnotice1048 translate="label">
+							<label>product warning notice 1048</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>461</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1048>
+
+						<productwarningnotice1049 translate="label">
+							<label>product warning notice 1049</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>462</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1049>
+
+						<productwarningnotice1050 translate="label">
+							<label>product warning notice 1050</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>463</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice1050>
+
+						<productwarningnotice101 translate="label">
+							<label>product warning notice 101</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>464</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice101>
+
+						<productwarningnotice102 translate="label">
+							<label>product warning notice 102</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>465</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice102>
+
+						<productwarningnotice103 translate="label">
+							<label>product warning notice 103</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>466</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice103>
+
+						<productwarningnotice104 translate="label">
+							<label>product warning notice 104</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>467</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice104>
+
+						<productwarningnotice105 translate="label">
+							<label>product warning notice 105</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>468</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice105>
+
+						<productwarningnotice106 translate="label">
+							<label>product warning notice 106</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>469</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice106>
+
+						<productwarningnotice107 translate="label">
+							<label>product warning notice 107</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>470</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice107>
+
+						<productwarningnotice108 translate="label">
+							<label>product warning notice 108</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>471</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice108>
+
+						<productwarningnotice109 translate="label">
+							<label>product warning notice 109</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>472</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productwarningnotice109>
+
+					</fields>
+				</product_warnings_notices>
+				
+				<catalog_pdf_file_path translate="label">
+					<label>catalog pdf settings</label>
+					<sort_order>100</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<pdf_file_path translate="label">
+							<label>PDF file path in media directory</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</pdf_file_path>
+
+						<pdf_picture translate="label">
+								<label>picture</label>
+								<frontend_type>image</frontend_type>
+								<backend_model>adminhtml/system_config_backend_image</backend_model>
+								<upload_dir config="system/filesystem/media" scope_info="1">/</upload_dir>
+								<base_url type="media" scope_info="1"></base_url>
+								<comment>Allowed file types: jpeg, png</comment>
+								<sort_order>20</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>0</show_in_store>
+						</pdf_picture>
+						
+						<pdf_attribute translate="label">
+							<label>product catalog pdf picture</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</pdf_attribute>
+					</fields>
+				</catalog_pdf_file_path>
+				
+				<product_availability translate="label">
+					<label>product availability</label>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<availability translate="label">
+							<label>product availablity attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</availability>
+					</fields>
+				</product_availability>	
+				
+				<product_availability_stockitems_greenlight translate="label">
+					<label>product availability stock items (green light)</label>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<greenlight_indetification translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</greenlight_indetification>
+						
+						<greenlight_picture translate="label">
+							<label>picture</label>
+							<frontend_type>image</frontend_type>
+							<backend_model>adminhtml/system_config_backend_image</backend_model>
+							<upload_dir config="system/filesystem/media" scope_info="1">/</upload_dir>
+							<base_url type="media" scope_info="1"></base_url>
+							<comment>Allowed file types: jpeg.</comment>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</greenlight_picture>
+						
+						<greenlight_text translate="label">
+							<label>availability text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</greenlight_text>
+						
+						<greenlight_shipping_text translate="label">
+							<label>shipping time</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</greenlight_shipping_text>
+						
+						<greenlight_text_color translate="label">
+							<label>text color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</greenlight_text_color>
+						
+					</fields>
+				</product_availability_stockitems_greenlight>
+				
+				<product_availability_stockitems_yellowlight translate="label">
+					<label>product availability stock items (yellow light)</label>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<yellowlight_indetification translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</yellowlight_indetification>
+						
+						<yellowlight_picture translate="label">
+							<label>picture</label>
+							<frontend_type>image</frontend_type>
+							<backend_model>adminhtml/system_config_backend_image</backend_model>
+							<upload_dir config="system/filesystem/media" scope_info="1">/</upload_dir>
+							<base_url type="media" scope_info="1"></base_url>
+							<comment>Allowed file types: jpeg.</comment>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</yellowlight_picture>
+						
+						<yellowlight_text translate="label">
+							<label>availability text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</yellowlight_text>
+						
+						<yellowlight_shipping_text translate="label">
+							<label>shipping time</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</yellowlight_shipping_text>
+						
+						<yellowlight_text_color translate="label">
+							<label>text color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</yellowlight_text_color>
+							
+					</fields>
+				</product_availability_stockitems_yellowlight>
+				
+				<product_availability_stockitems_redlight translate="label">
+					<label>product availability stock items (red light)</label>
+					<sort_order>50</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<redlight_indetification translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</redlight_indetification>
+						
+						<redlight_picture translate="label">
+							<label>picture</label>
+							<frontend_type>image</frontend_type>
+							<backend_model>adminhtml/system_config_backend_image</backend_model>
+							<upload_dir config="system/filesystem/media" scope_info="1">/</upload_dir>
+							<base_url type="media" scope_info="1"></base_url>
+							<comment>Allowed file types: jpeg.</comment>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</redlight_picture>
+	
+						<redlight_text translate="label">
+							<label>availability text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</redlight_text>
+						
+						<redlight_shipping_text translate="label">
+							<label>shipping time</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</redlight_shipping_text>
+						
+						<redlight_text_color translate="label">
+							<label>text color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</redlight_text_color>
+						
+					</fields>
+				</product_availability_stockitems_redlight>
+				
+				<product_availability_furniture translate="label">
+					<label>product availability furniture</label>
+					<sort_order>60</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<product_availability_furniture translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</product_availability_furniture>
+						
+						<product_availability_furniture_text translate="label">
+							<label>shipping time</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_furniture_text>
+					</fields>
+				</product_availability_furniture>
+				
+				<product_availability_outsideplay translate="label">
+					<label>product availability outsideplay</label>
+					<sort_order>70</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<product_availability_outsideplay translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</product_availability_outsideplay>
+						
+						<product_availability_outsideplay_text translate="label">
+							<label>shipping time</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_outsideplay_text>
+					</fields>
+				</product_availability_outsideplay>
+				
+				<product_availability_directarticle translate="label">
+					<label>product availability directarticle</label>
+					<sort_order>80</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<product_availability_directarticle translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</product_availability_directarticle>
+						
+						<product_availability_directarticle_text translate="label">
+							<label>shipping time</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_directarticle_text>
+					</fields>
+				</product_availability_directarticle>
+				
+				<product_availability_freightforwaridinggoods translate="label">
+					<label>product availability forwariding goods</label>
+					<sort_order>90</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<product_availability_freightforwaridinggoods translate="label">
+							<label>indetification</label>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_freightforwaridinggoods>
+						
+						<product_availability_freightforwaridinggoods_text translate="label">
+							<label>shipping time</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_freightforwaridinggoods_text>
+					</fields>
+				</product_availability_freightforwaridinggoods>
+				
+				<cms_home_image_file_path translate="label">
+					<label>cms home image file path</label>
+					<sort_order>100</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<image_file_path translate="label">
+							<label>image file path in media directory</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</image_file_path>
+					</fields>
+				</cms_home_image_file_path>
+				
+				<cms_home_highlight_settings translate="label">
+					<label>cms home highlight settings</label>
+					<sort_order>110</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<category_attribute translate="label">
+							<label>category attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_highlight</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</category_attribute>
+						
+						<teaser_attribute translate="label">
+							<label>teaser attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_highlight</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</teaser_attribute>
+						
+						<price_attribute translate="label">
+							<label>price attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_highlight</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</price_attribute>
+						
+						<link_href_attribute translate="label">
+							<label>link href attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_highlight</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</link_href_attribute>
+						
+						<link_name_attribute translate="label">
+							<label>link name attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_highlight</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</link_name_attribute>
+						
+						<image_src_attribute translate="label">
+							<label>image src attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_highlight</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</image_src_attribute>
+						
+						<image_alt_attribute translate="label">
+							<label>image alt attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_highlight</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</image_alt_attribute>
+						
+						<headline_attribute translate="label">
+							<label>headline attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_highlight</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</headline_attribute>
+						
+					</fields>
+				</cms_home_highlight_settings>
+				
+				<cms_home_banner_settings translate="label">
+					<label>cms home banner settings</label>
+					<sort_order>120</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<link_href_attribute translate="label">
+							<label>link href attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_banner</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</link_href_attribute>
+						
+						<link_name_attribute translate="label">
+							<label>link name attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_banner</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</link_name_attribute>
+						
+						<image_src_attribute translate="label">
+							<label>image src attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_banner</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</image_src_attribute>
+						
+						<image_alt_attribute translate="label">
+							<label>image alt attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>aurednik/cms_home_banner</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</image_alt_attribute>
+					</fields>
+				</cms_home_banner_settings>
+				
+				<home_new_products translate="label">
+					<label>home new products</label>
+					<sort_order>130</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<new_product_attr translate="label">
+							<label>new product attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</new_product_attr>
+						
+						<home_product_attr translate="label">
+							<label>home product attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</home_product_attr>
+					</fields>
+				</home_new_products>
+				
+				<cms_home_footer_settings translate="label">
+					<label>footer block settings</label>
+					<sort_order>130</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<cms_block_1 translate="label">
+							<label>Block 1</label>
+							<frontend_type>select</frontend_type>
+							<source_model>cms/resource_block_collection</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cms_block_1>
+						
+						<cms_block_2 translate="label">
+							<label>Block 2</label>
+							<frontend_type>select</frontend_type>
+							<source_model>cms/resource_block_collection</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cms_block_2>
+						
+						<cms_block_3 translate="label">
+							<label>Block 3</label>
+							<frontend_type>select</frontend_type>
+							<source_model>cms/resource_block_collection</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cms_block_3>
+						
+						<cms_block_4 translate="label">
+							<label>Block 4</label>
+							<frontend_type>select</frontend_type>
+							<source_model>cms/resource_block_collection</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cms_block_4>
+					</fields>
+				</cms_home_footer_settings>				
+			</groups>
+		</sdzecom_aurednik>
+					
+		<carriers>
+			<groups>
+				<aurednikshipping translate="label">
+					<label>Aurednik shipping module</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</active>
+
+						<freightcostadditionalinfoattributeat translate="label">
+							<label>AT - Freight cost additional information attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightcostadditionalinfoattributeat>
+
+						<freightcostadditionalinfoattributede translate="label">
+							<label>DE - Freight cost additional information attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightcostadditionalinfoattributede>
+
+						<freightcostfreetext translate="label">
+							<label>Freight cost "free freight" text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightcostfreetext>
+
+						<freightcostonepagecheckouthinttext translate="label">
+							<label>Hint text for freight information in order overview </label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightcostonepagecheckouthinttext>
+
+						<shippingvariantsattribute translate="label">
+							<label>shipping variants attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</shippingvariantsattribute>
+
+						<freightcostsyesnoattribute translate="label">
+							<label>freight costs yes/no attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightcostsyesnoattribute>
+
+						<freightcostsattribute translate="label">
+							<label>freight costs attribute de</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightcostsattribute>
+
+						<freightcostsattributeat translate="label">
+							<label>freight costs attribute at</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightcostsattributeat>
+
+						<textfreeshipping translate="label">
+                            <label>Text free shipping</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </textfreeshipping>
+
+                        <textnonfreeshipping translate="label">
+                            <label>Text non free shipping</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </textnonfreeshipping>
+
+						<minordervaluefreeshippingstockitems translate="label">
+							<label>Minimum order value for free shipping (stock itmes)</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>120</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</minordervaluefreeshippingstockitems>
+						
+						<stockitemshippingcosts translate="label">
+							<label>stock item shipping costs</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</stockitemshippingcosts>
+
+						<sallowspecific translate="label">
+							<label>Ship to Applicable Countries</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>140</sort_order>
+							<frontend_class>shipping-applicable-country</frontend_class>
+							<source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</sallowspecific>
+						
+						<specificcountry translate="label">
+							<label>Ship to Specific Countries</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>150</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<can_be_empty>1</can_be_empty>
+						</specificcountry>
+						
+						<specificerrmsg translate="label">
+							<label>Displayed Note Message</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>160</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificerrmsg>
+						
+						<freighttablefurniture translate="label">
+							<label>freight table furniture</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/cms_block</source_model>
+							<sort_order>170</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</freighttablefurniture>
+						
+						<freighttableoutsideplay translate="label">
+							<label>freight table outside play</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/cms_block</source_model>
+							<sort_order>180</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</freighttableoutsideplay>
+					</fields>
+				</aurednikshipping>
+			</groups>
+        </carriers>
+        <contacts >
+			<groups>
+				<aurednikcatalogorder translate="label">
+					<label>Katalogbestellung</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>110</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>	
+
+					<fields>
+                        <recipient_email translate="label">
+                            <label>Send Emails To</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-email</validate>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </recipient_email>
+                        <sender_email_identity translate="label">
+                            <label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sender_email_identity>
+                        <email_template translate="label">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_template>
+                    </fields>
+				</aurednikcatalogorder>
+			</groups>
+		</contacts>
+ 		
+		
+    </sections>
+</config>

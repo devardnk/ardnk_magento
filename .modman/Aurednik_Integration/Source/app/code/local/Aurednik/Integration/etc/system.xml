@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <aurednik translate="label" module="aurednik_integration">
+            <label>Aurednik</label>
+            <sort_order>10</sort_order>
+        </aurednik>
+    </tabs>
+    <sections>
+        <aurednik_integration>
+            <label>Integration</label>
+            <tab>aurednik</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <catalog_product_import translate="label">
+                    <label>Catalog Product Import</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <local_import_directory translate="label">
+                            <label>import directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root var directory'</comment>
+                        </local_import_directory>
+
+                        <local_import_backup_directory translate="label">
+                            <label>backup directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root var directory'</comment>
+                        </local_import_backup_directory>
+
+                        <filename_pattern translate="label comment">
+                            <label>csv filename pattern</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Regex to identify Files e.g. Artikel__.*.txt</comment>
+                        </filename_pattern>
+
+                        <custom_attributes_prefix translate="label comment">
+                            <label>custom attributes prefix</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Prefix to identify custom attributes</comment>
+                        </custom_attributes_prefix>
+                    </fields>
+                </catalog_product_import>
+
+                <catalog_product_images_import translate="label">
+                    <label>Catalog Product Images Import</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <local_import_directory translate="label">
+                            <label>import directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root'</comment>
+                        </local_import_directory>
+
+                        <local_import_backup_directory translate="label">
+                            <label>backup directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root'</comment>
+                        </local_import_backup_directory>
+
+                        <filename_pattern translate="label comment">
+                            <label>filename pattern</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Regex to identify Files e.g. Images__.*.txt</comment>
+                        </filename_pattern>
+                    </fields>
+                </catalog_product_images_import>
+
+                <catalog_product_attributes_import translate="label">
+                    <label>Catalog Product Attributes Import</label>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <local_import_directory translate="label">
+                            <label>import directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root'</comment>
+                        </local_import_directory>
+
+                        <local_import_backup_directory translate="label">
+                            <label>backup directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root'</comment>
+                        </local_import_backup_directory>
+
+                        <filename_pattern translate="label comment">
+                            <label>filename pattern</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Regex to identify Files e.g. Attributes__.*.txt</comment>
+                        </filename_pattern>
+                    </fields>
+                </catalog_product_attributes_import>
+
+                <catalog_product_prices_import translate="label">
+                    <label>Catalog Product Prices Import</label>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <local_import_directory translate="label">
+                            <label>import directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root'</comment>
+                        </local_import_directory>
+
+                        <local_import_backup_directory translate="label">
+                            <label>backup directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root'</comment>
+                        </local_import_backup_directory>
+
+                        <filename_pattern translate="label comment">
+                            <label>filename pattern</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Regex to identify Files e.g. Prices__.*.txt</comment>
+                        </filename_pattern>
+                    </fields>
+                </catalog_product_prices_import>
+
+                <catalog_product_lockedproducts_import translate="label">
+                    <label>Locked Products Import</label>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <local_import_directory translate="label">
+                            <label>import directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root'</comment>
+                        </local_import_directory>
+
+                        <local_import_backup_directory translate="label">
+                            <label>backup directory</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>File path from 'Magento Root'</comment>
+                        </local_import_backup_directory>
+
+                        <filename_pattern translate="label comment">
+                            <label>filename pattern</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Regex to identify Files e.g. Gesperrte Artikel__.*.txt</comment>
+                        </filename_pattern>
+                    </fields>
+                </catalog_product_lockedproducts_import>
+
+            </groups>
+        </aurednik_integration>
+    </sections>
+</config>

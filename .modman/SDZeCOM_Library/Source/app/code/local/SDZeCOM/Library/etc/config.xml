@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <modules>
+        <SDZeCOM_Library>
+            <version>0.1.0</version>
+        </SDZeCOM_Library>
+    </modules>
+
+    <global>
+        <helpers>
+            <library>
+                <class>SDZeCOM_Library_Helper</class>
+            </library>
+        </helpers>
+
+        <models>
+            <library>
+                <class>SDZeCOM_Library_Model</class>
+            </library>
+        </models>
+
+        <cache>
+            <types>
+                <sdzecom_library module="sdzecom_library" translate="label description">
+                    <label>SDZeCOM Library Controller</label>
+                    <description>Helps to cache action results out of a controller.</description>
+                    <tags>SDZECOM_LIBRARY_CONTROLLER_CACHE</tags>
+                </sdzecom_library>
+            </types>
+        </cache>
+    </global>
+</config>

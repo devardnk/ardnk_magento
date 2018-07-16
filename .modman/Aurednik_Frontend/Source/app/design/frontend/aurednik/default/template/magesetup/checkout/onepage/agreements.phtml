@@ -1,0 +1,80 @@
+<?php
+/**
+ * @var $this FireGento_MageSetup_Block_Checkout_Agreements
+ */
+
+/** @var $helper FireGento_MageSetup_Helper_Data */
+$helper = Mage::helper('magesetup');
+$agreements = $this->getAgreements();
+?>
+
+<form action="" id="checkout-agreements" onsubmit="return false;">
+	<!-- SDZeCOM_Aurednink Bestelltyp -->
+	<input type="hidden"
+		   id="<?php echo SDZeCOM_Aurednik_Helper_Product :: ORDER_TYPE_FIELD; ?>"
+		   name="<?php echo SDZeCOM_Aurednik_Helper_Product :: ORDER_TYPE_FIELD; ?>"
+	>
+
+	<!-- SDZeCOM_Aurednink Bestellkommentar -->
+	<p style="font-family:Montserrat, Helvetica, Arial, sans-serif;color:#000;font-size:17px;margin-left:10px;">Bestellkommentar</p>
+	<textarea style="display:inline-block; font-family:Montserrat, Helvetica, Arial, sans-serif; color:#000; background:#f1f1f1; width:93%; resize:none; border: 1px solid #cccccc; height:150px; margin-left:10px;"
+								 placeholder="(z.B. Ferienzeiten, Artikelspezifisches, sonstige Kommentare)"   id="<?php echo SDZeCOM_Aurednik_Helper_Product :: ORDER_COMMENT_FIELD; ?>"
+			  name="<?php echo SDZeCOM_Aurednik_Helper_Product :: ORDER_COMMENT_FIELD; ?>"></textarea><br><br>
+			  
+	<ol class="checkout-agreements">
+		<?php foreach ($agreements as $agreement): ?>
+			<?php if ($agreement->getName() == 'Warnhinweisbedingung'): ?>
+				<?php if( $this -> hasOrderWarningNotices ()):?>
+					<li>
+						<p class="agree">
+							<?php if($agreement->getIsRequired()): ?>
+								<input type="checkbox"
+									   id="agreement-<?php echo $agreement->getId()?>"
+									   name="agreement[<?php echo $agreement->getId()?>]" value="1"
+									   title="<?php echo $this->htmlEscape($agreement->getCheckboxText()) ?>"
+									   class="checkbox" />
+							<?php endif; ?>
+							<label
+								<?php if($agreement->getIsRequired()): ?>
+									for="agreement-<?php echo $agreement->getId()?>"
+								<?php endif; ?>>
+								<?php echo $agreement->getIsHtml() ? $agreement->getCheckboxText() : $this->escapeHtml($agreement->getCheckboxText()) ?>
+							</label>
+						</p>
+					<li>
+				<?php else: ?>
+					<!-- Workaround, um nicht am Magento Core die Logik für die Verarbeitung der Bestellbedingungen modifizieren zu müssen-->
+					<!-- In der Datei: \app\code\core\Mage\Checkout\controllers\OnepageController.php wird in Zeile 556 die Funktion getRequiredAgreementIds() aufgerufen. -->
+					<!-- Diese liefert alle Bedingungen, die im Backend aktiviert und als required gesetzt wurden. -->
+					<!-- Danach werden die mit der Bestellung gesendeten Agreements mit den verfügbaren Agreements abgeglichen -->
+					<!-- Falls diese nicht übereinstimmen wird der Hinweis: "Please agree..." ausgegeben.-->
+					<input type="hidden"
+						   id="agreement-<?php echo $agreement->getId()?>"
+						   name="agreement[<?php echo $agreement->getId()?>]" value="1"
+						   title="<?php echo $this->htmlEscape($agreement->getCheckboxText()) ?>"
+						   class="checkbox"
+						   value="1"/>
+				<?php endif; ?>
+			<?php else: ?>
+				<li>
+					<p class="agree">
+						<?php if($agreement->getIsRequired()): ?>
+							<input type="checkbox"
+								   id="agreement-<?php echo $agreement->getId()?>"
+								   name="agreement[<?php echo $agreement->getId()?>]" value="1"
+								   title="<?php echo $this->htmlEscape($agreement->getCheckboxText()) ?>"
+								   class="checkbox" />
+						<?php endif; ?>
+						<label <?php if($agreement->getIsRequired()): ?>
+							for="agreement-<?php echo $agreement->getId()?>" <?php endif; ?>>
+							<?php echo $agreement->getIsHtml() ? $agreement->getCheckboxText() : $this->escapeHtml($agreement->getCheckboxText()) ?></label>
+						
+						<a class="agb" style="margin-left:9px;" href="<?php echo $helper->getAgreementUrl($agreement) ?>"
+						   onclick="window.open('http://aurednikshop.de/media/company/agb_aurednik.pdf', 'child', 'height=950,width=700,scrollbars this.href', 'width=600,height=600,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes').focus(); return false;">&nbsp;&nbsp;<?php echo $this->__('Jetzt lesen') ?>&nbsp;&nbsp;</a>
+					</p>
+				
+				</li>
+			<?php endif;?>
+		<?php endforeach ?>
+	</ol>
+</form>

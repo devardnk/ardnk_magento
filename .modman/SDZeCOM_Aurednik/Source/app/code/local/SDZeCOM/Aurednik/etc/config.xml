@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <SDZeCOM_Aurednik>
+            <version>0.1.5</version>
+        </SDZeCOM_Aurednik>
+    </modules>
+
+    <global>
+        <helpers>
+            <aurednik>
+                <class>SDZeCOM_Aurednik_Helper</class>
+            </aurednik>
+            <catalog>
+                <rewrite>
+                    <product_compare>SDZeCOM_Aurednik_Helper_Product_Compare</product_compare>
+                </rewrite>
+            </catalog>
+        </helpers>
+
+        <blocks>
+            <aurednik>
+                <class>SDZeCOM_Aurednik_Block</class>
+            </aurednik>
+
+            <page>
+                <rewrite>
+                    <html_topmenu>SDZeCOM_Aurednik_Block_Html_Topmenu</html_topmenu>
+                </rewrite>
+            </page>
+
+            <checkout>
+                <rewrite>
+                    <cart_item_renderer>SDZeCOM_Aurednik_Block_Checkout_Cart_Item_Renderer</cart_item_renderer>
+                </rewrite>
+            </checkout>
+
+            <magesetup>
+                <rewrite>
+                    <checkout_agreements>SDZeCOM_Aurednik_Block_Checkout_Agreements</checkout_agreements>
+                </rewrite>
+            </magesetup>
+
+            <tax>
+                <rewrite>
+                    <checkout_shipping>SDZeCOM_Aurednik_Block_Checkout_Shipping</checkout_shipping>
+                </rewrite>
+            </tax>
+
+            <catalog>
+                <rewrite>
+                    <product_view_attributes>SDZeCOM_Aurednik_Block_Product_View_Attributes</product_view_attributes>
+                </rewrite>
+            </catalog>
+
+            <page>
+                <rewrite>
+                    <html_footer>SDZeCOM_Aurednik_Block_Html_Footer</html_footer>
+                </rewrite>
+            </page>
+
+            <checkout>
+                <rewrite>
+                    <onepage_shipping_method>SDZeCOM_Aurednik_Block_Onepage_Shipping_Method</onepage_shipping_method>
+                </rewrite>
+            </checkout>
+
+            <adminhtml>
+                <rewrite>
+                    <newsletter_subscriber_grid>SDZeCOM_Aurednik_Block_Adminhtml_Newsletter_Subscriber_Grid
+                    </newsletter_subscriber_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <models>
+            <aurednik>
+                <class>SDZeCOM_Aurednik_Model</class>
+                <resourceModel>aurednik_resource</resourceModel>
+            </aurednik>
+
+            <aurednik_resource>
+                <class>SDZeCOM_Aurednik_Model_Resource</class>
+                <entities>
+                    <cms_home_entity>
+                        <table>aurednik_cmshome_entity</table>
+                    </cms_home_entity>
+                    <cms_home_entity_attribute>
+                        <table>aurednik_cmshome_attribute</table>
+                    </cms_home_entity_attribute>
+                    <cms_home_entity_type>
+                        <table>aurednik_cmshome_entity_type</table>
+                    </cms_home_entity_type>
+                    <cms_home_entity_store>
+                        <table>aurednik_cmshome_entity_store</table>
+                    </cms_home_entity_store>
+                    <cmshome_entity_attribute_values>
+                        <table>aurednik_cmshome_entity_attribute_values</table>
+                    </cmshome_entity_attribute_values>
+                </entities>
+            </aurednik_resource>
+
+            <catalog>
+                <rewrite>
+                    <category>SDZeCOM_Aurednik_Model_Category</category>
+                    <product>SDZeCOM_Aurednik_Model_Product</product>
+                </rewrite>
+            </catalog>
+
+            <newsletter>
+                <rewrite>
+                    <subscriber>SDZeCOM_Aurednik_Model_Newsletter_Subscriber</subscriber>
+                </rewrite>
+            </newsletter>
+            <sales>
+                <rewrite>
+                    <order>SDZeCOM_Aurednik_Model_Order</order>
+                </rewrite>
+            </sales>
+        </models>
+
+        <connection>
+            <use>core_setup</use>
+        </connection>
+
+        <resources>
+            <aurednik_setup>
+                <setup>
+                    <module>SDZeCOM_Aurednik</module>
+                    <class>SDZeCOM_Aurednik_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </aurednik_setup>
+
+            <aurednik_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </aurednik_write>
+
+            <aurednik_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </aurednik_read>
+
+        </resources>
+    </global>
+
+    <adminhtml>
+        <events>
+            <adminhtml_block_html_before>
+                <observers>
+                    <aurednik_observer_agreement>
+                        <class>aurednik/Event_Agreement_Observer</class>
+                        <type>model</type>
+                        <method>addOptionsForAgreements</method>
+                    </aurednik_observer_agreement>
+                </observers>
+            </adminhtml_block_html_before>
+
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <aurednik_custom_order_view_info>
+                        <class>aurednik/Event_Order_Observer</class>
+                        <method>getAdditionalOrderViewInfo</method>
+                    </aurednik_custom_order_view_info>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
+
+        <layout>
+            <updates>
+                <aurednik>
+                    <file>aurednik.xml</file>
+                </aurednik>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <frontend>
+        <events>
+            <checkout_type_onepage_save_order>
+                <observers>
+                    <aurednik_order>
+                        <type>singleton</type>
+                        <class>aurednik/Event_Order_Observer</class>
+                        <method>saveAdditionalOrderData</method>
+                    </aurednik_order>
+                </observers>
+            </checkout_type_onepage_save_order>
+            <checkout_cart_update_items_after>
+                <observers>
+                    <aurednik_order>
+                        <type>singleton</type>
+                        <class>aurednik/Event_Order_Observer</class>
+                        <method>addShipping</method>
+                    </aurednik_order>
+                </observers>
+            </checkout_cart_update_items_after>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <aurednik_order>
+                        <type>singleton</type>
+                        <class>aurednik/Event_Order_Observer</class>
+                        <method>addShipping</method>
+                    </aurednik_order>
+                </observers>
+            </checkout_cart_product_add_after>
+            <sales_quote_remove_item>
+                <observers>
+                    <aurednik_order>
+                        <type>singleton</type>
+                        <class>aurednik/Event_Order_Observer</class>
+                        <method>addShipping</method>
+                    </aurednik_order>
+                </observers>
+            </sales_quote_remove_item>
+            <controller_action_postdispatch_checkout_cart_estimatePost>
+                <observers>
+                    <aurednik_order>
+                        <type>singleton</type>
+                        <class>aurednik/Event_Order_Observer</class>
+                        <method>addShipping</method>
+                    </aurednik_order>
+                </observers>
+            </controller_action_postdispatch_checkout_cart_estimatePost>
+            <customer_login>
+                <observers>
+                    <aurednik_order>
+                        <type>singleton</type>
+                        <class>aurednik/Event_Order_Observer</class>
+                        <method>addShipping</method>
+                    </aurednik_order>
+                </observers>
+            </customer_login>
+        </events>
+
+        <layout>
+            <updates>
+                <aurednik>
+                    <file>aurednik.xml</file>
+                </aurednik>
+            </updates>
+        </layout>
+
+        <routers>
+            <aurednik>
+                <use>standard</use>
+                <args>
+                    <module>SDZeCOM_Aurednik</module>
+                    <frontName>aurednik</frontName>
+                </args>
+            </aurednik>
+            <newsletter>
+                <args>
+                    <modules>
+                        <aurednik before="Mage_Newsletter">SDZeCOM_Aurednik_Newsletter</aurednik>
+                    </modules>
+                </args>
+            </newsletter>
+        </routers>
+
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <aurednik after="Mage_Adminhtml">SDZeCOM_Aurednik_Adminhtml</aurednik>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <carriers>
+            <aurednikshipping>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>aurednik/Carrier_Shipping</model>
+                <name>Aurednik Shipping Method</name>
+                <price>3,80</price>
+                <title>Aurednik Shipping Method</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this
+                    shipping method, please contact us.
+                </specificerrmsg>
+                <handling_type>F</handling_type>
+            </aurednikshipping>
+        </carriers>
+    </default>
+</config>

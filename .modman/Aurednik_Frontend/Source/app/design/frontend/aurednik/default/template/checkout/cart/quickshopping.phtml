@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @category    design
+ * @package     base_default
+ * @author		Magevol
+ */
+
+?>
+
+<form action="<?php echo $this->getUrl('quickshopping/cart/add') ?>" class="tom add-to-cart <?php echo $token;  ?>" method="post" id="ref_addtocart_form">
+
+	<!-- Magento Start-->
+
+	<div class="fieldset">
+		<ul class="form-list">
+       		<li class="fields">
+
+				<!--<div class="title_direktbestellung" style="border-top: 0px solid #FFCC33; color:#212121;font-size:25px;font-weight:600; font-family: Montserrat,Helvetica,Arial,sans-serif; padding-top:20px; margin-top:35px; margin-bottom:25px; ">
+					<h1><?php/* echo $this->__('Direktbestellung') */?></h1>
+					<!--<label><?php/* echo $this->__('Direktbestellung') */?></label>
+				</div>-->
+				
+				<div class="cart_title">
+				<?php echo $this->__('Direktbestellung') ?>
+				</div>
+
+				<!--<div class="content_direktbestellung" style="background:;border-bottom:1px solid #EAD99E;box-shadow: 0px 2px 2px #ebebeb; padding:20px 6px 6px 6px;height:75px">-->
+				<div class="content_direktbestellung" style="background:#f1f1f1;border-bottom:1px solid #ebebeb;box-shadow: 0px 2px 2px #ebebeb; padding:10px;min-height:140px;">
+				<div class="sku" style="float:left; margin-right:8px">
+					<div class="field">
+						<div class="input-box">
+							<!--<input type="text" name="sku" id="sku" value="" placeholder="<?php echo $this->__('Artikelnummer') ?>" title="<?php echo $this->__('SKU ') ?>" class="input-text sku" />-->
+							<input type="directorder" style="width:99%;background:#fff;margin-left:5px; height:30px; padding-left:2px;border:0px;border-bottom:1px solid #e2e2e2;" name="sku" id="sku" value="" placeholder="<?php echo $this->__('Artikelnummer') ?>" title="<?php echo $this->__('SKU ') ?>" class="input-text sku" />
+						</div>
+					</div>
+				</div>
+				<div class="qty_label" style="float:left; margin-right:8px; margin-left:4px; line-heigh:280%;">
+					<br>&nbsp;Menge
+				</div>
+				<div class="qty" style="float:left; margin-right:8px; margin-left:8px">
+					<div class="field">
+				    	<div class="input-box">
+				    	<input type="text" name="qty" id="qty" maxlength="12" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+						</div>
+					</div>
+				</div>
+				<div class="add_to_cart" style="float:left; margin:5px; width:100%;">
+						<button class="button btn-add-cart" title="<?php echo $this->__('In den Warenkorb') ?>" type="submit"><span><span><?php echo $this->__('In den Warenkorb') ?></span></span></button>
+				</div>
+
+			</div>
+
+			</li>
+
+		</ul>
+	</div>
+</form>

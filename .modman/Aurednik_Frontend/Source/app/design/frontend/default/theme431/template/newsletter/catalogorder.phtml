@@ -1,0 +1,88 @@
+
+<?php $catalogFormData = Mage::getSingleton('core/session')->getData('catalogForm'); ?>
+<?php $catalogFormData = $catalogFormData ? $catalogFormData : new Varien_Object(); ?>
+
+<div class="catalog_order_content">
+    <div class="block block-subscribe">
+    	<div class ="catalog_image"></div>
+    	
+        <!-- h4><?php echo $this->__('Catalog Order') ?></h4-->
+        <div class="newsletter-col-content">
+            <form action="<?php echo $this->getUrl( 'aurednik/catalog/post' ) ?>" method="post" id="catalogForm">
+                <div class="block-content">
+                    <div class="form-catalog-order-header">
+                        <h5 for="catalog_order"><?php echo $this->__('No cover charge, no shipping costs!') ?></h5>
+                    </div>
+                    
+                    <!--  Katalogauswahl  -->
+                    
+					<div class="input-box">
+			            <label for="<?php echo $this->__('I like to') ?>"><?php echo $this->__('I like to') ?><em>*</em></label>
+			            <select id="catalog" class="catalog required-entry" name="catalog">
+			                <option name="catalog" value="Aurednik Hauptkatalog 2013">Aurednik Hauptkatalog 2013</option>
+			                <option name="catalog" value="Aurednik Hauptkatalog 2014" >Aurednik Hauptkatalog 2014</option>
+			            </select>
+			        </div>
+			        
+			        <!--  Einrichtung  -->
+                    <div class="input-box">
+                       <label for="company"><?php echo $this->__('Company') ?>: </label><br>
+                       <input type="text" name="company" id="company" value="<?php echo $this->htmlEscape($catalogFormData->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" />
+                    </div>                    
+                    
+                    <!--  Name  -->
+		            <div class="input-box">
+		           		<label for="name" class="required"><?php echo $this->__('Name') ?> <em>*</em></label><br>		            
+						<input type="text" name="name" value="<?php echo $this->htmlEscape($catalogFormData->getName()) ?>" title="<?php echo Mage::helper('contacts')->__('Name') ?>" id="name" class="input-text required-entry" />
+		            </div>
+		            
+                    <!--  Straße  -->
+                    <div class="input-box">
+	                    <label for="street" class="required"><?php echo $this->__('Street Address') ?><em>*</em></label>
+	                    <input type="text" name="street" value="<?php echo $this->htmlEscape($catalogFormData->getStreet()) ?>" title="<?php echo $this->__('Street Address') ?>" id="street" class="input-text required-entry " />                 
+                    </div>
+                    
+                    <!--  PLZ  -->
+                    <div class="input-box">
+						<label for="zip" class="required"><?php echo $this->__('Zip/Postal Code') ?><em>*</em></label>
+                        <input type="text" name="zipcode" value="<?php echo $this->htmlEscape($catalogFormData->getZipcode()) ?>" title="<?php echo $this->__('Zip/Postal Code') ?>" id="zip" class="input-text required-entry validate-zip-international <?php echo $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>" />                  
+                    </div> 
+                    
+                    <!--  Ort  -->              
+                    <div class="input-box">
+                        <label for="city" class="required"><?php echo $this->__('City') ?><em>*</em></label>
+                        <input type="text" name="city" value="<?php echo $this->htmlEscape($catalogFormData->getCity()) ?>" title="<?php echo $this->__('City') ?>" class="input-text required-entry <?php echo $this->helper('customer/address')->getAttributeValidationClass('city') ?>" id="city" />              
+                    </div> 
+                                      
+                    <!--  Land  -->               
+                    <div class="input-box">
+						<label for="country" class="required"><?php echo $this->__('Country') ?><em>*</em></label>
+					    <div><?php echo Mage::getBlockSingleton('directory/data')->getCountryHtmlSelect($this->getEstimateCountryId()) ?></div>
+                    </div>                    
+                    
+                    <!--  E-Mail  -->
+                    <div class="input-box">
+                   	   <label for="email"><?php echo $this->__('Email') ?>:</label><br>
+                       <input type="text" name="email" id="newsletter" value="<?php echo $this->htmlEscape($catalogFormData->getEmail()) ?>"title="" class="input-text validate-email" />
+                    </div> 
+                    
+                    <!--  Absendezeitpunkt -->
+                    <?php $currentTimestamp = Mage::getModel('core/date')->timestamp(time());?>
+                    <input type ="hidden" name="timestamp" class="timestamp" value="<?php echo $date = date('d-m-Y | h:i', $currentTimestamp); ?>"> </input>
+                    
+                    <!--  Submitt- Button  -->
+                    <div class="input-box">
+			            <div class="catalog-actions">
+	                        <button type="submit" title="<?php echo $this->__('Send') ?>" class="button"><span><span><?php echo $this->__('Send') ?></span></span></button>
+	                    </div>                    
+                    </div>
+                </div>
+            </form>
+			<script type="text/javascript">
+			//<![CDATA[
+			    var catalogForm = new VarienForm('catalogForm', true);
+			//]]>
+			</script>
+        </div>
+    </div>
+</div>

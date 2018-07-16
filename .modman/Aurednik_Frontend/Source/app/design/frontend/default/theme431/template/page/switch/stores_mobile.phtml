@@ -1,0 +1,23 @@
+
+<?php 
+/**
+ * Store switcher template
+ *
+ * @see Mage_Core_Block_Store_Switcher
+ */
+?>
+
+<?php $websiteStores =  Mage::app()->getStores();?>
+
+<?php if(count($websiteStores)>1): ?>
+        <ul>
+	        <?php foreach ($websiteStores as $_lang): ?>
+	        	<li>
+		            <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? 'active' : '' ?>
+		            <a class="flag" href="<?php echo $_lang->getCurrentUrl() ?>" title="<?php echo $this->htmlEscape($_lang->getName()) ?>">
+		                <img class="<?php echo $_selected ?> " src="<?php echo $this->getSkinUrl('images/flags/'.$_lang->getCode().'.png') ?>" alt="<?php echo $this->htmlEscape($_lang->getName()) ?>"/>
+		            </a>
+	            </li>
+	        <?php endforeach;?>
+        </ul>
+<?php endif; ?> 

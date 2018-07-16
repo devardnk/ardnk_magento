@@ -1,0 +1,105 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_AjaxCart
+ * @copyright   Copyright (c) 2014 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+<?php
+    $_cartQty = $this->getSummaryCount();
+    if(empty($_cartQty)) {
+        $_cartQty = 0;
+    }
+
+    $_items = $this->getItems();
+
+    $module = $this->getRequest()->getModuleName();
+    $controller = $this->getRequest()->getControllerName();
+
+    $isCheckout = $this->helper('ajaxcart')->isCheckoutPage();
+?>
+
+<script type="text/javascript">
+    ajaxCart.items = {};
+</script>
+<div id="pac-mini-cart" class="p-border-box cart <?php if (!$_cartQty) echo 'pac-empty-cart' ?>">
+    <div id="pac-minicart-popup" >
+        <?php if($_cartQty): ?>
+            <h3><?php echo $this->__('My Cart') ?></h3>
+
+            <?php $cartreservation = trim($this->getChildHtml('cartreservation')) ?>
+            <?php if ($cartreservation) { ?>
+                <div class="pac-cart-reservation"><?php echo $cartreservation ?></div>
+             <?php } ?>
+
+            <?php if (!$isCheckout) { ?>
+            	<a title="<?php echo $this->__('Checkout'); ?>" class="pac-checkout-button" href="<?php echo $this->helper('checkout/url')->getCheckoutUrl() ?>"><?php echo $this->__('Checkout'); ?></a>
+            <?php } ?>
+			<table class="pac-info-wrapper table-title">
+				<tbody>
+					<tr class="pac-info-wrapper-title">
+						<td class="pac-product-item"><?php echo $this->__('Items') ?></td>
+						<td class="pac-product-name"></td>
+						<td class="pac-product-info"></td>
+						<td class="pac-product-qty"><?php echo $this->__('Quantity') ?></td>
+						<td class="pac-product-price"><?php echo $this->__('Price') ?></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="pac-mini-products-list-hld">
+                <ul id="cart-sidebar" class="pac-mini-products-list">
+                    <?php foreach($_items as $_item): ?>
+                        <?php echo $this->getItemHtml($_item) ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+              
+              <div class="totals">
+	              <div class="pac-block-content">
+	                <p class="pac-subtotal">
+	                    <?php if ($this->canApplyMsrp()): ?>
+	                        <span class="pac-label"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></span>
+	                    <?php else: ?>
+	                    	<?php echo $this->getChildHtml('totals'); ?>	                       
+	                    <?php endif; ?>
+	                </p>
+	              </div>
+	            <?php if (!$isCheckout) { ?>
+	              <div class="pac-minicart-actions">
+	                <a class="pac-cart-link" href="javascript: void(0);" onclick="ajaxCart.hideAjaxPopup();" ><?php echo Mage::helper('checkout')->__('Continue Shopping'); ?></a>
+	                <a title="<?php echo $this->__('Checkout'); ?>" class="pac-checkout-button" href="<?php echo $this->getUrl('checkout') ?>"><?php echo $this->__('Checkout'); ?></a>
+	                <?php
+	                    $paypalCheckoutHtml = $this->getLayout()->createBlock('paypal/express_shortcut')->setTemplate('paypal/express/shortcut.phtml')->setIsQuoteAllowed(1)->toHtml();
+	                    if ($paypalCheckoutHtml) {
+	                ?>
+					<div class="paypal-block cf clearfix">
+	                    <div><?php echo $this->__('or') ?></div>
+	                    <?php echo $paypalCheckoutHtml ?>
+	                </div>
+	                <?php } ?>
+	              </div>
+	            <?php } ?>
+              </div>
+              <div class="forms-message-holder"></div>
+              	<?php if (!$isCheckout) { ?>
+             		<?php  //echo $this->getChildHtml('coupon') ?>
+           		<?php } ?>
+        <?php else: ?>
+            <h1><?php echo $this->__('You have no items in your shopping cart.') ?></h1>
+            <div class="pac-minicart-actions">
+            	<a class="pac-cart-link" href="javascript: void(0);" onclick="ajaxCart.hideAjaxPopup();" ><?php echo Mage::helper('checkout')->__('Continue Shopping'); ?></a>
+            </div>
+		<?php endif ?>
+    </div>
+</div>

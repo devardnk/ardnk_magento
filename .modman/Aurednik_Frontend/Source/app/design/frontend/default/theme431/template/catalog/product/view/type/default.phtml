@@ -1,0 +1,37 @@
+
+<?php /* @var $this Mage_Catalog_Block_Product_View_Abstract */?>
+<?php $_product = $this->getProduct();
+?>
+
+
+<div class="product_price">
+	<?php echo $this->getPriceHtml($_product) ?>
+</div>
+
+<div class="stock_delivery">
+	<div class="stock-item-status">
+		<?php if($_product->isStockItem()) : ?>
+			<img src="<?php echo $_product->getProductAvailabilityPictureUrl() ?>" />
+			<p style="color:<?php echo $_product->getProductAvailabilityTextColor()?>"><?php echo $_product->getProductAvailabilityText() ?></p>
+			<div class="product_extra_data">
+				<p class ="delivery-time"> <?php echo $this->__('Delivery Time') ?>: <?php echo $_product->getProductShippingText ()?></p>	
+			</div>
+		<?php else:?>
+			<div class="product_extra_data">
+				<p style="color:#555454"><?php echo $_product->getProductAvailabilityText() ?></p>
+			</div>
+		<?php endif; ?>
+		<div class="clear"></div>
+	</div>
+
+	<?php if ( file_exists (  $_product->getProductPDFilePath () ) ) :?>
+		<div class="pdf_catalog">
+			<a href="<?php echo $_product->getProductPDFilePath(true);?>" target="blank"><img src="<?php echo $_product->getProductPDFPictureUrl()?>" /></a>
+		</div>
+	<?php endif;?>
+</div>
+
+
+		
+		
+

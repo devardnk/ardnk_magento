@@ -1,0 +1,36 @@
+<?php $objOrderHelper = new SDZeCOM_Aurednik_Helper_Shipping_Order ( Mage :: helper( 'checkout/cart' ) -> getQuote () ) ?>
+<?php $intOrderType = $objOrderHelper -> getOrderType (); ?>
+<ul>
+	<?php switch ( $intOrderType ) : 
+		case $objOrderHelper :: GETORDERTYPE_RETURN_VALUE_ORDER : ?>
+			<li>
+				<script type="text/javascript"> $('aurednik_order_type').value="<?php echo $objOrderHelper :: ORDER_TYPE_ORDER ?>";</script>
+				<input type="hidden" name="order_type" checked="checked"> 
+				<button id="place_order" type="submit" title="<?php echo $this->__('Place Order') ?>" class="button btn-checkout" onclick="review.save();"><span><span><?php echo $this->__('Place Order') ?></span></span></button>
+			</li>
+		<?php break;?>
+		<?php case $objOrderHelper :: GETORDERTYPE_RETURN_VALUE_REQUEST_AND_ORDER : ?>
+			<li>
+	
+				<p class="shipping_note"><?php echo $objOrderHelper -> getShippingNoteText (); ?></p>
+				<script type="text/javascript"> $('aurednik_order_type').value="<?php echo $objOrderHelper :: ORDER_TYPE_ORDER ?>";</script>
+				<input type="hidden" name="order_type" onchange="$('aurednik_order_type').value='<?php echo $objOrderHelper :: ORDER_TYPE_ORDER;?>'" checked="checked"> 
+				<button id="place_order" type="submit" title="<?php echo $this->__('Place Order') ?>" class="button btn-checkout" onclick="review.save();"><span><span><?php echo $this->__('Place Order') ?></span></span></button>
+			</li>
+			
+			<li>
+				<input type="hidden" name="order_type" onchange="$('aurednik_order_type').value='<?php echo $objOrderHelper :: ORDER_TYPE_REQUEST;?>'"> 
+				<button id="place_request" type="submit" title="<?php echo $this->__('Place Request') ?>" class="button btn-checkout" onclick="review.save();"><span><span><?php echo $this->__('Place Request') ?></span></span></button>
+			</li>
+			
+		<?php break;?>
+		<?php default : ?>
+			<li>
+
+				<p><?php echo $objOrderHelper -> getShippingNoteText (); ?></p>
+				<script type="text/javascript"> $('aurednik_order_type').value="<?php echo $objOrderHelper :: ORDER_TYPE_REQUEST ?>";</script>
+				<input type="hidden" name="order_type" checked="checked"> <button id="place_request" type="submit" title="<?php echo $this->__('Place Request') ?>" class="button btn-checkout" onclick="review.save();"><span><span><?php echo $this->__('Place Orders') ?></span></span></button>
+			</li>
+		<?php break;?>
+	<?php endswitch;?>
+</ul>

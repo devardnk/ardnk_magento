@@ -1,0 +1,41 @@
+<!-- Zugriff auf den Block - SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block -->
+<?php /** @var SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block $this */?>
+
+<?php $order = $this->getOrder() ?>
+
+<div class="entry-edit box-left">
+	<div class="entry-edit-head">
+		<h4 class="icon-head"><?php echo $this->__('Aurednik Bestellinformationen') ?></h4>
+	</div>
+	<fieldset>
+		<table cellspacing="0" class="form-list">
+			<tbody><tr>
+				<td class="label"><label>Aurednik Kundennummer</label></td>
+				<td class="value"><strong><?php echo $this->getAdditionalOrderData('aurednik_customer_number')?></strong></td>
+			</tr>
+			<tr>
+				<td class="label"><label>Bestellkommentar</label></td>
+				<td class="value"><strong><?php echo $this->getAdditionalOrderData('aurednik_order_comment')?></strong></td>
+			</tr>
+			</tbody>
+		</table>
+	</fieldset>
+</div>
+
+<div class="entry-edit box-right">
+	<div class="entry-edit-head">
+		<h4 class="icon-head"><?php echo $this->__('Aurednik Frachtinformationen') ?></h4>
+	</div>
+	<fieldset>
+		<div id="aurednik_freight_tables">
+			<?php $serializedData = $this->getAdditionalOrderData('aurednik_shipping_tables');?>
+			<?php $shippingTables = unserialize($serializedData);?>
+
+			<?php foreach ($shippingTables as $shippingTable):?>
+				<?php echo $shippingTable . ' </br>';?>
+			<?php endforeach;?>
+		</div>
+
+	</fieldset>
+</div>
+<div class="clear"></div>

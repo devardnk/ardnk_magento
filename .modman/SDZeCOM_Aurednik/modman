@@ -1,0 +1,5 @@
+Source/app/code/local/SDZeCOM/Aurednik	app/code/local/SDZeCOM/Aurednik
+Source/app/etc/modules/SDZeCOM_Aurednik.xml     app/etc/modules/SDZeCOM_Aurednik.xml
+
+Source/app/design/adminhtml/default/default/layout/aurednik.xml	app/design/adminhtml/default/default/layout/aurednik.xml
+Source/app/design/frontend/base/default/template/aurednik	app/design/frontend/base/default/template/aurednik

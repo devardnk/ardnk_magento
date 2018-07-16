@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Mage_Rating>
+			<active>false</active>
+		</Mage_Rating>
+		<Mage_Review>
+			<active>false</active>
+		</Mage_Review>
+		<Mage_XmlConnect>
+			<active>false</active>
+		</Mage_XmlConnect>
+	</modules>
+</config>

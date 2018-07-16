@@ -1,0 +1,13 @@
+#pac-product-option .pac-product-name h1 {
+	text-transform: none; /* 20-10-2016 SP geändert von uppercase zu none */
+	font-size: 22px;
+	line-height: 26px;
+	font-weight: 400;
+	padding-bottom: 3px;
+	color: #000;			/* 20-10-2016 SP geändert von 39C zu 000 */
+}
+#pac-product-option .pac-product-name { width: 100%; }
+
+#pac-popup-internal .pac-image .more-views {display: none;}
+#pac-popup-internal .product-options-bottom .add-attributes { float: right; }
+#pac-popup-internal .product-options-bottom .add-to-cart-buttons { margin-top: 30px; }

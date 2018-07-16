@@ -1,0 +1,29 @@
+<?php $highlights = $this->getHighlightCollection( Mage::app ()->getStore ()->getId () );?>
+<?php if ( is_array ( $highlights ) && count ( $highlights ) > 0 ) : ?>
+	<div class="fluid_container_wrap">
+		<div class="slider_nav">
+			<div class="arrow prev"> <div id="arr_p"></div> </div>
+			<div class="arrow next"> <div id="arr_n"></div> </div>
+
+			
+		</div>
+		<div class="product_container">
+			<div class="product_wrap" > 
+				<ul>
+					<?php foreach ( $highlights as $highlightId=>$current ) : ?>
+						<li>
+							<img src="<?php echo $current->getImgUrl(); ?> "alt="<?php echo $current->getImgAltText();?>" />
+							<div class="product_Content">
+								<h1><?php echo $current->getCategory(); ?></h1>
+								<h2><?php echo $current->getHeadline(); ?></h2>
+								<h3><?php echo $current->getTeaserText (); ?></h3>
+								<h4><?php echo $current->getPrice () ?></h4>
+								<!--a class ="product_Link" href="<?php echo $current->getLinkHref()?>"><?php echo $current->getLinkName()?><div id="arr_product""></div></a-->
+							</div>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div> <!-- product_wrap -->
+		</div> <!-- fluid_container -->
+	</div> <!-- fluid_container_wrap -->
+<?php endif; ?>

@@ -1,0 +1,25 @@
+.additional-product-info-table-row{
+	border:1px solid #e2e2e2; 
+	border-top:thin solid #CCCCCC; 
+}
+
+/*
+.additional-product-info-table-row td{
+	border-bottom: 2px solid grey; 
+	background: #F6F6F6;
+	padding:0;
+}
+*/
+.additional-product-info-table-row-td{
+	border:1px solid #e2e2e2; 
+	border-top:thin solid #CCCCCC; 
+	background-color:#e2e2e2;
+}
+
+.additional-product-info-table-list{
+	border: none; width:100%;
+}
+
+.additional-product-info-table-list td{
+	padding:0;
+}

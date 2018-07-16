@@ -1,0 +1,5 @@
+Source/app/code/community/SDZeCOM/Integration           app/code/community/SDZeCOM/Integration
+
+Source/app/etc/modules/*.xml	                        app/etc/modules/
+
+Source/lib/SDZeCOM/Io                                   lib/SDZeCOM/Io

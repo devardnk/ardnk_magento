@@ -1,0 +1,15 @@
+
+#code
+Source/app/code/community/OlegKoval/ContactsFormCaptcha	app/code/community/OlegKoval/ContactsFormCaptcha
+
+#design
+Source/app/design/frontend/base/default/template/contactsformcaptcha	app/design/frontend/base/default/template/contactsformcaptcha
+
+#locale
+Source/app/locale/en_US/OlegKoval_ContactsFormCaptcha.csv	app/locale/en_US/OlegKoval_ContactsFormCaptcha.csv
+
+#modul
+Source/etc/modules/OlegKoval_ContactsFormCaptcha.xml app/etc/modules/OlegKoval_ContactsFormCaptcha.xml
+
+#lib
+Source/lib/reCaptcha/recaptchalib.php lib/reCaptcha/recaptchalib.php

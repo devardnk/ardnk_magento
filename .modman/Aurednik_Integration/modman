@@ -1,0 +1,5 @@
+Source/app/code/local/Aurednik/Integration           app/code/local/Aurednik/Integration
+
+Source/app/etc/modules/*.xml	                        app/etc/modules/
+
+Source/shell/*.php                                      shell/

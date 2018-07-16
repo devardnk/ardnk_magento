@@ -1,0 +1,15 @@
+#code
+Source/IG/LightBox2 app/code/community/IG/LightBox2
+
+#modul
+Source/modules/IG_LightBox2.xml app/etc/modules/IG_LightBox2.xml
+
+#layout
+Source/frontend/base/default/layout/ig_lightbox2.xml app/design/frontend/base/default/layout/ig_lightbox2.xml
+
+#template
+Source/frontend/base/default/template/ig_lightbox2 app/design/frontend/base/default/template/ig_lightbox2
+
+#skin
+Source/frontend/base/default/ig_lightbox2 skin/frontend/base/default/ig_lightbox2
+

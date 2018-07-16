@@ -1,0 +1,37 @@
+"<strong title=""%s"">%s item</strong>","<strong title=""%s"">%s Artikel</strong>"
+"<strong title=""%s"">%s items</strong>","<strong title=""%s"">%s Artikel</strong>"
+"0 item(s)","0 Artikel"
+"Custom tab","Registerkarte Benutzerdefiniert"
+"Video","Video"
+kg,kg.
+gramm,g.
+
+
+"This email address is already subscribed to a newsletter."," Diese E-Mail Adresse ist bereits für unseren Newsletter eingetragen."
+"Thank you for your newsletter subscription.","Danke für Ihre Newsletter Anmeldung."
+
+"This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.","Diese Versandart ist derzeit nicht verfügbar. Falls Sie trotzdem diese Versandart benutzen möchten, kontaktieren Sie uns bitte. "
+
+"Your data will be not submitted to third companies","Ihre Daten werden nicht an Dritte weitergegeben und nur im Rahmen unseres Newsletters verwendet. Sie können Sich jederzeit wieder abmelden."
+"Here you can subscribe for","Hier können Sie sich für unseren Newsletter eintragen. Wir benötigen mindestens Ihre E-Mail-Adresse!"
+"No cover charge, no shipping costs!","Keine Schutzgebühr, keine Versandkosten!"
+"I like to","Ich möchte:"
+
+"Company","Einrichtung"
+"Street Address","Straße, Nr."
+"City","Ort"
+"aurednik_customer_number","Kunden-Nr."
+"Aurednik Customer Number","Kunden-Nr."
+"your name", "Ihr Name"
+"Sign Up for a Newsletter","Newsletter abonnieren"
+"Send","Senden"
+
+
+"Contacts Form Captcha","Contacts Form Captcha"
+"Enable Captcha","Captcha aktivieren"
+"Public Key","Public Key"
+"Private Key","Private Key"
+"reCaptcha Theme","reCaptcha Design"
+"reCaptcha Language","reCaptcha Sprache"
+"You got this from the signup page: https://www.google.com/recaptcha/admin/create","You got this from the signup page: https://www.google.com/recaptcha/admin/create"
+"The reCAPTCHA wasn't entered correctly. Go back and try it again.","Der Sicherheitstext wurde nicht korrekt eingegeben. Bitte versuchen Sie es noch einmal."

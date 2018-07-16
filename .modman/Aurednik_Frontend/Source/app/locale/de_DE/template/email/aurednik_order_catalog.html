@@ -1,0 +1,239 @@
+
+<body style="
+	background: #E9E9E9;
+    color: #6A6969;
+    font-family: Arial;
+    font-size: 11px;
+    line-height: 16px;
+    min-width: 320px;
+    position: relative;
+    text-align: center;">
+
+<div style="
+	background: none repeat scroll 0 0 #FEFEFE;
+    border: 1px solid #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.08) inset;
+    margin: 0 auto 20px;
+    max-width: 500px;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1;">
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+<tr>
+	<tr>
+        <td bgcolor="#EAEAEA" align="center" style="
+        		background:transparent;">
+        	<center>
+        		<p style="color: #EAEBEB;
+        			text-align: left;
+				    font-size: 20px;
+				    font-weight: normal;
+				    line-height: 24px;
+				    text-align:center;
+				    font-family: Arial,Helvetica,sans-serif;
+				    ">
+				    <a href="{{store url=""}}">
+        				<img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px; background-size: contain; width: 90%" border="0"/>
+        			</a>
+        		</p>
+        	</center>
+        </td>
+    </tr>	
+	<tr>
+        <td align="center" style="
+        		background:#FFCC33;
+        		-moz-box-shadow: inset 0 8px 8px -8px #696868;
+				-webkit-box-shadow: inset 0 8px 8px -8px #696868;
+				box-shadow: inset 0 8px 8px -8px #696868;">
+
+        	<center>
+        		<p style="color: #414141;
+        			text-align: left;
+				    font-size: 17px;
+				    font-weight: normal;
+				    line-height: 24px;
+				    text-align:center;
+				    font-family: Arial,Helvetica,sans-serif;
+				    ">
+				    <strong>Neue Katalogbestellung</strong>
+        		</p>
+        	</center>
+        </td>
+    </tr>	
+            
+    <td align="center" valign="top" style="
+    	padding:10px 0 0px 0;
+        -moz-box-shadow: inset 0 8px 8px -8px #696868;
+		-webkit-box-shadow: inset 0 8px 8px -8px #696868;
+		box-shadow: inset 0 8px 8px -8px #696868;">
+
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="490" style="border:1px solid #E0E0E0;">
+    		<tr>
+    			<td style="border-bottom: thin solid #EAEAEA;">
+            		<p style="color: #6A6969;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    "><strong>Ich m&ouml;chte: </strong>  
+            		</p>
+        		</td>
+         		<td style="background:#EAEAEA; border-bottom: thin solid #FFF;">
+        			<p style="color: #336699;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    ">{{var data.catalog}} 
+            		</p>
+            	</td>
+    		</tr>     
+    		<tr>
+    			<td style="border-bottom: thin solid #EAEAEA;">
+            		<p style="color: #6A6969;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    "><strong>Einrichtung: </strong>
+            		</p>
+        		</td>
+        		<td style="background:#EAEAEA; border-bottom: thin solid #FFF;">
+        			<p style="color: #336699;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    ">{{var data.company}}
+            		</p>
+            	</td>
+    		</tr>
+    		<tr>
+    			<td style="border-bottom: thin solid #EAEAEA;">
+            		<p style="color: #6A6969;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    "><strong>Name: </strong>
+            		</p>
+        		</td>
+         		<td style="background:#EAEAEA; border-bottom: thin solid #FFF;">
+        			<p style="color: #336699;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    ">{{var data.name}}
+            		</p>
+            	</td> 
+    		</tr>
+    		<tr>
+    			<td style="border-bottom: thin solid #EAEAEA;">
+            		<p style="color: #6A6969;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    "><strong>Strasse: </strong>
+            		</p>
+        		</td>
+          		<td style="background:#EAEAEA; border-bottom: thin solid #FFF;">
+        			<p style="color: #336699;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    ">{{var data.street}}
+            		</p>
+            	</td>
+   			</tr>     		     		     		       
+    		<tr>
+    			<td style="border-bottom: thin solid #EAEAEA;">
+            		<p style="color: #6A6969 border-bottom: thin solid #BFBFBF;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    "><strong>PLZ: </strong> 
+            		</p>
+        		</td>
+         		<td style="background:#EAEAEA; border-bottom: thin solid #FFF;">
+        			<p style="color: #336699;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    ">{{var data.postcode}}
+            		</p>
+            	</td> 
+    		</tr> 
+    		<tr>
+    			<td style="border-bottom: thin solid #EAEAEA;">
+            		<p style="color: #6A6969;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    "><strong>Ort: </strong>
+            		</p>
+        		</td>
+         		<td style="background:#EAEAEA; border-bottom: thin solid #FFF;">
+        			<p style="color: #336699;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    ">{{var data.city}}
+            		</p>
+            	</td> 
+    		</tr> 
+    		<tr>
+    			<td style="border-bottom: thin solid #EAEAEA;">
+            		<p style="color: #6A6969;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    "><strong>Land: </strong>
+            		</p>
+        		</td>
+         		<td style="background:#EAEAEA; border-bottom: thin solid #FFF;">
+        			<p style="color: #336699;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    ">{{var data.country_id}}
+            		</p>
+            	</td> 
+    		</tr> 
+    		<tr>
+    			<td style="border-bottom: thin solid #FFF;">
+            		<p style="color: #6A6969;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    "><strong>E-Mail: </strong>
+            		</p>
+        		</td>
+         		<td style="background:#EAEAEA; border-bottom: thin solid #EFEFEF">
+        			<p style="color: #336699;
+            			text-align: left;
+					    font-size: 17px;
+					    font-weight: normal;
+					    line-height: 24px;
+					    ">{{var data.email}}
+            		</p>
+            	</td> 
+    		</tr> 
+        </table>
+    </td>
+</tr>
+</table>
+</div>
+</body>
+

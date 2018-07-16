@@ -1,0 +1,28 @@
+<layout version="0.1.0">
+	<!--checkout_cart_index translate="label">
+		<reference name="content">
+			<block type="aurednik/Checkout_Cart" name="freight_table" output="toHtml" template="checkout/cart/freight_table.phtml" />
+		</reference>
+	</checkout_cart_index-->
+	
+	<cms_index_defaultindex>
+		<reference name ="head">
+			<action method="addItem"><type>skin_js</type><name>js/highlight/unslider.js</name></action> 
+			<action method="addItem"><type>skin_js</type><script>js/highlight/run.js</script></action>
+			<action method="addItem"><type>skin_js</type><script>js/highlight/jquery.event.swipe.js</script></action>
+			
+		</reference>
+		
+		<reference name="content">
+			<block type="aurednik/cms_home" name="home_highlight" as="home_highlight" template="aurednik/cms/home/highlight.phtml" />
+			<block type="aurednik/cms_home" name="home_banner" as="home_banner" template="aurednik/cms/home/banner.phtml" />
+		</reference>
+		
+		<reference name="random_pr">
+			<block type="aurednik/home_product_new" name="home_new_products" as="home_new_products" template="aurednik/home/new.phtml" />
+		</reference>
+		
+	</cms_index_defaultindex>
+	
+	
+</layout>

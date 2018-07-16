@@ -1,0 +1,70 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php /* @var $this Mage_Catalog_Block_Product_View_Abstract */?>
+<?php $_product = $this->getProduct() ?>
+<?php $_product = Mage::getModel('aurednik/product')->load($_product->getId());?>
+<?php $_sdz_product = Mage::getModel('aurednik/product')->load($_product->getId());?>
+<?php $av= $_sdz_product->getProductAvailabilityText() ?>
+<?php $kred = $this->getProduct()->getAn_15(); ?>
+<?php $avcolor = $_product->getProductAvailabilityTextColor();?>
+<?php $lieferv = $_product->getAn_49();?>
+
+<div class="delivery-info">
+<div class="stock_delivery">
+	<div class="stock-item-status">
+		<?php $_sdz_product = Mage::getModel('aurednik/product')->load($_product->getId());?>
+					<?php $av= $_sdz_product->getProductAvailabilityText() ?>
+
+					<?php if($_sdz_product->isStockItem() && $av == 'Wenige verfügbar') : ?>
+						<span style="color:orange;font-size:11px;">
+						<?php echo $av ?>
+						</span>
+						<br>
+						<span style="color:#000;font-size:11px;">
+						<?php echo 'Lieferzeit 2-3 Tage' ?>
+						</span>
+					<?php endif?>
+
+					<?php if($_sdz_product->isStockItem()&& $av != 'Wenige verfügbar') : ?>
+						<span style="font-size:11px;color:<?php echo $_sdz_product->getProductAvailabilityTextColor()?>;"><?php echo $_sdz_product->getProductAvailabilityText() ?></span>
+						<br>
+						<span style="font-size:11px;color:black" class="delivery-time"> <?php echo $this->__('Delivery Time') ?>: <?php echo $_sdz_product->getProductShippingText ()?></span>
+					<?php endif; ?>
+	</div>
+</div>
+<div class="fracht" style="float:left;padding:0px"><?php echo $this->getChildHtml('oncost') ?>
+<?php if ($_product->getAn_1 () == "B37056"):?>
+	<p style="font-size:15px;"> Vorlage magnetische Zeichentafel herunterladen: </p><a href="http://www.aurednikshop.de/media/Vorlage_Karten_magnetische_Zeichentafel.pdf" download target="_blank">>> Download</a>
+	<?php endif?>
+
+</div>
+
+
+
+
+
+</div>

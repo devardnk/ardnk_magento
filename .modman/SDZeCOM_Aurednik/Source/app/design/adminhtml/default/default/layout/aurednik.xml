@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="0.1.0">
+
+	<adminhtml_cms_home_index>
+		<reference name="content">
+			<block type="aurednik/adminhtml_cms_home_container" name="cmshome_grid"></block>
+		</reference>
+	</adminhtml_cms_home_index>
+	
+	<adminhtml_cms_new_index>
+		
+		<reference name="left">
+			<block type="aurednik/adminhtml_cms_home_new_form_tabs" name="cmshome_new_form_tabs" />
+		</reference>	
+	
+		<reference name="content">
+			<block type="aurednik/adminhtml_cms_home_new_form_container" name="cmshome_new" />
+		</reference>
+		
+	</adminhtml_cms_new_index>
+
+	<adminhtml_cms_edit_index>
+	
+		<reference name="left">
+			<block type="aurednik/adminhtml_cms_home_edit_form_tabs" name="cmshome_edit_form_tabs" />
+		</reference>	
+
+		<reference name="content">
+			<block type="aurednik/adminhtml_cms_home_edit_form_container" name="cmshome_edit" />
+		</reference>
+	 
+	</adminhtml_cms_edit_index>
+
+	<!-- Erweiterung der Bestellinformationen im Admin Backend -->
+	<!-- @ticket https://projects.sdzecom.de/issues/6268 -->
+	<!-- @author egutsche -->
+	<adminhtml_sales_order_view>
+		<reference name="order_info">
+			<block type="aurednik/adminhtml_sales_order_view_info_block" name="aurednik.order.info.custom.block" template="aurednik/custom_order.phtml" before="order_history" />
+		</reference>
+		<reference name="order_items">
+			<block type="aurednik/adminhtml_sales_order_view_info_block" name="aurednik.order.items.custom.block" template="aurednik/sales/order/view/items.phtml" after="order_items" />
+		</reference>
+	</adminhtml_sales_order_view>
+</layout>

@@ -1,0 +1,174 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+
+--> Anpassungen Artiklekarte: Autor:Simon Peleschka
+
+ab Zeile 64 --> Bemerkungen zur Anpassung Artikelkarte:
+ * Zeile 64 - 72 geben Frachtkosten aus
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+
+    <div class="icons" style="height:auto; border: 0px solid #e2e2e2; padding: 4px 4px 4px 4px; margin-bottom:5px">
+
+        <?php
+        #$basePath                 = "../../../../../../../media";
+        #$basePath                 =  Mage::getBaseDir('media');
+        #$basePath                 =  "http://magento_03.aurednik.mfg/media";
+        $basePath                 = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+        $behinderteng_img         = '<img src="'. $basePath . '/icons/behindertengerecht.jpg" >';
+        $bestseller_img           = '<img src="'. $basePath . '/icons/bestseller.jpg">';
+        $exklusiv_img             = '<img src="'. $basePath . '/icons/exklusivaurednik.jpg">';
+        $krippe_img               = '<img src="'. $basePath . '/icons/krippe.jpg">';
+        $nachmittag_img           = '<img src="'. $basePath . '/icons/nachmittag.jpg">';
+        $schwerentflammbar_img    = '<img src="'. $basePath . '/icons/schwerentflammbar.jpg">';
+        $spielgut_img             = '<img src="'. $basePath . '/icons/spielgut.jpg">';
+        $topdeutschland_img       = '<img alt="'. $basePath . '" src="'. $basePath . '/icons/topdeutschland.jpg">';
+        $topoesterreich_img       = '<img src="'. $basePath . '/icons/topoesterreich.jpg">';
+        $frachkosten_img          = '<img src="'. $basePath . '/icons/frachtkosten.jpg">';
+        ?>
+		  <meta charset="utf-8">
+  <?php /*
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Tooltip - Default functionality</title>
+  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( document ).tooltip();
+  } );
+  </script>
+  <style>
+  label {
+    display: inline-block;
+    width: 5em;
+  }
+  </style>	
+  */?>		
+		 <?php if ($_product->getAn_30() != 0 ) : ?>
+        <div class="icons" style="border:0px; margin:0px">
+            <!-- Behindertengerecht - Attributcode an_30 -->
+            <div class="icon" style="float:left; padding: 0px 10px 0px 0px">
+               
+                    <a title="Dieses Produkt ist geeignet für behinderte Menschen"><?php echo ($behinderteng_img);?></a>
+               
+            
+			</div>
+			 <?php endif?>
+            <!-- Bestseller - Attributcode an_56 -->
+			<?php if ($_product->getAn_56() != 0 ) : ?>
+            <div class="icon" style="float:left; padding: 0px 10px 0px 0px">
+                
+                    <a title="Dieses Produkt ist ein Bestseller bei AUREDNIK"><?php echo ($bestseller_img); ?></a>
+               
+            </div>
+			 <?php endif?>
+			<?php if ($_product->getAn_26() != 0 ) : ?>
+            <!-- Exklusiv nur bei Aurednik - Attributcode an_26 -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+                
+                    <a title="Dieses Produkt gibt es exklusiv nur bei AUREDNIK zu kaufen"><?php echo ($exklusiv_img);?></a>
+              
+            </div>
+			  <?php endif?>
+			 <?php if ($_product->getAn_31() != 0 ) : ?>
+            <!-- geeignet für die Krippe -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+               
+                    <a class="icontooltip" title="Dieses Produkt ist für die Krippe geeignet"><?php echo ($krippe_img);?></a>
+                
+            </div>
+			<?php endif?>
+			 <?php if ($_product->getAn_33() != 0 ) : ?>
+            <!-- geeignet für die Nachmittagsbetreuung -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+               
+                    <a title="Dieses Produkt ist für die Nachmittagsbetreuung geeignet"><?php echo ($nachmittag_img);?></a>
+               
+            </div>
+			 <?php endif?>
+			 <?php if ($_product->getAn_29() != 0 ) : ?>
+            <!-- Schwerentflammbar -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+               
+                    <a title="Dieses Produkt ist schwerentflammbar"><?php echo ($schwerentflammbar_img);?></a>
+              
+            </div>
+			  <?php endif?>
+			 <?php if ($_product->getAn_34() != 0 ) : ?>
+            <!-- Spielgutsiegel -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+               
+                    <?php echo ($spielgut_img);?>
+              
+            </div>
+			  <?php endif?>
+			 <?php if ($_product->getAn_27() != "" ) : ?>
+            <!-- Topqualität aus Deutschland -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+               
+                    <a class="icontooltip" title="Dieses Produkt ist Topqualität aus Deutschland"><?php echo ($topdeutschland_img);?></a>
+              
+			</div>
+			  <?php endif?>
+			
+			 <?php if ($_product->getAn_28() != 0 ) : ?>
+            <!-- Topqualität aus Österreich -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+               
+                    <a title="Dieses Produkt ist Topqualität aus Österreich"><?php echo ($topoesterreich_img);?></a>
+              
+            </div>
+  <?php endif?>
+			  <?php  if ($_product->getAn_49() == 501):; ?>
+            <!-- Frachtkosten Möbel -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+              
+                    <?php echo ($frachkosten_img);?>
+             
+            </div>
+			   <?php endif?>
+ <?php  if ($_product->getAn_49() == 537):; ?>
+            <!-- Frachtkosten Außenspiel -->
+            <div class="icon" style="float:left; padding:0px 10px 0px 0px">
+               
+                    <?php echo ($frachkosten_img);?>
+               
+            </div>
+ <?php endif?>
+        </div>
+    </div>
+<?php /* Ab hier ist die Ausgabe der ICONS beendet */?>

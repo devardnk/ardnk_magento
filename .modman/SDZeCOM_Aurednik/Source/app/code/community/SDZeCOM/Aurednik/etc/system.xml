@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <aurednik translate="label" module="aurednik">
+            <label>Aurednik</label>
+            <sort_order>20</sort_order>
+        </aurednik>
+    </tabs>
+	<sections>
+		<sdzecom_aurednik translate="label">
+			<label>Config</label>
+			<tab>aurednik</tab>
+			<sort_order>10</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<product_types translate="label">
+					<label>product types</label>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<stockitems translate="label">
+							<label>stock item identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</stockitems>
+						
+						<furniture translate="label">
+							<label>furniture identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</furniture>
+						
+						<outsideplay translate="label">
+							<label>outside play identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</outsideplay>
+						
+						<directarticle translate="label">
+							<label>direct article identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</directarticle>
+						
+						<freightforwardinggoods translate="label">
+							<label>freight forwarding goods identification</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>51</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</freightforwardinggoods>
+					</fields>
+				</product_types>
+				
+				<product_availability translate="label">
+					<label>product availability</label>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<availability translate="label">
+							<label>product availablity attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</availability>
+					</fields>
+				</product_availability>	
+				
+				<product_availability_stockitems_greenlight translate="label">
+					<label>product availability stock items (green light)</label>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<greenlight_indetification translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</greenlight_indetification>
+						
+						<greenlight_picture translate="label">
+							<label>picture</label>
+							<frontend_type>image</frontend_type>
+							<backend_model>adminhtml/system_config_backend_image</backend_model>
+							<upload_dir config="system/filesystem/media" scope_info="1">/</upload_dir>
+							<base_url type="media" scope_info="1"></base_url>
+							<comment>Allowed file types: jpeg.</comment>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</greenlight_picture>
+						
+						<greenlight_text translate="label">
+							<label>text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</greenlight_text>
+					</fields>
+				</product_availability_stockitems_greenlight>
+				
+				<product_availability_stockitems_yellowlight translate="label">
+					<label>product availability stock items (yellow light)</label>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<yellowlight_indetification translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</yellowlight_indetification>
+						
+						<yellowlight_picture translate="label">
+							<label>picture</label>
+							<frontend_type>image</frontend_type>
+							<backend_model>adminhtml/system_config_backend_image</backend_model>
+							<upload_dir config="system/filesystem/media" scope_info="1">/</upload_dir>
+							<base_url type="media" scope_info="1"></base_url>
+							<comment>Allowed file types: jpeg.</comment>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</yellowlight_picture>
+						
+						<yellowlight_text translate="label">
+							<label>text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</yellowlight_text>
+					</fields>
+				</product_availability_stockitems_yellowlight>
+				
+				<product_availability_stockitems_redlight translate="label">
+					<label>product availability stock items (red light)</label>
+					<sort_order>50</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<redlight_indetification translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</redlight_indetification>
+						
+						<redlight_picture translate="label">
+							<label>picture</label>
+							<frontend_type>image</frontend_type>
+							<backend_model>adminhtml/system_config_backend_image</backend_model>
+							<upload_dir config="system/filesystem/media" scope_info="1">/</upload_dir>
+							<base_url type="media" scope_info="1"></base_url>
+							<comment>Allowed file types: jpeg.</comment>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</redlight_picture>
+	
+						<redlight_text translate="label">
+							<label>text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</redlight_text>
+					</fields>
+				</product_availability_stockitems_redlight>
+				
+				<product_availability_furniture translate="label">
+					<label>product availability furniture</label>
+					<sort_order>60</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<product_availability_furniture translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</product_availability_furniture>
+						
+						<product_availability_furniture_text translate="label">
+							<label>text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_furniture_text>
+					</fields>
+				</product_availability_furniture>
+				
+				<product_availability_outsideplay translate="label">
+					<label>product availability outsideplay</label>
+					<sort_order>70</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<product_availability_outsideplay translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</product_availability_outsideplay>
+						
+						<product_availability_outsideplay_text translate="label">
+							<label>text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_outsideplay_text>
+					</fields>
+				</product_availability_outsideplay>
+				
+				<product_availability_directarticle translate="label">
+					<label>product availability directarticle</label>
+					<sort_order>80</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<product_availability_directarticle translate="label">
+							<label>indetification</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</product_availability_directarticle>
+						
+						<product_availability_directarticle_text translate="label">
+							<label>text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_directarticle_text>
+					</fields>
+				</product_availability_directarticle>
+				
+				<product_availability_freightforwaridinggoods translate="label">
+					<label>product availability forwariding goods</label>
+					<sort_order>90</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<product_availability_freightforwaridinggoods translate="label">
+							<label>indetification</label>
+							<validate>validate-digits validate-length maximum-length-1</validate>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_freightforwaridinggoods>
+						
+						<product_availability_freightforwaridinggoods_text translate="label">
+							<label>text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_availability_freightforwaridinggoods_text>
+					</fields>
+				</product_availability_freightforwaridinggoods>	
+			</groups>
+		</sdzecom_aurednik>
+					
+		<carriers>
+			<groups>
+				<aurednikshipping translate="label">
+					<label>Aurednik shipping module</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+					
+						<active translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</active>
+
+						<shippingvariantsattribute translate="label">
+							<label>shipping variants attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</shippingvariantsattribute>
+						
+						<freightcostsyesnoattribute translate="label">
+							<label>freight costs yes/no attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</freightcostsyesnoattribute>
+						
+						<freightcostsattribute translate="label">
+							<label>freight costs attribute</label>
+							<frontend_type>select</frontend_type>
+							<source_model>library/attribute</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</freightcostsattribute>
+						
+						<minordervaluefreeshippingstockitems translate="label">
+							<label>Minimum order value for free shipping (stock itmes)</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</minordervaluefreeshippingstockitems>
+						
+						<stockitemshippingcosts translate="label">
+							<label>stock item shipping costs</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</stockitemshippingcosts>
+
+						<specificerrmsg translate="label">
+							<label>Displayed Error Message</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificerrmsg>
+					</fields>
+				</aurednikshipping>
+			</groups>
+        </carriers>
+    </sections>
+</config>

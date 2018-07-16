@@ -1,0 +1,47 @@
+<fieldset class="product-options" id="product-options-wrapper">
+    <?php echo $this->getChildHtml('', true, true);?>
+    <span style="display:none;" class="scp-please-wait"><img src="<?php echo $this->getSkinUrl('images/scp-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php echo $this->__('Loading...') ?> &nbsp;</span>
+    <?php // add placeholder div for any ajax-loaded custom options ?>
+    <div id="SCPcustomOptionsDiv"></div>
+    <?php if ($this->hasRequiredOptions()):?>
+        <!--<p class="required"><?php echo $this->__('* Required Fields') ?></p>-->
+    <?php endif;?>
+    <?php $_product = $this->getProduct() ?>
+    <?php $_product = Mage::getModel('aurednik/product')->load($_product->getId());?>
+    <?php $_sdz_product = Mage::getModel('aurednik/product')->load($_product->getId());?>
+    <?php $freightCostsDE = $_product->getAn_51(); ?>
+    <?php $freightCostsAt = $_product->getFreightShippingCostsAt(); ?>
+
+<!-- <div class="fracht"><?php echo $this->getChildHtml('oncost') ?></div> -->
+    <div class="delivery-info" style="font-family: Montserrat,Helvetica,Arial,sans-serif;border:0px solid #fff;width:100%">
+        <div id="item-status-deliverytime-fracht" style="background:#fff/*#f7eece*/;border-bottom:0px solid #EAD99E/*#FFCC33*/;
+	/*box-shadow:0px 1px 0px #e2e2e2; */
+	height:100%; padding-top:6px;padding-left:6px;">
+            <div id="item-status" style="font-size:13px;border:0px solid #EAD99E;">
+                <?php echo $this->__('') ?><p style="font-size:13px;color:<?php echo $_product->getProductAvailabilityTextColor()?>;font-size:13px;float:right;border:0px solid #EAD99E; text-align:left; padding: 2px 2px;">
+                <p style="color:<?php echo $_sdz_product->getProductAvailabilityTextColor()?>; font-size:14px;float:left;border:0px solid silver;margin-top:3px;padding-right:10px"><?php echo $_sdz_product->getProductAvailabilityText() ?></p>
+                <?php if($_product->isStockItem()) : ?>
+            </div>
+            <div id="item-deliverytime" style="font-size:13px;border:0px solid #FFCC33;float:left; width:90%">
+                <?php echo $this->__('Delivery Time')?>: <p style="font-size:14px;color:black;float:right;border:0px solid #EAD99E; text-align:left; padding: 2px 2px;"> <?php echo $_product->getProductShippingText()?></p>
+                <!-- <p style="font-size:14px;color:black;float:left;border:0px solid #EAD99E; text-align:left; padding: 2px 2px;"> <?php echo $_product->getProductShippingText()?></p> -->
+                <?php endif; ?>
+            </div>
+            <?php if ($freightCostsDE != 0 && $freightCostsDE != ""):; ?>
+                <div id="fracht" style="font-size:13px;border:0px solid #FFCC33;float:left; width:90%">
+                    <?php echo utf8_encode($this->__('Frachtkosten/St&uumlck')); ?>:
+                    <p style="font-size:13px;color:black;float:right;border:0px solid #EAD99E; text-align:left; padding: 2px 2px;"><?php echo $freightCostsDE;?><?php echo ',00' ?> <?php echo ' &euro;'?></p>
+                </div>
+                <div class="clear"></div>
+            <?php endif?>
+
+        </div>
+    </div>
+    <!--<div class="fracht"><?php echo $this->getChildHtml('oncost') ?></div>-->
+</fieldset>
+<?php // Change the option decoration rules to remove extraneous line ?>
+<script type="text/javascript">
+    $$('#product-options-wrapper dl').each(function(label) {
+        label.addClassName('last');
+    });
+</script>

@@ -1,0 +1,45 @@
+<?php $collection = $this->getProductCollection();?>
+<div class="fluid_product_wrap">
+	<!--  ?php Mage::app()->getFrontController()->getRequest()->getRouteName() ?-->
+	
+	<!--div class="page-title category-title"> 
+		<h1 class="subtitle"><?php echo $this->__('New Products') ?></h1>
+	</div-->
+	<ul class="products-grid">
+		<?php if ( ! is_null( $collection ) && $collection->count() > 0 ) : ?>		
+			<?php foreach ( $collection as $product ) : ?>
+				<li class ="item">
+					<a class="product-image" href="<?php echo $product->getProductUrl() ?>"> 
+						<img 
+							src="<?php echo Mage::helper('catalog/image')->init($product, 'small_image')->resize(188); ?>">
+						</img>
+					</a>
+					<div class="product-shop" style="heigth:127px;">
+						<h3 class="product-name">
+							<a href="<?php echo $product->getProductUrl() ?>" 
+								title="<?php echo $this->stripTags($product->getName(), null, true) ?>">
+								<?php echo $product->getName(); ?>
+							</a>
+						</h3>
+						<p class="grid_desc"><?php echo $product->getShortDescription(); ?> </p>
+						<div class="price_and_button">
+							<div class="price-box">
+								<span id ="product-price-20-new">
+									<span class="price">
+										<?php echo Mage::helper('core')->currency($product->getFinalPrice(),true,false); ?>
+									</span>
+								</span>
+							</div>
+							<div class="actions"> 
+								<a class ="button details" href="<?php echo $product->getProductUrl() ?>" 
+								   title="<?php echo $this->__('Details') ?>" 
+								   class="link-learn"><?php echo $this->__('Learn More') ?>
+								</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			<?php endforeach;?>
+		<?php endif;?>	
+	</ul>
+</div>

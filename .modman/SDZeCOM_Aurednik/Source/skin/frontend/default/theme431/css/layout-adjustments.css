@@ -1,0 +1,150 @@
+@media (min-width: 768px) {
+	.sf-menu {
+		background: #336699 !important;
+	}
+	
+	.sf-menu li.level0 {
+		position: static;
+	}
+
+	.sf-menu ul.level0 {
+		width: 880px;
+		display: none;
+		z-index: 99;
+		background-color: #fff;
+	}
+	
+	.sf-menu li.level0 > a > span {
+		padding: 8px;
+	}
+
+	.sf-menu .main-wrapper {
+		position: absolute;
+		width: 920px;
+		left: 10px;
+		display: none;
+	}
+
+	.sf-menu li.level0:hover > a {
+		color:#FFCC33;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5588BB', endColorstr='#336699'); /* IE6-9 */
+		background: -webkit-gradient(linear, left top, left bottom, from(#5588BB), to(#336699));
+		background: -moz-linear-gradient(top,  #5588BB,  #336699); /* firefox 3.6+ */
+		background: -o-linear-gradient(top,  #5588BB,  #336699); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #5588BB,  #336699); /* IE10+ */
+	}
+
+	.sf-menu:hover > li.active > a {
+		color:#FFCC33;
+		background: none !important;
+	}
+
+	.sf-menu:hover li.level0:hover > a {
+		color: #003366 !important;
+		/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5588BB', endColorstr='#336699') !important;
+		background: -webkit-gradient(linear, left top, left bottom, from(#5588BB), to(#336699)) !important;
+		background: -moz-linear-gradient(top,  #5588BB,  #336699) !important;
+		background: -o-linear-gradient(top,  #5588BB,  #336699) !important;
+		background: -ms-linear-gradient(top,  #5588BB,  #336699) !important;*/
+		background: #fff !important;
+		border-radius: 3px 3px 0 0 !important;
+		border-top: 1px solid #003366 !important;
+		border-left: 1px solid #003366 !important;
+		border-right: 1px solid #003366 !important;
+	}
+
+	.sf-menu li.level0:hover ul.level0 {
+		display: block;
+		top: auto;
+		left: 0;
+		margin-top: 0;
+		padding: 20px 0 0 60px;
+		border: 1px solid #003366;
+		/*border-radius: 3px;   */
+        border-radius: 1px;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+	}
+
+	.sf-menu li.level0:hover .main-wrapper {
+		display: block;
+	}
+
+	.sf-menu ul.level0 > li {
+		float: none;
+		width: 190px;
+		margin: 0 0 20px 0;
+		display: inline-block;
+		vertical-align: top;
+		border: none;
+		font-weight: bold;
+	}
+
+	.sf-menu ul.level0 a {
+		color: #003366 !important;
+	}
+
+	.sf-menu ul.level0 a:hover {
+		color: #003366 !important;
+		text-decoration: underline;
+	}
+
+	.sf-menu ul.level1 {
+		display: block;
+		position: static;
+		font-weight: normal;
+		list-style: none;
+		color: #000;
+		padding-left: 0;
+		overflow: hidden;
+		background-color: #fff;
+		line-height: 12px !important;
+	}
+
+	.sf-menu ul.level1 > li {
+		border: none;
+		padding-left: 0;
+	}
+
+	.sf-menu ul.level1 > li span {
+		/*white-space: nowrap;*/
+	}
+
+	.sf-menu .thumbnail-image img {
+		width: 100px;
+	}
+
+	.sf-menu .thumbnail-image {
+		margin-bottom: 10px;
+	}
+
+	.sf-menu li.level2,
+	.sf-menu li.level2:hover {
+		padding: 1px 10px 1px 0;
+	}
+}
+
+.stock-item-status {
+	margin: 10px 0;
+}
+
+.stock-item-status img {
+	width: 15px;
+	height: auto;
+	float: left;
+	margin-right: 10px;
+	display: block;
+}
+
+.stock-item-status p {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.add-to-links li a.email-friend {
+	color: #336699;
+	padding-left: 22px;
+	background: url(../images/marker-email.gif) left 2px no-repeat;
+	text-decoration: underline;
+	font-weight: bold;
+}

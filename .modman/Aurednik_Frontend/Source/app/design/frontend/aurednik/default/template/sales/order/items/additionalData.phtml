@@ -1,0 +1,46 @@
+<!-- Zugriff auf den Block - SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block -->
+<?php /** @var SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block $this */?>
+
+<b>fooooooo</b>
+<?php
+	$_item = $this->getSalesItem();
+	$aurednikOrder = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();
+	$additionalItemOrderData = $aurednikOrder->getAdditionalOrderItemData($_item);
+	$rowCounter = 0;
+?>
+
+<tr>
+	<td style="border-bottom: medium solid black; background: lightgreen">
+		<strong>Zusatzinformationen</strong>
+	</td>
+	<td colspan="10" style="border-bottom: medium solid black;">
+		<table cellspacing="0" class="data order-tables" style="border: none">
+			<?php foreach ($additionalItemOrderData as $attribute => $dataEntry):?>
+				<?php $rowStyle = ' style="background:white" '; ?>
+				<?php if ($rowCounter % 2 == 0){$rowStyle='';}?>
+				<?php if($attribute == 'aurednik_product_warnings'): ?>
+					<?php if (count($dataEntry) > 0):?>
+						<tr>
+							<td style="background: lightcoral">
+								<strong>Warnhinweise</strong>
+							</td>
+							<td style="background: lightcoral">
+								<?php foreach ($dataEntry as $warning): ?>
+									<?php echo $warning ?>
+								<?php endforeach; ?>
+							</td>
+						</tr>
+					<?php endif; ?>
+				<?php else: ?>
+					<?php if (!empty($dataEntry)):?>
+						<tr >
+							<?php echo '<td' . $rowStyle .'><strong>' . $this->__($attribute) . '</strong></td>'?>
+							<?php echo '<td' . $rowStyle .'>' . $dataEntry . '</td>'?>
+						</tr>
+					<?php endif; ?>
+				<?php endif; ?>
+				<?php $rowCounter++;?>
+			<?php endforeach;?>
+		</table>
+	</td>
+</tr>

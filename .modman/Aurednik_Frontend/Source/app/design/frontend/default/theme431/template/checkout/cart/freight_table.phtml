@@ -1,0 +1,7 @@
+<?php if ( $this -> getOutSidePlayFreightTableHtml () ) : ?>
+	<?php echo $this->getFurnitureFreightTableHtml (); ?>
+<?php endif;?>
+	
+<?php if ( $this -> canDisplayOutSidePlayFreightTable () ) : ?>
+	<?php echo $this->getOutSidePlayFreightTableHtml ();?>
+<?php endif;?>

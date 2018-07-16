@@ -1,0 +1,18 @@
+#
+# BasePrice modman file
+#
+
+Source/app/code/community/DerModPro/BasePrice app/code/community/DerModPro/BasePrice
+
+Source/app/etc/modules/DerModPro_BasePrice.xml app/etc/modules/DerModPro_BasePrice.xml
+
+Source/app/design/frontend/base/default/layout/baseprice.xml app/design/frontend/base/default/layout/baseprice.xml
+Source/app/design/frontend/base/default/layout/baseprice.xml app/design/frontend/default/default/layout/baseprice.xml
+
+Source/skin/frontend/base/default/css/baseprice.css skin/frontend/base/default/css/baseprice.css
+Source/skin/frontend/base/default/css/baseprice.css skin/frontend/default/default/css/baseprice.css
+
+Source/app/locale/de_DE/DerModPro_BasePrice.csv app/locale/de_DE/DerModPro_BasePrice.csv
+Source/app/locale/en_US/DerModPro_BasePrice.csv app/locale/en_US/DerModPro_BasePrice.csv
+
+Source/var/connect/DerModPro_BasePrice-13.01.31.xml var/connect/DerModPro_BasePrice-13.01.31.xml

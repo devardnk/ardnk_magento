@@ -1,0 +1,238 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_AjaxCart
+ * @copyright   Copyright (c) 2014 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div class="product-view" id="pac-product-option">
+    <div class="product-essential">
+        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+            <?php echo $this->getBlockHtml('formkey') ?>
+            <div class="no-display">
+                <input type="hidden" name="id" value="<?php echo $this->escapeHtml($this->getRequest()->getParam('id')) ?>" />
+                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                <input type="hidden" name="related_product" id="pac-related-products-field" value="" />
+            </div>
+
+            <div class="product-shop">
+                <div class="pac-clearfix">
+                    <div class="pac-left-block">
+                        <div class="pac-product-name product-name">
+                            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                            <!-- 17-11-2016 SP verschoben von Zeile 62, "Produktbild" -->
+                            <?php echo $this->getChild('media')->setTemplate('ajaxcart/product/view/media.phtml')->toHtml(); ?>
+                        </div>
+                        <div class="pac-price-info">
+                            <?php echo $this->getPriceHtml($_product); ?>
+                            <?php echo $this->getChildHtml('bundle_prices') ?>
+                            <?php echo $this->getTierPriceHtml() ?>
+                        </div>
+
+                        <?php echo $this->getChildHtml('product_type_data_grouped') ?>
+
+                        <div class="pac-extra-info">
+                            <?php $reviewsSummaryHtml = $this->getReviewsSummaryHtml($_product, 'default', false) ?>
+                            <div class="pac-clearfix <?php if (!$reviewsSummaryHtml) echo 'pac-noreview' ?>">
+                                <?php echo $reviewsSummaryHtml ?>
+                                <?php echo $this->getChildHtml('sharing') ?>
+                            </div>
+                            <?php echo $this->getChildHtml('product_type_availability'); ?>
+                        </div>
+
+                        <!-- 17-11-2016 SP hinzugefügt, selbe Routine wie bei Product-View. Beschreibung Print und Web werden geprüft, gepflegter Inhalt wird gesetzt mit Priorität auf Web, Zeile 69-73 auskommentiert. Lädt falsche Beschreibung -->
+
+                        <?php /* $_description = $this->getProduct()->getDescription(); */?> <!-- 27-07-2016 SP - auskommentiert -->
+                        <?php $_description = $this->getProduct()->getAn_9(); ?> <!-- 27-07-2016 SP - hinzugefügt holt an_9 und setzt Printbeschreibung, wenn Webbeschriebung nicht gepflegt -->
+                        <?php $_webdescription = $this->getProduct()->getAn_390(); ?> <!-- Autor SP hinzugefügt am 18-07-2016. Definiert die Variable Webbeschreibung und zieht sich das Attribut WebTExt mit Code An_390 -->
+
+                        <?php if ($_description != null && $_description != "" && $_webdescription == null  ) :?>
+                            <?php echo ($_description);?>
+                        <?php elseif ($_description != null && $_description != "" && $_webdescription != null && $_webdescription != ""  ) :?>
+                            <?php echo ($_webdescription);?>
+                        <?php endif ?>
+
+                        <?php /*  if ($_product->getShortDescription()):?>
+                            <div class="short-description">
+                                <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                            </div>
+                        <?php endif;  */?>
+
+                        <!-- 17-11-2016 SP hinzugefügt, selbe Routine wie bei Product-View. Beschreibung Print und Web werden geprüft, gepflegter Inhalt wird gesetzt mit Priorität auf Web, Zeile 69-73 auskommentiert. Lädt falsche Beschreibung -->
+
+
+                    </div>
+
+                </div>
+
+			</div>
+
+                <div class="add-to-cart-wrapper">
+
+                    <?php /* 17-11-2016 SP vorläufig auskommentiert wegen Doppelanzeige
+
+                    echo $this->getChildHtml('product_type_data')
+
+                     */?>
+                    <?php echo $this->getChildHtml('extrahint') ?>
+
+                   <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+					<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+					<?php endif;?>
+				   
+				   <?php if (!$this->hasOptions()) { ?>
+                        <div class="add-to-box">
+                            <?php if($_product->isSaleable()): ?>
+                                <?php echo $this->getChildHtml('addtocart') ?>
+                            <?php endif; ?>
+                            <?php echo $this->getChildHtml('addto') ?>
+                        </div>
+                        <?php echo $this->getChildHtml('extra_buttons') ?>
+                    <?php } elseif (!$_product->isSaleable()) { ?>
+                        <div class="add-to-box">
+                            <?php echo $this->getChildHtml('addto') ?>
+                        </div>
+                    <?php } ?>
+                </div>
+                <script type="text/javascript">
+                    pjQuery_1_10_2(document).ready(function(){
+                        var s = [
+                            '#pac-popup-internal .add-to-cart-wrapper .price-box',
+                            '#pac-popup-internal .add-to-cart-wrapper  .tier-prices',
+                            '#pac-popup-internal .product-options-bottom .price-box',
+                            '#pac-popup-internal .product-options-bottom .tier-prices'
+                        ];
+
+                        for(var i=0;i<s.length;i++){
+                            var e = pjQuery_1_10_2(s[i]);
+                            if (e.parents('.grouped-items-table').length) continue;
+                            e.remove();
+                        }
+                    });
+                </script>
+
+                <div class="clearer"></div>
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                <?php endif;?>
+
+                <?php if ($this->hasOptions() && $_product->isSaleable() ) { ?>
+                    <div class="add-to-box">
+                        <?php echo $this->getChildHtml('addto') ?>
+                    </div>
+                <?php } ?>
+                <?php
+                    if ($this->helper('ajaxcart')->showRelatedOnEdit()) {
+                        echo $related = trim($this->getChildHtml('related_products'));
+                        if (!$related) {
+                            echo $this->getChildHtml('upsell_products');
+                        }
+                        unset($related);
+                    }
+                ?>
+            </div>
+        </form>
+        <script type="text/javascript">
+        //<![CDATA[
+            var pacProductAddToCartForm = new VarienForm('pac-product_addtocart_form');
+            pacProductAddToCartForm.submit = function(button, url) {
+                if (this.validator.validate()) {
+                    var form = this.form;
+                    var oldUrl = form.action;
+
+                    if (url) {
+                       form.action = url;
+                    }
+                    var e = null;
+                    try {
+                        this.form.submit();
+                    } catch (e) {
+                    }
+                    this.form.action = oldUrl;
+                    if (e) {
+                        throw e;
+                    }
+
+                    if (button && button != 'undefined') {
+                        button.disabled = true;
+                    }
+                }
+            }.bind(pacProductAddToCartForm);
+
+            pacProductAddToCartForm.submitLight = function(button, url){
+                if(this.validator) {
+                    var nv = Validation.methods;
+                    delete Validation.methods['required-entry'];
+                    delete Validation.methods['validate-one-required'];
+                    delete Validation.methods['validate-one-required-by-name'];
+                    // Remove custom datetime validators
+                    for (var methodName in Validation.methods) {
+                        if (methodName.match(/^validate-datetime-.*/i)) {
+                            delete Validation.methods[methodName];
+                        }
+                    }
+
+                    if (this.validator.validate()) {
+                        if (url) {
+                            this.form.action = url;
+                        }
+                        this.form.submit();
+                    }
+                    Object.extend(Validation.methods, nv);
+                }
+            }.bind(pacProductAddToCartForm);
+
+            <?php
+                $qty = (int) $this->getRequest()->getParam('qty');
+                if ($qty < 1) {
+                    $qty = 1;
+                }
+            ?>
+            pjQuery_1_10_2(document).ready(function(){
+                pjQuery_1_10_2('.grouped-items-table [name*=super_group]').val(<?php echo $qty ?>);
+                pjQuery_1_10_2('#pac-popup-internal .product-view .add-to-links a').each(function(){
+                    var e = pjQuery_1_10_2(this);
+                    var href = e.attr('href');
+                    href = href.replace('?___SID=U', '');
+                    e.attr('href',href+'uenc/<?php echo $this->jsQuoteEscape(base64_encode($_product->getProductUrl())) ?>/');
+                });
+            });
+        //]]>
+        </script>
+    </div>
+
+    <script type="text/javascript">
+        if (typeof Product.ConfigurableSwatches != 'undefined' && typeof spConfig != 'undefined') {
+
+            if (typeof pacConfigurableSwatchesRun == 'undefined') {
+                pacConfigurableSwatchesRun = true;
+                Product.ConfigurableSwatches.prototype.pacOrigInitialize = Product.ConfigurableSwatches.prototype.initialize;
+                Product.ConfigurableSwatches.prototype.initialize = function(productConfig, config) {
+                    this._E.allConfigurableOptions = [];
+                    this._E.activeConfigurableOptions = [];
+                    return this.pacOrigInitialize(productConfig, config);
+                }
+            }
+
+            pjQuery_1_10_2(document).ready(function(){
+                var swatchesConfig = new Product.ConfigurableSwatches(spConfig);
+            });
+        }
+    </script>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SDZeCOM_Integration>
+            <version>0.1.0</version>
+        </SDZeCOM_Integration>
+    </modules>
+
+    <global>
+        <helpers>
+            <sdzecom_integration>
+                <class>SDZeCOM_Integration_Helper</class>
+            </sdzecom_integration>
+        </helpers>
+
+        <models>
+            <sdzecom_integration>
+                <class>SDZeCOM_Integration_Model</class>
+            </sdzecom_integration>
+        </models>
+    </global>
+</config>

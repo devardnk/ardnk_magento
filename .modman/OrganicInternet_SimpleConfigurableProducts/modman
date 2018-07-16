@@ -1,0 +1,31 @@
+#code
+Source/app/code/community/OrganicInternet app/code/community/OrganicInternet
+
+#modul
+Source/app/etc/modules/OrganicInternet_SimpleConfigurableProducts.xml app/etc/modules/OrganicInternet_SimpleConfigurableProducts.xml
+
+
+#layout
+Source/app/design/frontend/base/default/layout/simpleconfigurableproducts.xml app/design/frontend/base/default/layout/simpleconfigurableproducts.xml
+
+#template -> page
+Source/app/design/frontend/base/default/template/page/scpcontentonly.phtml app/design/frontend/base/default/template/page/scpcontentonly.phtml
+
+#template -> catalog
+Source/app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml
+
+#template -> catalog
+Source/app/design/frontend/base/default/template/catalog/product/view/scpajaxoptions.phtml app/design/frontend/base/default/template/catalog/product/view/scpajaxoptions.phtml
+
+#template -> catalog
+Source/app/design/frontend/base/default/template/catalog/product/view/scpoptions.phtml app/design/frontend/base/default/template/catalog/product/view/scpoptions.phtml
+
+#template -> sales
+Source/app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
+
+
+#skin js
+Source/skin/frontend/base/default/js/scp_product_extension.js skin/frontend/base/default/js/scp_product_extension.js
+
+#skin images
+Source/skin/frontend/base/default/images/scp-ajax-loader.gif skin/frontend/base/default/images/scp-ajax-loader.gif 

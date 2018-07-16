@@ -1,0 +1,52 @@
+.additional-product-info-table-row{
+	border:1px solid #e2e2e2; 
+	border-top:thin solid #CCCCCC; 
+}
+
+.additional-product-info-table-row-td{
+    border:1px solid #e2e2e2; 
+    border-top:thin solid #CCCCCC; 
+    background-color:#e2e2e2;
+}
+
+.additional-product-info-table-row-details-td
+{
+	border:1px solid #e2e2e2; 
+    border-top:thin solid #CCCCCC;
+}
+
+.additional-product-info-table-list{
+    width:100%;
+}
+
+.additional-product-info-table-list > tr > td{
+	padding:0;
+	width:100%;
+}
+
+
+
+/* ##################### Product warnings area #######################*/
+
+
+.product-warnings-table-row{
+	border:1px solid #e2e2e2; 
+	border-top:thin solid #CCCCCC; 
+}
+
+.product-warnings-table-row-td{
+    border:1px solid #e2e2e2; 
+    border-top:thin solid #CCCCCC; 
+    background-color:#e2e2e2;
+}
+
+.product-warnings-table-row-details-td{
+	border:1px solid #e2e2e2; 
+    border-top:thin solid #CCCCCC;
+}
+
+.product-warnings-table-list{
+	width:100%;
+}
+
+

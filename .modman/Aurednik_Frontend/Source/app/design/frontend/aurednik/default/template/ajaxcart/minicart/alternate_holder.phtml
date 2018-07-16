@@ -1,0 +1,46 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket_AjaxCart
+ * @copyright   Copyright (c) 2014 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php if (!Mage::registry('minicart_head_rendered')) { ?>
+<div id="mc_aholder" style="display:none;">
+	<?php echo $this->getChildHtml(); ?>
+</div>
+<script type="text/javascript">
+	pjQuery_1_10_2(document).ready(function(){
+		pjQuery_1_10_2('.header-container .links .top-link-cart, .header-container .top-cart .block-title, #header .links .top-link-cart, .language-switcher').each(function(){
+
+			<?php if (Mage::getSingleton('core/design_package')->getPackageName() == 'gravdept') { //acumen ?>
+				pjQuery_1_10_2('#header #mini-cart .menu').remove();
+			<?php } ?>
+
+			var topLink = pjQuery_1_10_2(this);
+			var h = pjQuery_1_10_2('#mc_aholder');
+			var contents = h.contents();
+			h.remove();
+			topLink.after(contents); //.remove();
+		});
+		ajaxCart.onDocumentReady(true);
+	});
+</script>
+<?php } else { ?>
+<script type="text/javascript">
+	pjQuery_1_10_2(document).ready(function(){
+		ajaxCart.onDocumentReady(true);
+	});
+</script>
+<?php } ?>
