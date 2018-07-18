@@ -1,18 +1,16 @@
 Source/app/code/community/EcommerceTeam/CloudZoom       app/code/community/EcommerceTeam/CloudZoom
 
-Source/app/design/frontend/default/theme431			    app/design/frontend/default/theme431
-
-Source/app/design/frontend/rwd		    				app/design/frontend/rwd
-
 Source/app/design/frontend/aurednik                     app/design/frontend/aurednik
+
+Source/app/design/adminhtml/default/default/layout/aurednik.xml		app/design/adminhtml/default/default/layout/aurednik.xml
+
+Source/app/design/adminhtml/default/default/ordersexporttool/sales/order/view/items.phtml		/app/design/adminhtml/default/default/template/ordersexporttool/sales/order/view/items.phtml
 
 Source/app/etc/modules/*.xml	                        app/etc/modules/
 
 Source/js/ecommerceteam                                 js/ecommerceteam
 
-Source/skin/frontend/default/theme431				    skin/frontend/default/theme431
-
-Source/skin/frontend/rwd			    				skin/frontend/rwd
+Source/skin/adminhtml/aurednik/css						skin/adminhtml/default/default/css
 
 Source/skin/frontend/aurednik							skin/frontend/aurednik
 

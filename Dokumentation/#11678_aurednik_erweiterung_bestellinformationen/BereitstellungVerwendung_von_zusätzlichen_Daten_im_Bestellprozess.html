@@ -1,0 +1,489 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>BereitstellungVerwendung von zusätzlichen Daten im Bestellprozess</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>
+body { font:80% Verdana,Tahoma,Arial,sans-serif; }
+h1, h2, h3, h4 {  font-family: "Trebuchet MS",Georgia,"Times New Roman",serif; }
+ul.toc { padding: 4px; margin-left: 0; }
+ul.toc li { list-style-type:none; }
+ul.toc li.heading2 { margin-left: 1em; }
+ul.toc li.heading3 { margin-left: 2em; }
+a.wiki-anchor { display: none; margin-left: 6px; text-decoration: none; }
+a.wiki-anchor:hover { color: #aaa !important; text-decoration: none; }
+h1:hover a.wiki-anchor, h2:hover a.wiki-anchor, h3:hover a.wiki-anchor { display: inline; color: #ddd; }
+</style>
+</head>
+<body>
+<a name="BereitstellungVerwendung-von-zusätzlichen-Daten-im-Bestellprozess"></a>
+<h1 >BereitstellungVerwendung von zusätzlichen Daten im Bestellprozess<a href="#BereitstellungVerwendung-von-zusätzlichen-Daten-im-Bestellprozess" class="wiki-anchor">&para;</a></h1>
+
+
+	<p>Bei verschiedenen Produkten (siehe Anhang) werden direkt in Magento "indivduelle Optionen" mitgepflegt. Stofffarben, Armlehen, Bezüge etc.<br />Diese Optionen werden mit in die Bestellbestätigung übetragen, damit die Auftragserfassung weiss, dass der Kunde diese mitbestellt hat.<br />Bisher mussten die Informationen nach der Bestellung separat vom Kunden bezogen werden.</p>
+
+
+	<p><strong>Ticket:</strong> <a class="external" href="https://projects.sdzecom.de/issues/11678">https://projects.sdzecom.de/issues/11678</a></p>
+
+
+	<a name="Umsetzung"></a>
+<h1 >Umsetzung<a href="#Umsetzung" class="wiki-anchor">&para;</a></h1>
+
+
+	<a name="Punkte"></a>
+<h3 >Punkte<a href="#Punkte" class="wiki-anchor">&para;</a></h3>
+
+
+	<ol>
+	<li>Mehrfache Attributauswahl im Backend oder aus einer Configfile</li>
+		<li>Zusatzspalte(n) für neue Attribute in der Bestelltabelle (Datenbank)</li>
+		<li>Erweiterung von Events, die auf die neue Attributmenge reagieren</li>
+		<li>Logik für das Speichern von Zusatzdaten an der Bestellung</li>
+		<li>Logik für das Auslesen von Zusatzdaten aus der Bestellung</li>
+		<li>Funktionen für das (einfache)Verwenden von Bestelldaten (Attributspezifisch) nach der Bestellung im Template, Admin, Email, ...</li>
+		<li>Implementierung an den Templates, um individuelle Bestelldaten auszugeben</li>
+	</ol>
+
+
+	<a name="Mehrfache-Attributauswahl-im-Backend"></a>
+<h2 >Mehrfache Attributauswahl im Backend<a href="#Mehrfache-Attributauswahl-im-Backend" class="wiki-anchor">&para;</a></h2>
+
+
+	<p><strong>Umsetzung:</strong><br />Erweiterung der Backend Konfiguration um ein Mehrfachauswahl Feld.</p>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/etc/system.xml</p>
+
+
+</blockquote>
+
+	<p><strong>Code:</strong><br /><pre><code class="diff syntaxhl"><span class="CodeRay"><span class="line comment">&lt;sections&gt;</span>
+    &lt;sdzecom_aurednik translate=&quot;label&quot;&gt;
+        ...
+        &lt;groups&gt;
+<span class="line insert"><span class="insert">+</span>            &lt;product_additional_order_data translate=&quot;label&quot;&gt;</span>
+<span class="line insert"><span class="insert">+</span>                &lt;label&gt;Additional order data section&lt;/label&gt;</span>
+<span class="line insert"><span class="insert">+</span>                &lt;sort_order&gt;10&lt;/sort_order&gt;</span>
+<span class="line insert"><span class="insert">+</span>                &lt;show_in_default&gt;1&lt;/show_in_default&gt;</span>
+<span class="line insert"><span class="insert">+</span>                &lt;show_in_website&gt;1&lt;/show_in_website&gt;</span>
+<span class="line insert"><span class="insert">+</span>                &lt;show_in_store&gt;1&lt;/show_in_store&gt;</span>
+<span class="line insert"><span class="insert">+</span>                &lt;fields&gt;</span>
+<span class="line insert"><span class="insert">+</span>                    &lt;productadditionalorderdataattribute translate=&quot;label&quot;&gt;</span>
+<span class="line insert"><span class="insert">+</span>                        &lt;label&gt;Additional order attribute selection&lt;/label&gt;</span>
+<span class="line insert"><span class="insert">+</span>                        &lt;frontend_type&gt;multiselect&lt;/frontend_type&gt;</span>
+<span class="line insert"><span class="insert">+</span>                        &lt;source_model&gt;library/attribute&lt;/source_model&gt;</span>
+<span class="line insert"><span class="insert">+</span>                        &lt;sort_order&gt;10&lt;/sort_order&gt;</span>
+<span class="line insert"><span class="insert">+</span>                        &lt;show_in_default&gt;1&lt;/show_in_default&gt;</span>
+<span class="line insert"><span class="insert">+</span>                        &lt;show_in_website&gt;0&lt;/show_in_website&gt;</span>
+<span class="line insert"><span class="insert">+</span>                        &lt;show_in_store&gt;0&lt;/show_in_store&gt;</span>
+<span class="line insert"><span class="insert">+</span>                    &lt;/productadditionalorderdataattribute&gt;</span>
+<span class="line insert"><span class="insert">+</span>                &lt;/fields&gt;    </span>
+<span class="line insert"><span class="insert">+</span>            &lt;/product_additional_order_data&gt;</span>
+            ...
+</span></code></pre></p>
+
+
+	<a name="Zusatzspalten-für-neue-Attribute-in-der-Bestelltabelle-Datenbank"></a>
+<h2 >Zusatzspalte(n) für neue Attribute in der Bestelltabelle (Datenbank)<a href="#Zusatzspalten-für-neue-Attribute-in-der-Bestelltabelle-Datenbank" class="wiki-anchor">&para;</a></h2>
+
+
+	<p><strong>Umsetzung:</strong><br />Erstellung eines SQL Skriptes, um neue Spalten in der Datenbank hinzuzufügen.<br />Nach dem Lauf des Skripts erfolgen Änderungen in folgenden Bereichen.</p>
+
+
+<blockquote>
+
+	<p>Datenbanktabelle "core_resource" - Eintrag "aurednik_setup" -> Version wird entsprechend der Datei erhöht.<br />Datenbanktabelle "sales_flat_order" - Neue Spalte für das Speichern von Zusatzdaten an einer Bestellung</p>
+
+
+</blockquote>
+
+	<p><strong>Code:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/etc/config.xml</p>
+
+
+</blockquote>
+
+    -> Änderung der Version von 0.1.4 -> 0.1.5
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/sql/aurednik_setup/mysql4-upgrade-0.1.4-0.1.5.php</p>
+
+
+</blockquote>
+
+	<a name="Erweiterung-der-Events-Speicherung-der-Daten-an-der-Bestellung"></a>
+<h2 >Erweiterung der Events / Speicherung der Daten an der Bestellung<a href="#Erweiterung-der-Events-Speicherung-der-Daten-an-der-Bestellung" class="wiki-anchor">&para;</a></h2>
+
+
+	<p><strong>Umsetzung:</strong><br />Erweiterung des Observers für den Bestellvorgang.</p>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/Model/Event/Order/Observer.php</p>
+
+
+</blockquote>
+
+	<p><strong>Code:</strong><br /><pre><code class="diff syntaxhl"><span class="CodeRay"><span class="line comment">protected function setItemOrderData($objOrder)</span>
+<span class="line comment">{</span>
+    ...
+
+<span class="line insert"><span class="insert">+</span>     $additionalProductData = $product-&gt;getAdditionalProductOrderData();</span>
+<span class="line insert"><span class="insert">+</span>     $additionalOrderItemAttributes = array_merge($additionalOrderItemAttributes, $additionalProductData);</span>
+
+     $orderItem-&gt;setProductOptions($additionalOrderItemAttributes);
+<span class="line comment">}</span>
+</span></code></pre></p>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/Helper/Product.php</p>
+
+
+</blockquote>
+
+	<p><strong>Anpassung/Neuimplementierung folgender Methoden:</strong></p>
+
+
+	<ul>
+	<li>__construct()</li>
+		<li>setProduct()</li>
+		<li>setAdditionalProductOrderData()</li>
+		<li>getAdditionalProductOrderData()</li>
+		<li>hasAdditionalProductOrderData()</li>
+	</ul>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/Model/Product.php</p>
+
+
+</blockquote>
+
+	<ul>
+	<li>getAdditionalProductOrderData()</li>
+	</ul>
+
+
+	<a name="Logik-für-das-Auslesen-von-Zusatzdaten-aus-der-BestellungVerwendung-in-Templates"></a>
+<h2 >Logik für das Auslesen von Zusatzdaten aus der Bestellung/Verwendung in Templates<a href="#Logik-für-das-Auslesen-von-Zusatzdaten-aus-der-BestellungVerwendung-in-Templates" class="wiki-anchor">&para;</a></h2>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/Block/Adminhtml/Sales/Order/View/Info/Block.php</p>
+
+
+</blockquote>
+
+	<a name="Zugriff-innerhalb-von-Templates"></a>
+<h3 >Zugriff innerhalb von Templates<a href="#Zugriff-innerhalb-von-Templates" class="wiki-anchor">&para;</a></h3>
+
+
+	<p>Damit die Zusatzdaten ausgewertet werden können, muss das Bestellitem als Parameter mitgegeben werden.<br />Für die Ausgabe der Informationen in HTML-Form werden die Produktdaten als Array sowie der Darstellungstyp benötigt.</p>
+
+
+Aktuell sind folgende Darstellungstypen verwendbar. 
+	<ul>
+	<li>frontend</li>
+		<li>backend</li>
+		<li>email</li>
+		<li>Wenn kein Typ angegeben wird, wird "frontend" als Fallback verwendet.</li>
+	</ul>
+
+
+	<p><strong>Codesnippet</strong><br /><pre><code class="php syntaxhl"><span class="CodeRay"><span class="local-variable">$customOrderBlock</span> = <span class="keyword">new</span> <span class="constant">SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block</span>();
+<span class="local-variable">$additionalItemOrderData</span> = <span class="local-variable">$customOrderBlock</span>-&gt;getAdditionalOrderItemData(<span class="local-variable">$_item</span>);
+
+<span class="comment">// Zusatzdaten</span>
+<span class="predefined">echo</span> <span class="local-variable">$customOrderBlock</span>-&gt;getAdditionalOrderItemHtml(<span class="local-variable">$additionalItemOrderData</span>, <span class="string"><span class="delimiter">'</span><span class="content">backend</span><span class="delimiter">'</span></span>);
+
+<span class="comment">// Warnhinweise</span>
+<span class="predefined">echo</span> <span class="local-variable">$customOrderBlock</span>-&gt;getProductWarningHintsTable(<span class="local-variable">$additionalItemOrderData</span>, <span class="string"><span class="delimiter">'</span><span class="content">backend</span><span class="delimiter">'</span></span>);
+</span></code></pre></p>
+
+
+	<a name="Einbindung-in-das-Modul-Ordersexporttool"></a>
+<h3 >Einbindung in das Modul: Ordersexporttool<a href="#Einbindung-in-das-Modul-Ordersexporttool" class="wiki-anchor">&para;</a></h3>
+
+
+	<p><strong>Code:</strong><br /><pre><code class="diff syntaxhl"><span class="CodeRay"><span class="line comment">&lt;tbody class=&quot;&lt;?php echo $i%2?'even':'odd' ?&gt;&quot;&gt;</span>
+    &lt;?php echo $this-&gt;getItemHtml($_item) ?&gt;
+    &lt;?php echo $this-&gt;getItemExtraInfoHtml($_item) ?&gt;
+
+<span class="line insert"><span class="insert">+</span>    &lt;?php</span>
+<span class="line insert"><span class="insert">+</span>        /**</span>
+<span class="line insert"><span class="insert">+</span>         * Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts</span>
+<span class="line insert"><span class="insert">+</span>         *</span>
+<span class="line insert"><span class="insert">+</span>         * @author Eugen Gutsche</span>
+<span class="line insert"><span class="insert">+</span>         * @ticket https://projects.sdzecom.de/issues/11678</span>
+<span class="line insert"><span class="insert">+</span>         */</span>
+<span class="line insert"><span class="insert">+</span>        $customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();</span>
+<span class="line insert"><span class="insert">+</span>        $additionalItemOrderData = $customOrderBlock-&gt;getAdditionalOrderItemData($_item);</span>
+<span class="line insert"><span class="insert">+</span>        echo $customOrderBlock-&gt;getAdditionalOrderItemHtml($additionalItemOrderData, 'backend');</span>
+<span class="line insert"><span class="insert">+</span>        echo $customOrderBlock-&gt;getProductWarningHintsTable($additionalItemOrderData, 'backend');</span>
+    ?&gt;
+<span class="line comment">&lt;/tbody&gt;</span>
+</span></code></pre></p>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/Aurednik_Frontend/Source/app/design/adminhtml/default/default/ordersexporttool/sales/order/view/items.phtml</p>
+
+
+</blockquote>
+
+	<a name="Einbindung-in-die-Checkout-Bestellübersicht-im-Frontend"></a>
+<h3 >Einbindung in die Checkout Bestellübersicht im Frontend<a href="#Einbindung-in-die-Checkout-Bestellübersicht-im-Frontend" class="wiki-anchor">&para;</a></h3>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/Aurednik_Frontend/Source/app/design/frontend/aurednik/default/template/checkout/onepage/review/item.phtml</p>
+
+
+</blockquote>
+
+	<p><strong>Code:</strong><br /><pre><code class="diff syntaxhl"><span class="CodeRay"><span class="line comment">&lt;+ ?php</span>
+<span class="line insert"><span class="insert">+</span>    /**</span>
+<span class="line insert"><span class="insert">+</span>     * Liefert eine HTML-Tabelle mit Zusatzinformationen eines Produkts während dem Bestellvorgang</span>
+<span class="line insert"><span class="insert">+</span>     *</span>
+<span class="line insert"><span class="insert">+</span>     * @author Eugen Gutsche</span>
+<span class="line insert"><span class="insert">+</span>     * @ticket https://projects.sdzecom.de/issues/11678</span>
+<span class="line insert"><span class="insert">+</span>     */</span>
+<span class="line insert"><span class="insert">+</span>    $customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();</span>
+<span class="line insert"><span class="insert">+</span>    $additionalProductData = $_product-&gt;getAdditionalProductOrderData();</span>
+<span class="line insert"><span class="insert">+</span>    echo $additionalCheckoutData = $customOrderBlock-&gt;getAdditionalOrderItemHtml($additionalProductData, 'frontend');</span>
+<span class="line insert"><span class="insert">+</span> ?&gt;</span>
+<span class="line comment">&lt;!-- Ausgabe der HTML-Tabelle mit Zusatzinformationen eines Produkts --&gt;</span>
+<span class="line comment">&lt;?php //echo $customOrderBlock-&gt;getAdditionalOrderItemHtml($additionalItemOrderData, 'frontend'); ?&gt;</span>
+<span class="line comment">&lt;!-- 2017-05-17 SP, Erweiterung Warnhinweise um Sicherheitshinweise mit Icons --&gt;</span>
+
+</span></code></pre></p>
+
+
+	<a name="Einbindung-in-der-Bestellübersicht-im-Backend"></a>
+<h3 >Einbindung in der Bestellübersicht im Backend<a href="#Einbindung-in-der-Bestellübersicht-im-Backend" class="wiki-anchor">&para;</a></h3>
+
+
+	<p>Aktuell erfolgt Bezug/Ausgabe der Zusatzdaten am Template des Moduls <strong>Ordersexporttool</strong>.</p>
+
+
+	<a name="Einbindung-in-die-Print-Ausgabe"></a>
+<h3 >Einbindung in die Print Ausgabe<a href="#Einbindung-in-die-Print-Ausgabe" class="wiki-anchor">&para;</a></h3>
+
+
+	<p>Hier mussten die Daten direkt am Item Renderer platziert/abgefragt werden, da dieser in den verschiedenen Verkaufs-templates verwendet wird und ein Verkaufsitem direkt vorliegt,</p>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/Aurednik_Frontend/Source/app/design/frontend/aurednik/default/template/sales/order/items/renderer/default.phtml</p>
+
+
+</blockquote>
+
+	<p><strong>Code:</strong><br /><pre><code class="diff syntaxhl"><span class="CodeRay">    &lt;?php echo $this-&gt;escapeHtml($_item-&gt;getDescription()) ?&gt;
+    &lt;?php if($this-&gt;helper('giftmessage/message')-&gt;getIsMessagesAvailable('order_item', $_item) &#38;&#38; $_item-&gt;getGiftMessageId()): ?&gt;
+        &lt;a href=&quot;#&quot; id=&quot;order-item-gift-message-link-&lt;?php echo $_item-&gt;getId() ?&gt;&quot; class=&quot;gift-message-link&quot; onclick=&quot;return giftMessageToogle('&lt;?php echo $_item-&gt;getId() ?&gt;')&quot;&gt;&lt;?php echo $this-&gt;__('Gift Message') ?&gt;&lt;/a&gt;
+    &lt;?php endif; ?&gt;
+<span class="line comment">&lt;/td&gt;</span>
+
+<span class="line insert"><span class="insert">+</span> &lt;td&gt;</span>
+<span class="line insert"><span class="insert">+</span>    &lt;?php</span>
+<span class="line insert"><span class="insert">+</span>        /**</span>
+<span class="line insert"><span class="insert">+</span>         * Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts</span>
+<span class="line insert"><span class="insert">+</span>         *</span>
+<span class="line insert"><span class="insert">+</span>         * @author Eugen Gutsche</span>
+<span class="line insert"><span class="insert">+</span>         * @ticket https://projects.sdzecom.de/issues/11678</span>
+<span class="line insert"><span class="insert">+</span>         */</span>
+<span class="line insert"><span class="insert">+</span>        $customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();</span>
+<span class="line insert"><span class="insert">+</span>        $additionalItemOrderData = $customOrderBlock-&gt;getAdditionalOrderItemData($_item);</span>
+<span class="line insert"><span class="insert">+</span>        // Zusatzdaten</span>
+<span class="line insert"><span class="insert">+</span>        echo $customOrderBlock-&gt;getAdditionalOrderItemHtml($additionalItemOrderData);</span>
+<span class="line insert"><span class="insert">+</span>        // Warnhinweise</span>
+<span class="line insert"><span class="insert">+</span>        echo $customOrderBlock-&gt;getProductWarningHintsTable($additionalItemOrderData);</span>
+<span class="line insert"><span class="insert">+</span>    ?&gt;</span>
+<span class="line insert"><span class="insert">+</span> &lt;/td&gt;</span>
+</span></code></pre></p>
+
+
+	<a name="Einbindung-in-das-Email-Template"></a>
+<h3 >Einbindung in das Email Template<a href="#Einbindung-in-das-Email-Template" class="wiki-anchor">&para;</a></h3>
+
+
+	<p><strong>Datei:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/Aurednik_Frontend/Source/app/design/frontend/aurednik/default/template/email/order/items/order/default.phtml</p>
+
+
+</blockquote>
+
+	<p><strong>Code:</strong><br /><pre><code class="diff syntaxhl"><span class="CodeRay"><span class="line comment">&lt;/style&gt;</span>
+<span class="line comment">&lt;?php $_item = $this-&gt;getItem() ?&gt;</span>
+<span class="line comment">&lt;?php $_order = $this-&gt;getItem()-&gt;getOrder() ?&gt;</span>
+
+<span class="line insert"><span class="insert">+</span> &lt;?php</span>
+<span class="line insert"><span class="insert">+</span>    /**</span>
+<span class="line insert"><span class="insert">+</span>     * Liefert eine HTML-Tabelle mit Zusatzinformationen eines Produkts nach dem Bestellvorgang</span>
+<span class="line insert"><span class="insert">+</span>     *</span>
+<span class="line insert"><span class="insert">+</span>     * @author Eugen Gutsche</span>
+<span class="line insert"><span class="insert">+</span>     * @ticket https://projects.sdzecom.de/issues/11678</span>
+<span class="line insert"><span class="insert">+</span>     */</span>
+<span class="line insert"><span class="insert">+</span>    $customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();</span>
+<span class="line insert"><span class="insert">+</span>    $additionalItemOrderData = $customOrderBlock-&gt;getAdditionalOrderItemData($_item);</span>
+<span class="line insert"><span class="insert">+</span>?&gt;</span>
+</span></code></pre></p>
+
+
+	<p><strong>Code:</strong><br /><pre><code class="diff syntaxhl"><span class="CodeRay"> &lt;/td&gt;
+    &lt;/tr&gt;
+<span class="line insert"><span class="insert">+</span>    &lt;tr&gt;</span>
+<span class="line insert"><span class="insert">+</span>        &lt;!-- Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts --&gt;</span>
+<span class="line insert"><span class="insert">+</span>        &lt;?php echo $customOrderBlock-&gt;getAdditionalOrderItemHtml($additionalItemOrderData, 'email'); ?&gt;</span>
+<span class="line insert"><span class="insert">+</span>        &lt;?php echo $customOrderBlock-&gt;getProductWarningHintsTable($additionalItemOrderData, 'email'); ?&gt;</span>
+<span class="line insert"><span class="insert">+</span>    &lt;/tr&gt;</span>
+
+<span class="line comment">&lt;?php if ($_item-&gt;getGiftMessageId() &#38;&#38; $_giftMessage = $this-&gt;helper('giftmessage/message')-&gt;getGiftMessage($_item-&gt;getGiftMessageId())): ?&gt;</span>
+    &lt;tr&gt;
+</span></code></pre></p>
+
+
+	<a name="Verwendung-von-Stylesheets-für-die-einzelnen-Bereiche"></a>
+<h2 >Verwendung von Stylesheets für die einzelnen Bereiche<a href="#Verwendung-von-Stylesheets-für-die-einzelnen-Bereiche" class="wiki-anchor">&para;</a></h2>
+
+
+	<p>Da sich die Ausgabe der Standardbestelldaten in den verschiedenen Bereichen unterscheidet wurden jeweils eigene Stylesheets erstellt.<br />Das HTML Konstrukt wurde durchgehend mit Klassennamen versehen, so dass eine detailierte Anpassung der jeweiligen Ausgabe möglich ist.</p>
+
+
+	<p><strong>Backend:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/Aurednik_Frontend/Source/skin/adminhtml/aurednik/css/custom_order_backend.css</p>
+
+
+</blockquote>
+
+	<p><strong>Frontend:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/Aurednik_Frontend/Source/skin/frontend/aurednik/default/css/custom_order_frontend.css</p>
+
+
+</blockquote>
+
+	<p><strong>Email:</strong></p>
+
+
+<blockquote>
+
+	<p>.modman/Aurednik_Frontend/Source/skin/frontend/aurednik/default/css/custom_order_email.css</p>
+
+
+</blockquote>
+
+	<a name="Konfiguration-im-Backend-und-Ausgabe-der-Daten"></a>
+<h2 >Konfiguration im Backend und Ausgabe der Daten<a href="#Konfiguration-im-Backend-und-Ausgabe-der-Daten" class="wiki-anchor">&para;</a></h2>
+
+
+	<a name="Selektion-der-Attribute"></a>
+<h3 >Selektion der Attribute<a href="#Selektion-der-Attribute" class="wiki-anchor">&para;</a></h3>
+
+
+	<p><img src="https://projects.sdzecom.de/attachments/download/33507/additional_order_attributes_configuration.png" alt="" /></p>
+
+
+	<a name="Ausgabe-im-Checkoutprozess"></a>
+<h3 >Ausgabe im Checkoutprozess<a href="#Ausgabe-im-Checkoutprozess" class="wiki-anchor">&para;</a></h3>
+
+
+	<p><img src="https://projects.sdzecom.de/attachments/download/33510/erweiterte_bestellbest%C3%A4tigung_checkout.png" alt="" /></p>
+
+
+	<a name="Ausgabe-in-der-Printversion-der-Bestellbestätigung"></a>
+<h3 >Ausgabe in der Printversion der Bestellbestätigung<a href="#Ausgabe-in-der-Printversion-der-Bestellbestätigung" class="wiki-anchor">&para;</a></h3>
+
+
+	<p><img src="https://projects.sdzecom.de/attachments/download/33511/erweiterte_bestellbest%C3%A4tigung_print.png" alt="" /></p>
+
+
+	<p><strong>Zusatzinformationen</strong></p>
+
+
+	<p><img src="https://projects.sdzecom.de/attachments/download/33514/erweiterte_bestellbest%C3%A4tigung_print_1.png" alt="" /></p>
+
+
+	<p><strong>Warnhinweise</strong></p>
+
+
+	<p><img src="https://projects.sdzecom.de/attachments/download/33513/erweiterte_bestellbest%C3%A4tigung_print_2.png" alt="" /></p>
+
+
+	<a name="Ausgabe-in-der-Emailversion-der-Bestellbestätigung"></a>
+<h3 >Ausgabe in der Emailversion der Bestellbestätigung<a href="#Ausgabe-in-der-Emailversion-der-Bestellbestätigung" class="wiki-anchor">&para;</a></h3>
+
+
+	<p><strong>Zusatzinformationen</strong></p>
+
+
+	<p><img src="https://projects.sdzecom.de/attachments/download/33509/erweiterte_bestellbest%C3%A4tigung_mail.png" alt="" /></p>
+
+
+	<p><strong>Warnhinweise</strong></p>
+
+
+	<p><img src="https://projects.sdzecom.de/attachments/download/33512/erweiterte_bestellbest%C3%A4tigung_mail_warnings.png" alt="" /></p>
+
+
+	<a name="Ausgabe-in-der-Bestellübersicht-im-Backend"></a>
+<h3 >Ausgabe in der Bestellübersicht im Backend<a href="#Ausgabe-in-der-Bestellübersicht-im-Backend" class="wiki-anchor">&para;</a></h3>
+
+
+	<p><img src="https://projects.sdzecom.de/attachments/download/33508/erweiterte_bestellbest%C3%A4tigung_admin.png" alt="" /></p>
+</body>
+</html>

@@ -65,7 +65,12 @@
 
 	<td>
 		<?php
-			/** Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts */
+			/**
+			 * Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts
+			 *
+			 * @author Eugen Gutsche
+			 * @ticket https://projects.sdzecom.de/issues/11678
+			 */
 			$customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();
 			$additionalItemOrderData = $customOrderBlock->getAdditionalOrderItemData($_item);
 			// Zusatzdaten

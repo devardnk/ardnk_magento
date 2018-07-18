@@ -16,3 +16,8 @@
 .additional-product-info-table-list td{
 	padding:0;
 }
+
+.product-warnings-table-row-details-td {
+    border-bottom: 2px solid gray !important;
+    padding-bottom: 5px;
+}

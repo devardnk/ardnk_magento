@@ -92,7 +92,7 @@ class SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block extends Mage_
 			return $k == 'aurednik_product_warnings';
 		}, ARRAY_FILTER_USE_KEY);
 
-		if (count($itemWarnings) == 0)
+		if (isset($itemWarnings['aurednik_product_warnings']) && count($itemWarnings['aurednik_product_warnings']) == 0)
 		{
 			return '';
 		}
@@ -176,20 +176,28 @@ class SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block extends Mage_
 		$html .= '	<table class="additional-product-info-table-list" cellpadding="0" width="100%" border="1" cellspacing="0" >';
 
 		$rowCounter = 0;
-		foreach ($additionalItemOrderData as $attribute => $dataEntry)
+		foreach ($additionalItemOrderData as $attributeCode => $dataEntry)
 		{
 			if (count($dataEntry) == 0 || strlen($dataEntry) == 0)
 			{
 				continue;
 			}
 
-			$rowStyle = ' style="background:white;" ';
-			if ($rowCounter % 2 == 0)
+			/** @var Mage_Eav_Model_Entity_Attribute $attributeModel */
+			$attributeModel = Mage::getModel('eav/entity_attribute')->loadByCode('catalog_product', $attributeCode);
+			$attributeLabel = $attributeModel->getStoreLabel();
+			if (strlen($attributeLabel) == 0)
 			{
-				$rowStyle = ' style="background:#dadfe0!important;" ';
+				$attributeLabel = $attributeCode;
 			}
 
-			$html .= '<tr><td' . $rowStyle . '><strong>' . $this->__($attribute) . '</strong></td>';
+			$rowStyle = ' class="odd" style="background:white;" ';
+			if ($rowCounter % 2 == 0)
+			{
+				$rowStyle = ' class="even" style="background:#dadfe0;" ';
+			}
+
+			$html .= '<tr><td' . $rowStyle . '><strong>' . $this->__($attributeLabel) . '</strong></td>';
 			$html .= '<td' . $rowStyle . '>' . $dataEntry . '</td>';
 			$html .= '</tr>';
 

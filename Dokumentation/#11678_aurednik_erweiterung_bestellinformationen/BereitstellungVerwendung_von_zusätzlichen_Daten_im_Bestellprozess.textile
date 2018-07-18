@@ -1,0 +1,327 @@
+h1. Anforderung 
+
+h3. Bereitstellung/Verwendung von zusätzlichen Daten im Bestellprozess
+
+Bei verschiedenen Produkten (siehe Anhang) werden direkt in Magento "indivduelle Optionen" mitgepflegt. Stofffarben, Armlehen, Bezüge etc.
+Diese Optionen werden mit in die Bestellbestätigung übetragen, damit die Auftragserfassung weiss, dass der Kunde diese mitbestellt hat.
+Bisher mussten die Informationen nach der Bestellung separat vom Kunden bezogen werden.
+
+*Ticket:* https://projects.sdzecom.de/issues/11678
+
+
+h1. Umsetzung
+
+h3. Punkte
+
+# Mehrfache Attributauswahl im Backend oder aus einer Configfile
+# Zusatzspalte(n) für neue Attribute in der Bestelltabelle (Datenbank)
+# Erweiterung von Events, die auf die neue Attributmenge reagieren
+# Logik für das Speichern von Zusatzdaten an der Bestellung
+# Logik für das Auslesen von Zusatzdaten aus der Bestellung
+# Funktionen für das (einfache)Verwenden von Bestelldaten (Attributspezifisch) nach der Bestellung im Template, Admin, Email, ...
+# Implementierung an den Templates, um individuelle Bestelldaten auszugeben
+
+
+h2. Mehrfache Attributauswahl im Backend
+
+*Umsetzung:*
+Erweiterung der Backend Konfiguration um ein Mehrfachauswahl Feld.
+
+*Datei:*
+> .modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/etc/system.xml
+
+*Code:*
+<pre><code class="diff">
+<sections>
+	<sdzecom_aurednik translate="label">
+		...
+		<groups>
++			<product_additional_order_data translate="label">
++				<label>Additional order data section</label>
++				<sort_order>10</sort_order>
++				<show_in_default>1</show_in_default>
++				<show_in_website>1</show_in_website>
++				<show_in_store>1</show_in_store>
++				<fields>
++					<productadditionalorderdataattribute translate="label">
++						<label>Additional order attribute selection</label>
++						<frontend_type>multiselect</frontend_type>
++						<source_model>library/attribute</source_model>
++						<sort_order>10</sort_order>
++						<show_in_default>1</show_in_default>
++						<show_in_website>0</show_in_website>
++						<show_in_store>0</show_in_store>
++					</productadditionalorderdataattribute>
++				</fields>	
++			</product_additional_order_data>
+			...
+</code></pre>
+
+
+h2. Zusatzspalte(n) für neue Attribute in der Bestelltabelle (Datenbank)
+
+*Umsetzung:*
+Erstellung eines SQL Skriptes, um neue Spalten in der Datenbank hinzuzufügen.
+Nach dem Lauf des Skripts erfolgen Änderungen in folgenden Bereichen.
+
+> Datenbanktabelle "core_resource" - Eintrag "aurednik_setup" -> Version wird entsprechend der Datei erhöht.
+> Datenbanktabelle "sales_flat_order" - Neue Spalte für das Speichern von Zusatzdaten an einer Bestellung
+
+*Code:*
+> .modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/etc/config.xml
+	-> Änderung der Version von 0.1.4 -> 0.1.5
+
+*Datei:*
+> .modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/sql/aurednik_setup/mysql4-upgrade-0.1.4-0.1.5.php
+
+h2. Erweiterung der Events / Speicherung der Daten an der Bestellung
+
+*Umsetzung:*
+Erweiterung des Observers für den Bestellvorgang.
+
+*Datei:*
+> .modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/Model/Event/Order/Observer.php
+
+*Code:*
+<pre><code class="diff">
+protected function setItemOrderData($objOrder)
+{
+	...
+
++ 	$additionalProductData = $product->getAdditionalProductOrderData();
++ 	$additionalOrderItemAttributes = array_merge($additionalOrderItemAttributes, $additionalProductData);
+
+ 	$orderItem->setProductOptions($additionalOrderItemAttributes);
+}
+</code></pre>
+
+
+*Datei:*
+> .modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/Helper/Product.php
+
+*Anpassung/Neuimplementierung folgender Methoden:*
+
+* __construct()
+* setProduct()
+* setAdditionalProductOrderData()
+* getAdditionalProductOrderData()
+* hasAdditionalProductOrderData()
+
+*Datei:*
+> .modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/Model/Product.php
+
+* getAdditionalProductOrderData()
+
+
+h2. Logik für das Auslesen von Zusatzdaten aus der Bestellung/Verwendung in Templates
+
+*Datei:*
+> .modman/SDZeCOM_Aurednik/Source/app/code/local/SDZeCOM/Aurednik/Block/Adminhtml/Sales/Order/View/Info/Block.php
+
+
+h3. Zugriff innerhalb von Templates
+
+Damit die Zusatzdaten ausgewertet werden können, muss das Bestellitem als Parameter mitgegeben werden.
+Für die Ausgabe der Informationen in HTML-Form werden die Produktdaten als Array sowie der Darstellungstyp benötigt.
+
+Aktuell sind folgende Darstellungstypen verwendbar. 
+* frontend
+* backend
+* email
+* Wenn kein Typ angegeben wird, wird "frontend" als Fallback verwendet.
+
+*Codesnippet*
+<pre><code class="php">
+$customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();
+$additionalItemOrderData = $customOrderBlock->getAdditionalOrderItemData($_item);
+
+// Zusatzdaten
+echo $customOrderBlock->getAdditionalOrderItemHtml($additionalItemOrderData, 'backend');
+
+// Warnhinweise
+echo $customOrderBlock->getProductWarningHintsTable($additionalItemOrderData, 'backend');
+</code></pre>
+
+
+h3. Einbindung in das Modul: Ordersexporttool
+
+*Code:*
+<pre><code class="diff">
+<tbody class="<?php echo $i%2?'even':'odd' ?>">
+    <?php echo $this->getItemHtml($_item) ?>
+    <?php echo $this->getItemExtraInfoHtml($_item) ?>
+
++	<?php
++		/**
++		 * Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts
++		 *
++		 * @author Eugen Gutsche
++		 * @ticket https://projects.sdzecom.de/issues/11678
++		 */
++		$customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();
++		$additionalItemOrderData = $customOrderBlock->getAdditionalOrderItemData($_item);
++		echo $customOrderBlock->getAdditionalOrderItemHtml($additionalItemOrderData, 'backend');
++		echo $customOrderBlock->getProductWarningHintsTable($additionalItemOrderData, 'backend');
+	?>
+</tbody>
+</code></pre>
+
+*Datei:*
+> .modman/Aurednik_Frontend/Source/app/design/adminhtml/default/default/ordersexporttool/sales/order/view/items.phtml
+
+h3. Einbindung in die Checkout Bestellübersicht im Frontend
+
+*Datei:*
+> .modman/Aurednik_Frontend/Source/app/design/frontend/aurednik/default/template/checkout/onepage/review/item.phtml
+
+*Code:*
+<pre><code class="diff">
+<+ ?php
++	/**
++	 * Liefert eine HTML-Tabelle mit Zusatzinformationen eines Produkts während dem Bestellvorgang
++	 *
++	 * @author Eugen Gutsche
++	 * @ticket https://projects.sdzecom.de/issues/11678
++	 */
++	$customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();
++	$additionalProductData = $_product->getAdditionalProductOrderData();
++	echo $additionalCheckoutData = $customOrderBlock->getAdditionalOrderItemHtml($additionalProductData, 'frontend');
++ ?>
+<!-- Ausgabe der HTML-Tabelle mit Zusatzinformationen eines Produkts -->
+<?php //echo $customOrderBlock->getAdditionalOrderItemHtml($additionalItemOrderData, 'frontend'); ?>
+<!-- 2017-05-17 SP, Erweiterung Warnhinweise um Sicherheitshinweise mit Icons -->
+
+</code></pre>
+
+h3. Einbindung in der Bestellübersicht im Backend
+
+Aktuell erfolgt Bezug/Ausgabe der Zusatzdaten am Template des Moduls *Ordersexporttool*.
+
+
+h3. Einbindung in die Print Ausgabe
+
+Hier mussten die Daten direkt am Item Renderer platziert/abgefragt werden, da dieser in den verschiedenen Verkaufs-templates verwendet wird und ein Verkaufsitem direkt vorliegt,
+
+*Datei:*
+> .modman/Aurednik_Frontend/Source/app/design/frontend/aurednik/default/template/sales/order/items/renderer/default.phtml
+
+*Code:*
+<pre><code class="diff">
+    <?php echo $this->escapeHtml($_item->getDescription()) ?>
+    <?php if($this->helper('giftmessage/message')->getIsMessagesAvailable('order_item', $_item) && $_item->getGiftMessageId()): ?>
+        <a href="#" id="order-item-gift-message-link-<?php echo $_item->getId() ?>" class="gift-message-link" onclick="return giftMessageToogle('<?php echo $_item->getId() ?>')"><?php echo $this->__('Gift Message') ?></a>
+    <?php endif; ?>
+</td>
+
++ <td>
++	<?php
++		/**
++		 * Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts
++		 *
++		 * @author Eugen Gutsche
++		 * @ticket https://projects.sdzecom.de/issues/11678
++		 */
++		$customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();
++		$additionalItemOrderData = $customOrderBlock->getAdditionalOrderItemData($_item);
++		// Zusatzdaten
++		echo $customOrderBlock->getAdditionalOrderItemHtml($additionalItemOrderData);
++		// Warnhinweise
++		echo $customOrderBlock->getProductWarningHintsTable($additionalItemOrderData);
++	?>
++ </td>
+</code></pre>
+
+h3. Einbindung in das Email Template
+
+*Datei:*
+> .modman/Aurednik_Frontend/Source/app/design/frontend/aurednik/default/template/email/order/items/order/default.phtml
+
+*Code:*
+<pre><code class="diff">
+</style>
+<?php $_item = $this->getItem() ?>
+<?php $_order = $this->getItem()->getOrder() ?>
+
++ <?php
++	/**
++	 * Liefert eine HTML-Tabelle mit Zusatzinformationen eines Produkts nach dem Bestellvorgang
++	 *
++	 * @author Eugen Gutsche
++	 * @ticket https://projects.sdzecom.de/issues/11678
++	 */
++	$customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();
++	$additionalItemOrderData = $customOrderBlock->getAdditionalOrderItemData($_item);
++?>
+</code></pre>
+
+*Code:*
+<pre><code class="diff">
+ </td>
+    </tr>
++    <tr>
++		<!-- Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts -->
++		<?php echo $customOrderBlock->getAdditionalOrderItemHtml($additionalItemOrderData, 'email'); ?>
++		<?php echo $customOrderBlock->getProductWarningHintsTable($additionalItemOrderData, 'email'); ?>
++	</tr>
+
+<?php if ($_item->getGiftMessageId() && $_giftMessage = $this->helper('giftmessage/message')->getGiftMessage($_item->getGiftMessageId())): ?>
+    <tr>
+</code></pre>
+
+
+h2. Verwendung von Stylesheets für die einzelnen Bereiche
+
+Da sich die Ausgabe der Standardbestelldaten in den verschiedenen Bereichen unterscheidet wurden jeweils eigene Stylesheets erstellt.
+Das HTML Konstrukt wurde durchgehend mit Klassennamen versehen, so dass eine detailierte Anpassung der jeweiligen Ausgabe möglich ist.
+
+*Backend:* 
+> .modman/Aurednik_Frontend/Source/skin/adminhtml/aurednik/css/custom_order_backend.css
+
+*Frontend:*
+> .modman/Aurednik_Frontend/Source/skin/frontend/aurednik/default/css/custom_order_frontend.css
+
+*Email:*
+> .modman/Aurednik_Frontend/Source/skin/frontend/aurednik/default/css/custom_order_email.css
+
+
+
+h2. Konfiguration im Backend und Ausgabe der Daten
+
+
+h3. Selektion der Attribute
+
+!additional_order_attributes_configuration.png!
+
+
+h3. Ausgabe im Checkoutprozess
+
+!erweiterte_bestellbestätigung_checkout.png!
+
+h3. Ausgabe in der Printversion der Bestellbestätigung
+
+!erweiterte_bestellbestätigung_print.png!
+
+*Zusatzinformationen*
+
+!erweiterte_bestellbestätigung_print_1.png!
+
+*Warnhinweise*
+
+!erweiterte_bestellbestätigung_print_2.png!
+
+
+
+h3. Ausgabe in der Emailversion der Bestellbestätigung
+
+*Zusatzinformationen*
+
+!erweiterte_bestellbestätigung_mail.png!
+
+*Warnhinweise*
+
+!erweiterte_bestellbestätigung_mail_warnings.png!
+
+
+h3. Ausgabe in der Bestellübersicht im Backend
+
+!erweiterte_bestellbestätigung_admin.png!

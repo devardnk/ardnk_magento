@@ -32,14 +32,15 @@
 <?php $product = $this->getProduct() ?>
 
 
-<?php /* Produkt überschreiben, um sicherzugehen, dass dieses nicht durch andere Module überschrieben wird */?>
-<?php $_product = Mage::getModel('aurednik/product')->load($product->getId());?>
+<?php ?>
+<?php
+	/** Produkt überschreiben, um sicherzugehen, dass dieses nicht durch andere Module überschrieben wird */
+	/** @var SDZeCOM_Aurednik_Model_Product $_product */
+	$_product = Mage::getModel('aurednik/product')->load($product->getId());
+?>
 
     <!-- für die Liefervariante, Frachtkosten usw -->
-
-
 <tr>
-
     <td>
 		<h3 class="product-name"><?php echo $this->escapeHtml($this->getProductName())?></h3>
         <div class="product_image" style="border: 1px solid #e2e2e2;padding:4px 4px 4px 4px;float:left; margin-right:8px">
@@ -328,6 +329,20 @@
     <?php endif; ?>
 </tr>
 
+<?php
+	/**
+	 * Liefert eine HTML-Tabelle mit Zusatzinformationen eines Produkts während dem Bestellvorgang
+	 *
+	 * @author Eugen Gutsche
+	 * @ticket https://projects.sdzecom.de/issues/11678
+	 */
+	$customOrderBlock = new SDZeCOM_Aurednik_Block_Adminhtml_Sales_Order_View_Info_Block();
+	$additionalProductData = $_product->getAdditionalProductOrderData();
+	echo $additionalCheckoutData = $customOrderBlock->getAdditionalOrderItemHtml($additionalProductData, 'frontend');
+?>
+
+<!-- Ausgabe der HTML-Tabelle mit Zusatzinformationen eines Produkts -->
+<?php //echo $customOrderBlock->getAdditionalOrderItemHtml($additionalItemOrderData, 'frontend'); ?>
 <!-- 2017-05-17 SP, Erweiterung Warnhinweise um Sicherheitshinweise mit Icons -->
 
 <?php $warningNotices    = $_product->getProductWarningNotices();?>

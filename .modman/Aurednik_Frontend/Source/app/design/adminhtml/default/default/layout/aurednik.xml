@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <layout version="0.1.0">
-
 	<adminhtml_cms_home_index>
 		<reference name="content">
 			<block type="aurednik/adminhtml_cms_home_container" name="cmshome_grid"></block>
 		</reference>
 	</adminhtml_cms_home_index>
-	
 	<adminhtml_cms_new_index>
-		
 		<reference name="left">
 			<block type="aurednik/adminhtml_cms_home_new_form_tabs" name="cmshome_new_form_tabs" />
-		</reference>	
-	
+		</reference>
 		<reference name="content">
 			<block type="aurednik/adminhtml_cms_home_new_form_container" name="cmshome_new" />
 		</reference>
-		
 	</adminhtml_cms_new_index>
-
 	<adminhtml_cms_edit_index>
-	
 		<reference name="left">
 			<block type="aurednik/adminhtml_cms_home_edit_form_tabs" name="cmshome_edit_form_tabs" />
-		</reference>	
-
+		</reference>
 		<reference name="content">
 			<block type="aurednik/adminhtml_cms_home_edit_form_container" name="cmshome_edit" />
 		</reference>
-	 
 	</adminhtml_cms_edit_index>
-	
-</layout>	
+</layout>

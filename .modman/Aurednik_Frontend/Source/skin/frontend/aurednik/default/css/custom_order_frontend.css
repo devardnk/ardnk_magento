@@ -3,23 +3,34 @@
 	border-top:thin solid #CCCCCC; 
 }
 
-/*
-.additional-product-info-table-row td{
-	border-bottom: 2px solid grey; 
-	background: #F6F6F6;
-	padding:0;
-}
-*/
 .additional-product-info-table-row-td{
-	border:1px solid #e2e2e2; 
-	border-top:thin solid #CCCCCC; 
+	text-align: left!important;
+}
+
+.additional-product-info-table-list tr td{
+	border-bottom: thin solid #e2e2e2;
+}
+
+.additional-product-info-table-row-details-td{
+	border:1px solid #e2e2e2!important; 
+	border-top:thin solid #CCCCCC!important; 
 	background-color:#e2e2e2;
 }
 
-.additional-product-info-table-list{
-	border: none; width:100%;
+.additional-product-info-table-list{ 
+	width:100%;
 }
+
 
 .additional-product-info-table-list td{
 	padding:0;
+}
+
+.additional-product-info-table-list tr td.even{
+
+}
+
+.additional-product-info-table-list tr td.odd{
+	background: #F6F6F6!important;
+	
 }

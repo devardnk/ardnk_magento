@@ -191,15 +191,10 @@ td.cell-content, .align-center, .align-right{
                 <?php endif; ?>
         </td>
         </tr>
-
-<!--		<tr style=" border:thin solid green" >-->
+		<tr>
 			<!-- Ausgabe der HTML-Tabelle mit Zusatzinformationen/Warnhinweisen eines Produkts -->
-<!--			<td class="cell-content product-info" colspan="4" style=" border:thin solid orange; padding:3px 9px;">-->
-				<?php echo $customOrderBlock->getAdditionalOrderItemHtml($additionalItemOrderData, 'email'); ?>
-<!--			</td>-->
-<!--			<td class="cell-content product-info" colspan="4" style=" border:thin solid #CCCCCC; padding:3px 9px;">-->
-				<?php echo $customOrderBlock->getProductWarningHintsTable($additionalItemOrderData, 'email'); ?>
-<!--			</td>-->
+			<?php echo $customOrderBlock->getAdditionalOrderItemHtml($additionalItemOrderData, 'email'); ?>
+			<?php echo $customOrderBlock->getProductWarningHintsTable($additionalItemOrderData, 'email'); ?>
 		</tr>
 
     <?php if ($_item->getGiftMessageId() && $_giftMessage = $this->helper('giftmessage/message')->getGiftMessage($_item->getGiftMessageId())): ?>
