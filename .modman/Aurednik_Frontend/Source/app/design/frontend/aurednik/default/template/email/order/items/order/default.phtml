@@ -84,16 +84,27 @@ td.cell-content, .align-center, .align-right{
 			<p class="sku" style="padding-top:5px;"><strong><?php echo $this->__('SKU'); ?>:</strong> <?php echo $this->escapeHtml($this->getSku($_item)) ?></p>
         	<p class="product-name"><strong><?php echo $this->__('Produktbezeichnung')?>:</strong> <?php echo $this->escapeHtml($_item->getName()) ?></p>
 
-            <?php if ($this->getItemOptions()): ?>
-                <dl style="margin:0; padding:0;">
-            <?php foreach ($this->getItemOptions() as $option): ?>
+            <?php
+            /**
+             * START - Print individual options in email template
+             * @author Eugen Gutsche
+             * @ticket https://projects.sdzecom.de/issues/11678
+             */
+            ?>
+            <?php if ($options = $_item->getProductOptions()): ?>
+                <?php if (isset($options['options'])): ?>
+                    <dl style="margin:0; padding:0;">
+                        <?php foreach ($options['options'] as $option): ?>
                             <dt><strong><em><?php echo $option['label'] ?></em></strong></dt>
                             <dd style="margin:0; padding:0 0 0 9px;">
-                                <?php echo nl2br($option['value']) ?>
+                                <?php echo (isset($option['print_value']) ? $option['print_value'] : nl2br($this->escapeHtml($option['value']))); ?>
                             </dd>
                         <?php endforeach; ?>
                     </dl>
                 <?php endif; ?>
+            <?php endif; ?>
+            <?php /** END - Print individual options in email template */?>
+
                 <?php $addInfoBlock = $this->getProductAdditionalInformationBlock(); ?>
                 <?php if ($addInfoBlock) :?>
                     <?php echo $addInfoBlock->setItem($_item)->toHtml(); ?>
