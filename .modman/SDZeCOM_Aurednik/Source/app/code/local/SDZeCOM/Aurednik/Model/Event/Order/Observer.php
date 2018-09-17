@@ -24,6 +24,10 @@ class SDZeCOM_Aurednik_Model_Event_Order_Observer extends Varien_Object
 	 */
 	protected $frightCostHintText = '';
 
+	/**
+	 * @var Mage_Sales_Model_Order_Item $order
+	 */
+	protected $order;
 
 	/**
 	 * Versandkosten im Warenkorb ausgeben
@@ -141,15 +145,16 @@ class SDZeCOM_Aurednik_Model_Event_Order_Observer extends Varien_Object
 
 	public function saveAdditionalOrderData($observer)
 	{
-		$order = $observer->getOrder();
+		$this->order = $observer->getOrder();
 		$quote = $observer->getQuote();
 
 		$request = Mage:: app()->getRequest();
 		$this->storeID = Mage::app()->getStore()->getId();
 		$this->orderHelper = new SDZeCOM_Aurednik_Helper_Shipping_Order($quote, $this->storeID);
 
-		$this->setItemOrderData($order);
-		$this->setGlobalOrderData($request, $order, $quote);
+		$this->setItemOrderData();
+		$this->setGlobalOrderData($request, $quote);
+
 	}
 
 
@@ -161,10 +166,9 @@ class SDZeCOM_Aurednik_Model_Event_Order_Observer extends Varien_Object
 	 * @author Eugen Gutsche
 	 *
 	 * @param $objRequest
-	 * @param $objOrder
 	 * @param $quote
 	 */
-	protected function setGlobalOrderData($objRequest, $objOrder, $quote)
+	protected function setGlobalOrderData($objRequest, $quote)
 	{
 		$strOrderType = trim($objRequest->getPost(SDZeCOM_Aurednik_Helper_Product :: ORDER_TYPE_FIELD));
 		$orderComment = trim($objRequest->getPost('aurednik_order_comment'));
@@ -183,7 +187,7 @@ class SDZeCOM_Aurednik_Model_Event_Order_Observer extends Varien_Object
 
 		foreach ($additionalOrderAttributes as $attribute => $value)
 		{
-			$objOrder->setData($attribute, $value);
+			$this->order->setData($attribute, $value);
 		}
 	}
 
@@ -194,15 +198,10 @@ class SDZeCOM_Aurednik_Model_Event_Order_Observer extends Varien_Object
 	 * @ticket https://projects.sdzecom.de/issues/6268
 	 *
 	 * @author Eugen Gutsche
-	 *
-	 * @param $objOrder
 	 */
-	protected function setItemOrderData($objOrder)
+	protected function setItemOrderData()
 	{
-		/**
-		 * @var Mage_Sales_Model_Order_Item $objOrder
-		 */
-		$allOrderItems = $objOrder->getAllItems();
+		$allOrderItems = $this->order->getAllItems();
 		$storeSpecificFreightInfoAttribute = $this->orderHelper->getStoreSpecificFreightCostAttribute();
 
 		foreach ($allOrderItems as $orderItem)
@@ -239,9 +238,18 @@ class SDZeCOM_Aurednik_Model_Event_Order_Observer extends Varien_Object
 				'aurednik_product_warnings' => $product->getProductWarningNotices()
 			);
 
+			$individualOptions = $orderItem->getData('product_options');
+			$individualOptions = unserialize($individualOptions);
+			if (count($individualOptions['options']) != 0)
+			{
+				foreach ($individualOptions['options'] as $key => $individualOption)
+				{
+					$additionalOrderItemAttributes[$individualOption['label']] = $individualOption['value'];
+				}
+			}
+
 			$additionalProductData = $product->getAdditionalProductOrderData();
 			$additionalOrderItemAttributes = array_merge($additionalOrderItemAttributes, $additionalProductData);
-
 			$orderItem->setProductOptions($additionalOrderItemAttributes);
 		}
 	}
